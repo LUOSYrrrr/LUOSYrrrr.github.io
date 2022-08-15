@@ -104,17 +104,17 @@
 <p>按一定的数据模型组织、描述和存储，具有较小的冗余度 、较高的数据独立性和易扩展性，并可为各种用户共享</p>
 <p> 例如国家基础地理信息数据库、资源环境数据库</p>
 <h2 id="lecture2-关系模型与关系代数"><a href="#lecture2-关系模型与关系代数" class="headerlink" title="lecture2 关系模型与关系代数"></a>lecture2 关系模型与关系代数</h2><h3 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h3><p>关系模型是一种数据模型，它和一般的数据模型一 样，由如下三部分组成</p>
-<h4 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h4><p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803154840994.png" alt="image-20220803154840994"></p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803154933201.png" alt="image-20220803154933201"></p>
+<h4 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h4><p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803154840994.png" alt="image-20220803154840994"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803154933201.png" alt="image-20220803154933201"></p>
 <h4 id="关系数据操作"><a href="#关系数据操作" class="headerlink" title="关系数据操作"></a>关系数据操作</h4><h4 id="关系模型中完整性约束（三类）"><a href="#关系模型中完整性约束（三类）" class="headerlink" title="关系模型中完整性约束（三类）"></a>关系模型中完整性约束（三类）</h4><h5 id="实体完整性规则-Entity-Integrity"><a href="#实体完整性规则-Entity-Integrity" class="headerlink" title="实体完整性规则 (Entity Integrity)"></a>实体完整性规则 (Entity Integrity)</h5><p>若属性A是基本关系R的主属性，则任何一个元组在属性A上不能取空值 (NULL</p>
 <h5 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h5><p>关系间的引用、外码、参照完整性规则</p>
 <h5 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h5><p>Schema &#x3D; 数据库中关系的结构描述 </p>
 <p>Instance &#x3D; 实际存储内容</p>
 <h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><p>一种抽象的查询语言，用对关系的运算来表达查询</p>
 <p>关系代数运算的三个要素：运算对象、运算结果、运算符</p>
-<img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803155211819.png" alt="image-20220803155211819" style="zoom:50%;" />
+<img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803155211819.png" alt="image-20220803155211819" style="zoom:50%;">
 
-<img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803155220527.png" alt="image-20220803155220527" style="zoom:50%;" />
+<img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803155220527.png" alt="image-20220803155220527" style="zoom:50%;">
 
 <h5 id="选择-σ"><a href="#选择-σ" class="headerlink" title="选择(σ)"></a>选择(σ)</h5><p>针对单个关系中的数据进行操作，属于一元运 算符，是指从关系中选择若干行 l 例如，可以使用选择操作符(σ)从学生关系S中选择 出那些年龄大于19岁的学生。该查询可以用如下的 表达式来表示： σSage&gt;19(S) 查询表达式中的下标“Sage&gt;19”给出的是选择条 件，只有符合该条件的元组才可以被返回到结果中</p>
 <h5 id="投影操作-π"><a href="#投影操作-π" class="headerlink" title="投影操作 (π)"></a>投影操作 (π)</h5><p>是指从关系中选择若干列 </p>
@@ -126,10 +126,10 @@
 <h6 id="等值连接-Equijoin）"><a href="#等值连接-Equijoin）" class="headerlink" title="等值连接 (Equijoin）"></a>等值连接 (Equijoin）</h6><p>当条件AθB中的θ为“＝”的连接运算称为等值连 接</p>
 <h6 id="自然连接-Natural-join"><a href="#自然连接-Natural-join" class="headerlink" title="自然连接 (Natural join)"></a>自然连接 (Natural join)</h6><p>自然连接是一种特殊的等值连接 » 它要求关系R中的属性A和关系S中的属性B名 字相同 » 在结果中把重复的属性列去掉</p>
 <h5 id="除运算"><a href="#除运算" class="headerlink" title="除运算"></a>除运算</h5><p>下图中的关系A表示某个学生选修了某门课程，B表 示可选的选修课列表。A÷B表示选修了B中所有课 程的学生名单</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803160555015.png" alt="image-20220803160555015"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803160555015.png" alt="image-20220803160555015"></p>
 <p>除运算可以这样来理解：假设有两个关系A和B，其 中A只有两个属性X和Y，B只有一个属性Y（和关系 A中的Y属性具有相同的域），对于A中的每一个x（ 属性X的取值）所对应的y（属性Y的取值）集合， 看它是否包含B中所有的y值，如果包含，则x属于 A÷B的结果集</p>
 <h5 id="重命名？"><a href="#重命名？" class="headerlink" title="重命名？"></a>重命名？</h5><p>？</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803192818984.png" alt="image-20220803192818984"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803192818984.png" alt="image-20220803192818984"></p>
 <h2 id="lecture3-关系数据库标准语言"><a href="#lecture3-关系数据库标准语言" class="headerlink" title="lecture3 关系数据库标准语言"></a>lecture3 关系数据库标准语言</h2><h2 id="lecture4几何对象模型与查询"><a href="#lecture4几何对象模型与查询" class="headerlink" title="lecture4几何对象模型与查询"></a>lecture4几何对象模型与查询</h2><h4 id="空间数据模型"><a href="#空间数据模型" class="headerlink" title="空间数据模型"></a>空间数据模型</h4><p>空间信息的一种数据组织方式</p>
 <p> 对象模型、场模型、网络模型</p>
 <p>现有的空间数据库都是基于某种空间数据模型</p>
@@ -140,8 +140,8 @@
 <p>栅格模型：</p>
 <p>以二维矩阵的形式来表示空间地物或现象分布的数据组织方式 </p>
 <p>每个矩阵单位称为一个栅格单元，单元值表示地物或现象的属性 数据</p>
-<h4 id="4-2-1-概念模型"><a href="#4-2-1-概念模型" class="headerlink" title="4.2.1 概念模型"></a>4.2.1 概念模型</h4><h5 id="几何对象模型层次结构-OGC-Simple-Features-for-SQL"><a href="#几何对象模型层次结构-OGC-Simple-Features-for-SQL" class="headerlink" title="几何对象模型层次结构 OGC Simple Features for SQL"></a>几何对象模型层次结构 OGC Simple Features for SQL</h5><p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804085404221.png" alt="image-20220804085404221"></p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804090450431.png" alt="image-20220804090450431"></p>
+<h4 id="4-2-1-概念模型"><a href="#4-2-1-概念模型" class="headerlink" title="4.2.1 概念模型"></a>4.2.1 概念模型</h4><h5 id="几何对象模型层次结构-OGC-Simple-Features-for-SQL"><a href="#几何对象模型层次结构-OGC-Simple-Features-for-SQL" class="headerlink" title="几何对象模型层次结构 OGC Simple Features for SQL"></a>几何对象模型层次结构 OGC Simple Features for SQL</h5><p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804085404221.png" alt="image-20220804085404221"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804090450431.png" alt="image-20220804090450431"></p>
 <p>wgs-84</p>
 <p>点(Point) ▬ 零维几何对象类，代表空间中的一个点，如城市</p>
 <p>曲线(Curve) ▬ 由点序列描述一维的几何对象类，如街道、管线 ▬ 相邻两点间的插值方法：线性插值和非线性插值</p>
@@ -180,8 +180,8 @@
 <p>测试几何类空间拓扑关系方法 </p>
 <p>▬ 空间拓扑关系反映了空间连续变化的不变性 ： 图形的形状、大小会随图形的变化而改变，但相邻、包含、相交 等空间拓扑关系不会发生变化</p>
 <p> ▬ 由于3D中面、体对象的拓扑关系是极其复杂的，故目前 该模型主要集中在2D空间拓扑关系方面</p>
-<h5 id="九交模型"><a href="#九交模型" class="headerlink" title="九交模型"></a>九交模型</h5><p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804095109399.png" alt="image-20220804095109399"></p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804100146133.png" alt="image-20220804100146133"></p>
+<h5 id="九交模型"><a href="#九交模型" class="headerlink" title="九交模型"></a>九交模型</h5><p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804095109399.png" alt="image-20220804095109399"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804100146133.png" alt="image-20220804100146133"></p>
 <h5 id="空间拓扑关系"><a href="#空间拓扑关系" class="headerlink" title="空间拓扑关系"></a>空间拓扑关系</h5><p>相离(disjoint) n 若a ∩ b &#x3D; ∅，则a和b相离</p>
 <p>相交(intersects) n 若a ∩ b ≠ ∅，则a和b相交 ；a.Intersects(b) ↔ !a.Disjoint(b)</p>
 <p>相等(equals) n 若a包含于b，且b包含于a，则a和b相等</p>
@@ -192,13 +192,13 @@
 <p>穿越(crosses)</p>
 <p> 若[Dim(I a ∩ I b) &lt; max(Dim(I(a)), Dim(I(b)))，且Dim(I(b)) !&#x3D;  0， a ∩ b≠ a， a ∩ b ≠ b，则a穿越b,点&#x2F;线、点&#x2F;面、线&#x2F;线、线&#x2F;面穿越关系</p>
 <h4 id="4-2-2-几何对象逻辑模型"><a href="#4-2-2-几何对象逻辑模型" class="headerlink" title="4.2.2 几何对象逻辑模型"></a>4.2.2 几何对象逻辑模型</h4><p>基于概念模型，OGC提出了基于预定义数据类型和 基于扩展几何类型的两种实现方法</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804101918403.png" alt="image-20220804101918403"></p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804102410950.png" alt="image-20220804102410950"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804101918403.png" alt="image-20220804101918403"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804102410950.png" alt="image-20220804102410950"></p>
 <p>WKB表达</p>
 <p> ▬ SFA SQL给出了一种较为紧凑的几何数据的二进制方式 的存储格式 </p>
 <p>▬ 数字类型串行化为网络数据表示(network data  representation, NDR)(按小Endian方式编码)和</p>
 <p>或外部数据表示(external data  representation, XDR)存储在磁盘上(按大Endian方式编码)</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804110136753.png" alt="image-20220804110136753"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804110136753.png" alt="image-20220804110136753"></p>
 <p> WKT表达</p>
 <p>▬ OGC还提供一种基于文本格式几何数据交汇标准表达方式 ▬ 例如POINT(10, 10)，POLYGON((10 10, 10 20, 20 20, 20  15, 10 10))</p>
 <p>一个简单的多边形，为啥非要用2个括号呢？一个括号明明就可以啊</p>
@@ -228,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" data-id="cl6usdarg0001vkvq2lcx8hn4" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" data-id="cl6uskerb00027svq1tk1gwuu" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -292,7 +292,7 @@
 <p>这里考虑的是二分类问题，而且假设真实目标函数f可以是任何输入空间X到输出空间{0, 1}的映射，那么整个函数空间的大小就应该是2^|X|。（指数）</p>
 <p> 假设在整个函数空间中所有可能的目标函数f是均匀分布的</p>
 <p>所以示性函数这一项可以直接将其变成期望提出来</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815121152850.png" alt="image-20220815121152850"></p>
+<p><img src="/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815121152850.png" alt="image-20220815121152850"></p>
 <p><strong>脱离具体问题谈论算法好坏没有意义，就像脱离具体问题谈数据结构的好坏一样。（例如堆和二叉搜索树）</strong></p>
 <h2 id="02模型评估与选择"><a href="#02模型评估与选择" class="headerlink" title="02模型评估与选择"></a>02模型评估与选择</h2><h3 id="一种训练集一种算法"><a href="#一种训练集一种算法" class="headerlink" title="一种训练集一种算法"></a>一种训练集一种算法</h3><h3 id="2-1经验误差与过拟合"><a href="#2-1经验误差与过拟合" class="headerlink" title="2.1经验误差与过拟合"></a>2.1经验误差与过拟合</h3><ul>
 <li><p><strong>错误率（error rate）</strong>：分类错误的样本数占样本总数的比例。E&#x3D;a&#x2F;m m个样本，a个样本分类错误</p>
@@ -374,24 +374,24 @@
 <p><strong>回归任务</strong></p>
 <ul>
 <li><p>均方误差（mean squared error）</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815153635438.png" alt="image-20220815153635438"></p>
+<p><img src="/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815153635438.png" alt="image-20220815153635438"></p>
 <p>对数据分布D和概率密度函数p(·)，均方误差可描述为：</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815153753250.png" alt="image-20220815153753250"></p>
+<p><img src="/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815153753250.png" alt="image-20220815153753250"></p>
 </li>
 </ul>
 <h4 id="2-3-1错误率与精度（针对分类问题）"><a href="#2-3-1错误率与精度（针对分类问题）" class="headerlink" title="2.3.1错误率与精度（针对分类问题）"></a>2.3.1错误率与精度（针对分类问题）</h4><ul>
 <li><p>错误率：</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815154047944.png" alt="image-20220815154047944"></p>
+<p><img src="/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815154047944.png" alt="image-20220815154047944"></p>
 </li>
 <li><p>精度：</p>
-<p><img src="C:\Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815154143634.png" alt="image-20220815154143634"></p>
+<p><img src="/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220815154143634.png" alt="image-20220815154143634"></p>
 </li>
 </ul>
 <h4 id="2-3-2查准率、查全率与F1"><a href="#2-3-2查准率、查全率与F1" class="headerlink" title="2.3.2查准率、查全率与F1"></a>2.3.2查准率、查全率与F1</h4><h3 id="一种训练集多种算法"><a href="#一种训练集多种算法" class="headerlink" title="一种训练集多种算法"></a>一种训练集多种算法</h3><h4 id="2-3-3ROC与AUC"><a href="#2-3-3ROC与AUC" class="headerlink" title="2.3.3ROC与AUC"></a>2.3.3ROC与AUC</h4><h4 id="2-3-4代价敏感错误率与代价曲线"><a href="#2-3-4代价敏感错误率与代价曲线" class="headerlink" title="2.3.4代价敏感错误率与代价曲线"></a>2.3.4代价敏感错误率与代价曲线</h4><h3 id="多种训练集一种算法"><a href="#多种训练集一种算法" class="headerlink" title="多种训练集一种算法"></a>多种训练集一种算法</h3><h3 id="2-5偏差与方法"><a href="#2-5偏差与方法" class="headerlink" title="2.5偏差与方法"></a>2.5偏差与方法</h3><h3 id="测试集上的性能在多大程度上保证真实的性能"><a href="#测试集上的性能在多大程度上保证真实的性能" class="headerlink" title="测试集上的性能在多大程度上保证真实的性能"></a>测试集上的性能在多大程度上保证真实的性能</h3><h3 id="2-4比较检验"><a href="#2-4比较检验" class="headerlink" title="2.4比较检验"></a>2.4比较检验</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/" data-id="cl6usdarl0002vkvq2oos2na1" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/15/Datawhale%20%E5%90%83%E7%93%9Ctask01/" data-id="cl6uskeqk00007svqhp0icjxl" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -442,7 +442,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/hello-world/" data-id="cl6usdarc0000vkvq1q5152qn" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/15/hello-world/" data-id="cl6usker800017svqf27na9f0" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
