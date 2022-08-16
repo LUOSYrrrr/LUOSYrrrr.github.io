@@ -82,30 +82,30 @@
 <meta name="description" content="地理空间数据库学习lecture1 地理空间数据库概论空间数据的特征空间特征每个空间对象都具有空间坐标，即空间对象隐含了空间分 布特征  空间数据组织需要考虑它的空间分布特征 除了属性索引外，还需要建立空间索引">
 <meta property="og:type" content="article">
 <meta property="og:title" content="地理空间数据库学习">
-<meta property="og:url" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
 <meta property="og:description" content="地理空间数据库学习lecture1 地理空间数据库概论空间数据的特征空间特征每个空间对象都具有空间坐标，即空间对象隐含了空间分 布特征  空间数据组织需要考虑它的空间分布特征 除了属性索引外，还需要建立空间索引">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803154840994.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803154933201.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803155211819.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803155220527.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803160555015.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803192818984.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804085404221.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804090450431.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804095109399.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804100146133.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804101918403.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804102410950.png">
-<meta property="og:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804110136753.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803154840994.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803154933201.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803155211819.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803155220527.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803160555015.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803192818984.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804085404221.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804090450431.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804095109399.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804100146133.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804101918403.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804102410950.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220804110136753.png">
 <meta property="article:published_time" content="2022-08-15T13:50:09.000Z">
 <meta property="article:modified_time" content="2022-08-16T02:46:41.818Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="LUOSY">
 <meta property="article:tag" content="anaconda">
 <meta property="article:tag" content="jupyter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803154840994.png">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users/LOIS/AppData/Roaming/Typora/typora-user-images/image-20220803154840994.png">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2022/08/15/地理空间数据库学习/地理空间数据库学习/"/>
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/08/15/地理空间数据库学习/地理空间数据库学习/"/>
 
 
 
 
 
-  <title>地理空间数据库学习 | Hexo</title>
+  <title>地理空间数据库学习 | LUOSY'S BLOG</title>
   
 
 
@@ -171,12 +171,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">LUOSY'S BLOG</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Cyber security->AI</p>
       
   </div>
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -287,7 +287,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="LUOSY'S BLOG">
     </span>
 
     
@@ -552,8 +552,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/08/16/task01/" rel="prev" title="吃瓜02">
-                吃瓜02 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/08/16/task01/" rel="prev" title="吃瓜第一、二章">
+                吃瓜第一、二章 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -710,7 +710,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
 
   
 </div>
