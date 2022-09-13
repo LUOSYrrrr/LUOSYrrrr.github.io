@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="网络攻防技术-笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络攻防技术-笔记">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="网络攻防技术-笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143255517.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143317993.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143339781.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143813008.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143834535.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143847269.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143858232.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913142409200.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144510962.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144604460.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144655014.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913142833573.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143422591.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144800582.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144825629.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144835359.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145059185.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145117223.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145134295.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145637774.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913150116165.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913151649570.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152224471.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152245967.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152527196.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152633456.png">
+<meta property="article:published_time" content="2022-09-13T06:20:40.000Z">
+<meta property="article:modified_time" content="2022-09-13T07:34:12.448Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143255517.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/09/13/网络攻防技术/网络攻防技术-笔记/"/>
+
+
+
+
+
+  <title>网络攻防技术-笔记 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络攻防技术-笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-13T14:20:40+08:00">
+                2022-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%8A%E8%AF%BE%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
+                    <span itemprop="name">上课记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  网络攻防技术-笔记
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="网络攻防技术"><a href="#网络攻防技术" class="headerlink" title="网络攻防技术"></a>网络攻防技术</h1><h2 id="第一讲：网络攻防技术概述与课程简介"><a href="#第一讲：网络攻防技术概述与课程简介" class="headerlink" title="第一讲：网络攻防技术概述与课程简介"></a>第一讲：网络攻防技术概述与课程简介</h2><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143255517.png" alt="image-20220913143255517" style="zoom:50%;">
+
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143317993.png" alt="image-20220913143317993" style="zoom:50%;">
+
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143339781.png" alt="image-20220913143339781" style="zoom: 50%;">
+
+<h3 id="网络攻击技术"><a href="#网络攻击技术" class="headerlink" title="网络攻击技术"></a>网络攻击技术</h3><p>网络攻击</p>
+<blockquote>
+<p>是指利用安全缺陷或不当配置对网络信息系统的硬件、软件或通信协议进行攻击，损害网络信息系统的完整性、可用性、机密性和抗抵赖性，导致被攻击信息系统敏感信息泄露、非授权访问、服务质量下降等后果的攻击行为。</p>
+</blockquote>
+<p>网络</p>
+<blockquote>
+<p><strong>狭义上讲是计算机网络，广义上讲则是网络空间</strong></p>
+</blockquote>
+<p>网络攻击的形式与种类很多</p>
+<blockquote>
+<p>DDoS<br>Phishing &amp; Pharming<br>蠕虫<br>木马<br>SQL Injection<br>跨站脚本（XSS）<br>ARP欺骗、IP欺骗、DNS欺骗……</p>
+</blockquote>
+<p>日常对网络攻击的分类并不严谨，学术上攻击分类从入侵检测需求出发，要求遵循以下标准：</p>
+<blockquote>
+<p>l <strong>互斥性（分类类别不应重叠）</strong></p>
+<p>l <strong>完备性（覆盖所有可能的攻击）</strong></p>
+<p>l <strong>非二义性（类别划分清晰）</strong></p>
+<p>l <strong>可重复性（对一个样本多次分类结果一致）</strong></p>
+<p>l <strong>可接受性（符合逻辑和直觉）</strong></p>
+<p>l <strong>实用性（可用于深入研究和调查）</strong></p>
+</blockquote>
+<p>从攻击者的角度，按照攻击发生时，攻击者与被攻击者之间的交互关系进行分类，可以将网络攻击分为：</p>
+<blockquote>
+<p>物理攻击（Local Attack）:指攻击者通过实际接触被攻击的主机实施的各种攻击方法</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143813008.png" alt="image-20220913143813008" style="zoom: 33%;">
+
+<p>主动攻击（Server-side Attack）:指攻击者利用Web、FTP、Telnet等开放网络服务对目标实施的各种攻击。</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143834535.png" alt="image-20220913143834535" style="zoom:33%;">
+
+<p>被动攻击（Client-side Attack）:攻击者利用浏览器、邮件接收程序、文字处理程序等客户端应用程序漏洞或系统用户弱点，对目标实施的各种攻击。</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143847269.png" alt="image-20220913143847269" style="zoom:33%;">
+
+<p>中间人攻击（Man-in-Middle Attack）:指攻击者处于被攻击主机的某个网络应用的中间人位置，进行数据窃听、破坏或篡改等攻击</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143858232.png" alt="image-20220913143858232" style="zoom: 33%;">
+</blockquote>
+<p>攻击步骤与方法</p>
+<blockquote>
+<p>信息收集 Information Gathering:</p>
+<p>任务与目的：<br>尽可能多地收集目标的相关信息，为后续的“精确”攻击建立基础。</p>
+<p>主要方法：<br>主动攻击:利用公开信息服务，主机扫描与端口扫描，操作系统探测与应用程序类型识别</p>
+<p>权限获取 Exploit</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;任务与目的：</span><br><span class="line">&gt;获取目标系统的读、写、执行等权限。</span><br><span class="line"></span><br><span class="line">&gt;主要方法：</span><br><span class="line">&gt;1.主动攻击：口令攻击，缓冲区溢出，脚本攻击……</span><br><span class="line">&gt;2.被动攻击：特洛伊木马，使用邮件、IM等发送恶意链接….,,</span><br></pre></td></tr></table></figure>
+
+<p>安装后门 Control	</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;任务与目的：</span><br><span class="line">&gt;在目标系统中安装后门程序，以更加方便、更加隐蔽的方式对目标系统进行操控。</span><br><span class="line">&gt;主要方法：主机控制木马，Web服务控制木马</span><br></pre></td></tr></table></figure>
+
+<p>扩大影响 Lan Penetration </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;任务与目的：</span><br><span class="line">&gt;以目标系统为“跳板”，对目标所属网络的其它主机进行攻击，最大程度地扩大攻击的效果。</span><br><span class="line"></span><br><span class="line">&gt;主要方法：</span><br><span class="line">&gt;可使用远程攻击主机的所有攻击方式</span><br><span class="line">&gt;还可使用局域网内部攻击所特有的嗅探、假消息攻击等方法</span><br></pre></td></tr></table></figure>
+
+<p>清除痕迹 Clearing</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;任务与目的：</span><br><span class="line">&gt;清除攻击的痕迹，以尽可能长久地对目标进行控制，并防止被识别、追踪。</span><br><span class="line"></span><br><span class="line">&gt;主要方法：</span><br><span class="line">&gt;Rootkit隐藏</span><br><span class="line">&gt;系统安全日志清除</span><br><span class="line">&gt;应用程序日志清除</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="第二讲：信息收集技术"><a href="#第二讲：信息收集技术" class="headerlink" title="第二讲：信息收集技术"></a>第二讲：信息收集技术</h2><h3 id="2-1信息收集概述"><a href="#2-1信息收集概述" class="headerlink" title="2.1信息收集概述"></a>2.1信息收集概述</h3><h4 id="一-概念知识"><a href="#一-概念知识" class="headerlink" title="一.概念知识"></a>一.概念知识</h4><p><strong>概念</strong>:信息收集是指黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。</p>
+<p><strong>信息收集内容</strong>：</p>
+<blockquote>
+<p>域名和IP地址<br>防火墙、入侵检测等安全防范措施<br>内部网络结构、域组织、用户电子邮件<br>操作系统类型<br>端口<br>系统构架<br>敏感文件或目录<br>应用程序类型</p>
+</blockquote>
+<p><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913142409200.png" alt="image-20220913142409200"></p>
+<p><strong>关于信息收集的重要观点</strong>:</p>
+<p>1.信息收集是渗透测试的最重要的一环</p>
+<p>2.关于攻击目标，知道得越多越好</p>
+<p>3.知道得越多，就可能知道得更多</p>
+<p>4.没有无用的信息</p>
+<p><strong>信息收集分类:</strong></p>
+<p>1.主动:通过直接访问、扫描网站，这种将流量流经网站的行为</p>
+<p>​          <strong>你能获取更多的信息，但是目标主机可能会记录你的操作记录。</strong></p>
+<p>2.被动:利用第三方的服务对目标进行访问了解，比例：Google搜索</p>
+<p>​		<strong>被动方式，你收集的信息会相对少，但是你的行动并不会被目标主机发现</strong></p>
+<h4 id="二-攻击步骤与方法"><a href="#二-攻击步骤与方法" class="headerlink" title="二.攻击步骤与方法"></a>二.<strong>攻击步骤与方法</strong></h4><p><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144510962.png" alt="image-20220913144510962"></p>
+<p>•Attack Lifecycle Model</p>
+<p><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144604460.png" alt="image-20220913144604460"></p>
+<p>1）初始侦察:攻击者对目标进行研究。攻击者识别目标(系统和人员)并确定其攻击方法。</p>
+<p>2）</p>
+<p>•<strong>APT’s Killing Chain Model</strong></p>
+<p><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144655014.png" alt="image-20220913144655014"></p>
+<h3 id="2-2公开信息收集"><a href="#2-2公开信息收集" class="headerlink" title="2.2公开信息收集"></a>2.2公开信息收集</h3><h4 id="1-利用web服务"><a href="#1-利用web服务" class="headerlink" title="1.利用web服务"></a>1.利用web服务</h4><p>网站拥有者信息</p>
+<blockquote>
+<p>邮编、地址<br>论坛版本号<br>网络管理员邮箱<br>公司人员名单、电话、邮箱</p>
+</blockquote>
+<p>得到对应的IP地址</p>
+<blockquote>
+<p>利用DNS服务器：提供域名到IP地址的映射<br>ping <a target="_blank" rel="noopener" href="http://www.sina.com.cn/">www.sina.com.cn</a><br>Reply from  202.108.33.32  time&#x3D;11ms TTL&#x3D;245 </p>
+</blockquote>
+<p>获取目标网络拓扑结构</p>
+<blockquote>
+<p>网络拓扑图<br>IP分配表<br>子域名<br>网络设备，安全设施<br>…………</p>
+</blockquote>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913142833573.png" alt="image-20220913142833573" style="zoom: 67%;">
+
+<h4 id="2-利用搜索引擎服务-Google-hacking"><a href="#2-利用搜索引擎服务-Google-hacking" class="headerlink" title="2.利用搜索引擎服务 Google hacking"></a>2.利用搜索引擎服务 Google hacking</h4><p>共同特点：利用公开信息服务收集信息(不需要账号，供所有人访问)</p>
+<blockquote>
+<p>信息是公开的<br>海量的信息中很多都是敏感的信息（信息量比较大）</p>
+</blockquote>
+<p>搜索引擎</p>
+<blockquote>
+<p>搜索引擎为我们提供了在WEB检索信息的功能。它在互联网收集网站摘要信息的同时，也收集了许多隐蔽信息。</p>
+<p>Google Hacking就是利用搜索引擎强大的搜索功能，选用搜索语法和特殊的搜索关键字，将隐藏在目标网站中的不恰当配置信息和后门信息找出来。</p>
+</blockquote>
+<p>基本语法</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913143422591.png" alt="image-20220913143422591" style="zoom:50%;">
+
+<p>高级操作符</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144800582.png" alt="image-20220913144800582" style="zoom: 50%;">
+
+<p><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144825629.png" alt="image-20220913144825629"><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913144835359.png" alt="image-20220913144835359"></p>
+<p><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145059185.png" alt="image-20220913145059185"><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145117223.png" alt="image-20220913145117223"><img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145134295.png" alt="image-20220913145134295"></p>
+<p>Google Hacking可以做到</p>
+<blockquote>
+<p>搜索密码文件<br>搜索管理员后台URL<br>搜索web应用漏洞<br>搜索黑客留下的后门<br>…………</p>
+</blockquote>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913145637774.png" alt="image-20220913145637774" style="zoom:67%;">
+
+<p>.asp为windows通用的脚本语言，linux下为python、js、php</p>
+<p>有.asp可以判断服务器为windows机器，web服务为inc？is？</p>
+<p>inc：初次配置</p>
+<p>coon：连接</p>
+<p>找的是连接数据库的网页</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913150116165.png" alt="image-20220913150116165" style="zoom:50%;">
+
+<p>一个漏洞，可以列目录，一般有设置可以不列目录</p>
+<p>特殊搜索引擎：</p>
+<blockquote>
+<p>Shodan: Shodan上搜索出来的可不是单纯的信息，而是所有接入互联网的设备！比如你的电脑、手机、摄像头甚至打印机。</p>
+<p>ZoomEye</p>
+</blockquote>
+<h4 id="3-WhoIs服务"><a href="#3-WhoIs服务" class="headerlink" title="3. WhoIs服务"></a>3. WhoIs服务</h4><p>功能：查询已注册域名的拥有者信息</p>
+<blockquote>
+<p>域名登记人信息<br>联系电话和邮箱<br>域名注册时间和更新时间<br>权威DNS的IP地址</p>
+</blockquote>
+<p>使用方法：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.whois.net/">www.whois.net</a><br>SamSpade等网络实用工具</p>
+</blockquote>
+<p>利用网站获得Whois数据</p>
+<blockquote>
+<p>国外的who.is：<a target="_blank" rel="noopener" href="https://who.is/">https://who.is/</a><br>站长之家：<a target="_blank" rel="noopener" href="http://whois.chinaz.com/">http://whois.chinaz.com/</a><br>爱站：<a target="_blank" rel="noopener" href="https://whois.aizhan.com/">https://whois.aizhan.com/</a><br>微步：<a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a></p>
+</blockquote>
+<p>企业的备案信息（中国）</p>
+<blockquote>
+<p>天眼查：<a target="_blank" rel="noopener" href="https://www.tianyancha.com/">https://www.tianyancha.com/</a><br>ICP备案查询网：<a target="_blank" rel="noopener" href="http://www.beianbeian.com/">http://www.beianbeian.com/</a><br>国家企业信用信息公示系统：<a target="_blank" rel="noopener" href="http://www.gsxt.gov.cn/index.html">http://www.gsxt.gov.cn/index.html</a> </p>
+</blockquote>
+<p>举例 利用<a href="http://www.internic.net的whois服务，输入sina.com,得到如下信息：">www.internic.net的whois服务，输入sina.com,得到如下信息：</a></p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913151649570.png" alt="image-20220913151649570" style="zoom:50%;">
+
+<h4 id="4-利用DNS域名服务"><a href="#4-利用DNS域名服务" class="headerlink" title="4.利用DNS域名服务"></a>4.利用DNS域名服务</h4><p>DNS：提供域名到IP地址的映射</p>
+<blockquote>
+<p>权威DNS——主DNS<br>Cache-Only DNS——副DNS</p>
+</blockquote>
+<p>区域传送（Zone transfer）：允许一个辅域名服务器更新自己的区域数据</p>
+<p>如果DNS配置不当，可能造成内部主机名和IP地址对的泄漏</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152224471.png" alt="image-20220913152224471" style="zoom: 50%;">
+
+<p>CDN技术</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152245967.png" alt="image-20220913152245967" style="zoom: 50%;">
+
+<p>使用Nslookup可查到域名服务器地址和IP地址，以及域名服务器的传输内容</p>
+<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152527196.png" alt="image-20220913152527196" style="zoom:50%;">
+
+<h4 id="5-公开信息收集方法的应用"><a href="#5-公开信息收集方法的应用" class="headerlink" title="5.公开信息收集方法的应用"></a>5.公开信息收集方法的应用</h4><p>社会工程学：利用受害者心理弱点、本能反应、好奇心、信任、贪婪等心理陷阱进行诸如欺骗、伤害等危害手段。</p>
+<blockquote>
+<p>从同学录中寻找目标<br>在论坛、聊天室设“钓鱼”陷阱<br>通过简历收集信息<br>利用搜索引擎进行数据挖掘<br>网站出售注册信息</p>
+</blockquote>
+<p>Maltego网站<img src="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/image-20220913152633456.png" alt="image-20220913152633456" style="zoom:25%;"></p>
+<blockquote>
+<p>Maltego是一款十分适合渗透测试人员和取证分析人员的优秀工具；</p>
+<p>其主要功能是开源情报收集和取证</p>
+<p>比起其它的情报收集工具，Maltego显得格外不同并且功能强大；</p>
+<p>自动收集到所需信息，而且可以将收集的信息可视化；</p>
+<p>用一种格外美观的方式将结果呈现给使用者。</p>
+</blockquote>
+<h4 id="Hands-on课堂实践"><a href="#Hands-on课堂实践" class="headerlink" title="Hands-on课堂实践"></a>Hands-on课堂实践</h4><p>子域名收集实验</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/" rel="next" title="人工智能-感知器和三种库读入数据">
+                <i class="fa fa-chevron-left"></i> 人工智能-感知器和三种库读入数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF"><span class="nav-text">网络攻防技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%AE%B2%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0%E4%B8%8E%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-text">第一讲：网络攻防技术概述与课程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E6%8A%80%E6%9C%AF"><span class="nav-text">网络攻击技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9A%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%8A%80%E6%9C%AF"><span class="nav-text">第二讲：信息收集技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%A6%82%E8%BF%B0"><span class="nav-text">2.1信息收集概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%A6%82%E5%BF%B5%E7%9F%A5%E8%AF%86"><span class="nav-text">一.概念知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E6%94%BB%E5%87%BB%E6%AD%A5%E9%AA%A4%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="nav-text">二.攻击步骤与方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E5%85%AC%E5%BC%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-text">2.2公开信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%A9%E7%94%A8web%E6%9C%8D%E5%8A%A1"><span class="nav-text">1.利用web服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%88%A9%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%9C%8D%E5%8A%A1-Google-hacking"><span class="nav-text">2.利用搜索引擎服务 Google hacking</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-WhoIs%E6%9C%8D%E5%8A%A1"><span class="nav-text">3. WhoIs服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%88%A9%E7%94%A8DNS%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1"><span class="nav-text">4.利用DNS域名服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%85%AC%E5%BC%80%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">5.公开信息收集方法的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hands-on%E8%AF%BE%E5%A0%82%E5%AE%9E%E8%B7%B5"><span class="nav-text">Hands-on课堂实践</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
