@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读一、研究背景口腔白斑 属于癌前病变或潜在的恶性疾患范畴，诊断意义尤为重要 口腔扁平苔藓 是一种常见的口腔黏膜慢性炎性疾病.  两种疾病的症状相似度高导致利用传统目标识别 算法难以准确识别.  为此，该文提出了一种基于多任务学习卷积神经网络的口腔斑纹类 疾病的目标检测、分割与识别算法. 二、模型框架 改进Mask R-CNN基于 tensorf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于多任务学习的口腔白斑与扁平苔藓的分割与识别">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读一、研究背景口腔白斑 属于癌前病变或潜在的恶性疾患范畴，诊断意义尤为重要 口腔扁平苔藓 是一种常见的口腔黏膜慢性炎性疾病.  两种疾病的症状相似度高导致利用传统目标识别 算法难以准确识别.  为此，该文提出了一种基于多任务学习卷积神经网络的口腔斑纹类 疾病的目标检测、分割与识别算法. 二、模型框架 改进Mask R-CNN基于 tensorf">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822171511348.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172450415.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172758703.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172855068.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173009363.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173500249.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173806665.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174223263.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174310275.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174321519.png">
+<meta property="article:published_time" content="2022-08-22T09:10:44.000Z">
+<meta property="article:modified_time" content="2022-08-22T10:25:43.153Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822171511348.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/08/22/基于多任务学习的口腔白斑与扁平苔藓的/"/>
+
+
+
+
+
+  <title>基于多任务学习的口腔白斑与扁平苔藓的分割与识别 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于多任务学习的口腔白斑与扁平苔藓的分割与识别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-08-22T17:10:44+08:00">
+                2022-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <span id="more"></span>
+
+<h2 id="基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读"><a href="#基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读" class="headerlink" title="基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读"></a>基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读</h2><h2 id="一、研究背景"><a href="#一、研究背景" class="headerlink" title="一、研究背景"></a>一、研究背景</h2><p><strong>口腔白斑</strong> 属于癌前病变或潜在的恶性疾患范畴，诊断意义尤为重要</p>
+<p><strong>口腔扁平苔藓</strong> 是一种常见的口腔黏膜慢性炎性疾病.</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822171511348.png" alt="image-20220822171511348"></p>
+<p>两种疾病的症状相似度高导致利用传统目标识别 算法难以准确识别. </p>
+<p>为此，该文提出了一种基于多任务学习卷积神经网络的口腔斑纹类 疾病的目标检测、分割与识别算法.</p>
+<h2 id="二、模型框架-改进Mask-R-CNN"><a href="#二、模型框架-改进Mask-R-CNN" class="headerlink" title="二、模型框架 改进Mask R-CNN"></a>二、模型框架 改进Mask R-CNN</h2><p>基于 tensorflow 和 keras 平台,采用改进 的 Mask R-CNN</p>
+<h5 id="0-数据来源"><a href="#0-数据来源" class="headerlink" title="0.数据来源"></a>0.数据来源</h5><p>本文所采用的数据集中,口腔斑纹类疾病数 据共具有 115 张图像,数据量相对较少. 因此,数 据增强 可以在很大程度上弥补数据不足的 问题,能够进一步提高网络的泛化能力和识别性 能.</p>
+<p>1）图像大小的缩放，使用固 定大小的图像作为输入。对于口腔斑纹类疾病数据 集, 将这些图像进行处理, 较小的图像按照最短 边的尺寸采用双边线性插值放大图像到 1 024, 较大的图片等比例缩放后从图片中随机剪裁一个 1 024 ×1 024的图片作为输入,最终得到图像大 小为 1 024 ×1 024 的口腔斑纹类疾病图像训练数 据集. 这样保证了口腔病损部位原有的结构纹理 信息,利于模型训练</p>
+<p>2）数据增强.本文通过旋 转处理、镜像处理、平移处理和随机剪切 4 种方式 对训练数据进行增强,加大训练数据量.</p>
+<h5 id="1-第一步模型预训练与迁移策略"><a href="#1-第一步模型预训练与迁移策略" class="headerlink" title="1.第一步模型预训练与迁移策略"></a>1.第一步模型预训练与迁移策略</h5><p>本文采用 ISIC2017（国际皮肤成像合作 组织提供的最大的可公开获得的皮肤病变的皮肤 镜像）训练得到的模型,迁移到我们口腔斑纹类 疾病数据进行微调训练.</p>
+<h5 id="2-第二步：输入数据"><a href="#2-第二步：输入数据" class="headerlink" title="2.第二步：输入数据"></a>2.第二步：输入数据</h5><h5 id="3-第三步：共享特征"><a href="#3-第三步：共享特征" class="headerlink" title="3.第三步：共享特征"></a>3.第三步：共享特征</h5><p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172450415.png" alt="image-20220822172450415"></p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172758703.png" alt="image-20220822172758703"></p>
+<p>通过硬共享网络获取共享的深层特征图并提取拟候选区域, 将拟选区域映射到特征图中,通过 RoIAlign 层进行池化，作为两个分支的输入,这样的共享网络事 实上降低了过拟合的风险 .</p>
+<p>Resnet101 为基础网络提取图像深层特征</p>
+<p>通过实验分析,提取共享特征信息的网络从 口腔病人图像中最终得到 256 个深层特征图序 列.</p>
+<h5 id="4-第四步进入子网络"><a href="#4-第四步进入子网络" class="headerlink" title="4.第四步进入子网络"></a>4.第四步进入子网络</h5><p>将网 络前半部分获取的更为一般性特征信息作为检测 识别的分支和分割分支的输入,然后,每个分支网络提取更适合自己任务的特征信息,分类子网络 再联合分割分支的特征输入到全连接层,经 SoftMax 分类输出得到目标类别,同时获得了病损部 位的分割图.</p>
+<p>后半部分包含两个子网络,为检测与识别子网络并分割子网络</p>
+<h6 id="（一）分割子网络"><a href="#（一）分割子网络" class="headerlink" title="（一）分割子网络"></a>（一）分割子网络</h6><p>将共享网络的特征图序列作为分割子网络与 检测识别子网络的输入. 将分割子网络最终确定 为由 5 个卷积层和 2 个转置卷积层组成的 CNN 网络:</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172855068.png" alt="image-20220822172855068"></p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173009363.png" alt="image-20220822173009363"></p>
+<p>分割子网络的前 4 个卷积层卷积核大小均为 3 × 3,步长为1,每一个卷积层后面加 BatchNorm 层以 加速网络收敛,提高泛化能力 ,激活函数均采 用 ReLU 函数 . </p>
+<p>通过卷积得到了256 个特征图信息,再通过一个转置卷积层,卷积核为 2 ×2,步 长为 2,对前面得到的特征图进行上采样,使其学习到图片的中低层特征丰富特征集,这些特征集 对任务的鲁棒性有着积极的作用 .</p>
+<p>最后,采用 1 ×1 的卷积核对每个像素语义类别预测.</p>
+<h6 id="（二）检测与识别子网络模型"><a href="#（二）检测与识别子网络模型" class="headerlink" title="（二）检测与识别子网络模型"></a>（二）检测与识别子网络模型</h6><p>将检测与识别子网络模型最终确定为 3 个卷积层与两 个全连接层组成的 CNN</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173500249.png" alt="image-20220822173500249"></p>
+<p>检测与识别子网络卷积层的卷积核大小为 3 ×3, 步长为 1,激活函数为 ReLU 函数,通过 3 层卷积 获得 256 个高层特征图,再通过 2 个全连接层分别做目标检测任务和分类任务输出</p>
+<h5 id="4-第四步：计算预测概率"><a href="#4-第四步：计算预测概率" class="headerlink" title="4.第四步：计算预测概率"></a>4.第四步：计算预测概率</h5><p>将图像输入到共享网络,学习到的特征表示 为 F（x）,然后将共享特征信息 F（x） 输入到两个 分支网络,</p>
+<p>检测识别子网络学习到的特征表示为 F（x1 ）,分割子网络学习到的特征为 F（x2 ）.</p>
+<p>口腔 斑纹类疾病的分类结果依赖与 F（x1 ） 和 F（x2 ）, 将 F（x1） +F（x2 ） 特征图输入到全连接层,最终 属于哪类疾病的预测概率可以用式（3） 计算：</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173806665.png" alt="image-20220822173806665"></p>
+<p>其中:w 为神经网络的权重参数;b 为偏置参数;x 为输入的图像信息;i 为所属类别（口腔白斑、口 腔扁平苔藓、其他）</p>
+<h5 id="5-第五步：进行验证"><a href="#5-第五步：进行验证" class="headerlink" title="5.第五步：进行验证"></a>5.第五步：进行验证</h5><p>为验证本文提出的方法能够有 效地识别口腔白斑与扁平苔藓,我们采集了真实 口腔白斑与扁平苔藓患者的图像进行了实验. 其 中,口腔白斑图像数据 86 例,口腔扁平苔藓图像 79 例. 并且,由 3 位专科医生对患者的病损部位 进行划线标注,以及通过资质专家对标注进行最 终审核确认. 本文按一定比例随机划分数据,分 别使用 70%的图像作为训练数据、10%的图像作为验证数据,剩余的 20%作为测试集数据.</p>
+<h2 id="三、结果"><a href="#三、结果" class="headerlink" title="三、结果"></a>三、结果</h2><p>将本文方法与 AlexNet,VGG 和 Resnet 在 分类结果上对比,与 Mask R-CNN 在分类与分割 结果进行对比.</p>
+<p>前 3 个网络模型均为 单一的神经网络以进行口腔斑纹类疾病的识别. 而 Mask R-CNN 是将标签与分割图的训练数据输 入网络,提取特征以进行分类识别并分割出病损 区域.</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174223263.png" alt="image-20220822174223263"></p>
+<p>实验结果如表 1 所示,可以看出传统的网 络模型对口腔斑纹类数据识别效果不佳,其中,性 能最好的 Resnet101 分类结果仅能达到 47.51%. 本文使用改进的 Mask R-CNN,准确率比 AlexNet, VGG, ResNet 和 Mask-RCNN 高 出 10.95%, 11.73%,8.09%,4.25%</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174310275.png" alt="image-20220822174310275"><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174321519.png" alt="image-20220822174321519"></p>
+<p>图 4 为 Mask R-CNN 与本文提出的方法在口 腔斑纹类数据测试集上的分割结果对比图,包含 了检测、分类及分割.</p>
+<p>图 4（ b1） 的左图在 Mask R-CNN 上没有分割出病变区域,图 4（ b1）的右图 以及图 4（b2）的两例图像在 Mask R-CNN 上分割 出的病损区域远小于真实病损区域,并且图 4 （b1）和 4（ b2） 的右图被错误分类. 而这几个测 试图像在改进的 Mask R-CNN 网络上都有较好的 表现,展示了提出方法的有效性和优越性.</p>
+<p>针对口腔白斑与扁平苔藓检测、识别与分割 任务,本文提出利用多任务学习的思想,对 Mask R-CNN 网络进行改进,使得分类网络能够利用分 割网络的特征信息,从而在分类过程中更加关注 病损部位的特征信息. </p>
+<p>针对口腔斑纹类疾病病损 区域特征的复杂性,本文解决了口腔白斑与扁平 苔藓的病损区域难以准确分割与分类识别的问题. </p>
+<p>实验表明,本文改进的 Mask R-CNN 网络相 对于现有传统的识别方法和相关多任务学习的方法具有更高的准确性和敏感性</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/08/17/task02/" rel="next" title="西瓜书+南瓜书第三章">
+                <i class="fa fa-chevron-left"></i> 西瓜书+南瓜书第三章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/" rel="prev" title="使用递归逼近任务进行图像分割的多任务深度学习-阅读">
+                使用递归逼近任务进行图像分割的多任务深度学习-阅读 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E8%AF%86%E5%88%AB-%E9%98%85%E8%AF%BB"><span class="nav-text">基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A0%94%E7%A9%B6%E8%83%8C%E6%99%AF"><span class="nav-text">一、研究背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A8%A1%E5%9E%8B%E6%A1%86%E6%9E%B6-%E6%94%B9%E8%BF%9BMask-R-CNN"><span class="nav-text">二、模型框架 改进Mask R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">0.数据来源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E6%AD%A5%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E7%AD%96%E7%95%A5"><span class="nav-text">1.第一步模型预训练与迁移策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-text">2.第二步：输入数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%85%B1%E4%BA%AB%E7%89%B9%E5%BE%81"><span class="nav-text">3.第三步：共享特征</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E7%AC%AC%E5%9B%9B%E6%AD%A5%E8%BF%9B%E5%85%A5%E5%AD%90%E7%BD%91%E7%BB%9C"><span class="nav-text">4.第四步进入子网络</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%88%86%E5%89%B2%E5%AD%90%E7%BD%91%E7%BB%9C"><span class="nav-text">（一）分割子网络</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%AF%86%E5%88%AB%E5%AD%90%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="nav-text">（二）检测与识别子网络模型</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97%E9%A2%84%E6%B5%8B%E6%A6%82%E7%8E%87"><span class="nav-text">4.第四步：计算预测概率</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E8%BF%9B%E8%A1%8C%E9%AA%8C%E8%AF%81"><span class="nav-text">5.第五步：进行验证</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BB%93%E6%9E%9C"><span class="nav-text">三、结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

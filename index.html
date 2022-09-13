@@ -261,6 +261,850 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/" itemprop="url">人工智能-感知器和三种库读入数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-13T09:02:35+08:00">
+                2022-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="人工智能笔记"><a href="#人工智能笔记" class="headerlink" title="人工智能笔记"></a>人工智能笔记</h1><h2 id="0913"><a href="#0913" class="headerlink" title="0913"></a>0913</h2><h3 id="1-机器学习形式化定义"><a href="#1-机器学习形式化定义" class="headerlink" title="1.机器学习形式化定义"></a>1.<strong>机器学习形式化定义</strong></h3><h4 id="感知器学习概念-激活输出"><a href="#感知器学习概念-激活输出" class="headerlink" title="感知器学习概念-激活输出"></a>感知器学习概念-激活输出</h4><h5 id><a href="#" class="headerlink" title></a></h5><p>激活函数：ϕ(z)  阈值：θ 权值矩阵：w</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090259894.png" alt="image-20220913090259894" style="zoom:50%;"><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090309953.png" alt="image-20220913090309953" style="zoom: 33%;"></p>
+<p>例子：激活函数: <em>ϕ(z)</em>  偏置单元w0**&#x3D; -**θ,  x0&#x3D;1</p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090609263.png" alt="image-20220913090609263" style="zoom:50%;">
+
+<p>表示大于θ,则ϕ(z）&#x3D;1</p>
+<p>问题一：感知器学到的知识（即模型）是用什么表征的？权值矩阵 W 变化吗？</p>
+<p>答：感知器模型：由权值矩阵 <strong>W</strong> 表征；训练过程：迭代，利用感知器激活输出与标签误差，更新权值矩阵 <strong>W</strong></p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090721362.png" alt="image-20220913090721362" style="zoom:50%;">
+
+<p>上图的激活函数，或决策函数，是单位阶跃函数</p>
+<p>感知器的训练方法（训练过程）</p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090803236.png" alt="image-20220913090803236" style="zoom:50%;">
+
+<p>Yita 为学习率，看能不能搜索到最优解</p>
+<h4 id="应用示例一：感知器"><a href="#应用示例一：感知器" class="headerlink" title="应用示例一：感知器"></a>应用示例一：感知器</h4><p><em>Python</em>感知器学习: preceptron.py</p>
+<p><strong>Iris</strong>数据集（<strong>iris.data</strong>）训练一个感知器模型: perceptron_with_iris.py</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44669578/article/details/103348076">(52条消息) plt.contourf（）_庾信平生最萧瑟的博客-CSDN博客_plt.contourf</a></p>
+<p>plt.contourf(）画不同分类的边界线</p>
+<h3 id="2-使用-pandas-NumPy-和-Matplotlib-读入、处理并可视化数据"><a href="#2-使用-pandas-NumPy-和-Matplotlib-读入、处理并可视化数据" class="headerlink" title="2.使用 pandas, NumPy, 和 Matplotlib 读入、处理并可视化数据"></a>2.<strong>使用</strong> <strong>pandas, NumPy,</strong> <strong>和</strong> <strong>Matplotlib</strong> <strong>读入、处理并可视化数据</strong></h3><h4 id="官网地址"><a href="#官网地址" class="headerlink" title="官网地址"></a>官网地址</h4><blockquote>
+<p><strong>Pandas</strong></p>
+<p>  <strong><a target="_blank" rel="noopener" href="https://pandas.pydata.org/">https://pandas.pydata.org</a></strong></p>
+<p><strong>NumPy</strong></p>
+<p>   <strong><a target="_blank" rel="noopener" href="https://numpy.org/">https://numpy.org</a></strong></p>
+<p><strong>Matplotlib</strong></p>
+<p>   <strong><a target="_blank" rel="noopener" href="https://matplotlib.org/">https://matplotlib.org</a></strong></p>
+</blockquote>
+<h4 id="Python-命名规则"><a href="#Python-命名规则" class="headerlink" title="Python 命名规则"></a><strong>Python</strong> <strong>命名规则</strong></h4><p>file_name 文件</p>
+<p>module_name 模块</p>
+<p>package_name 包</p>
+<p>ClassName 类</p>
+<p>method_name 方法 </p>
+<p>ExceptionName 异常</p>
+<p>function_name 函数 </p>
+<p>GLOBAL_VAR_NAME 全局变量</p>
+<p>instance_var_name 实例</p>
+<p>function_parameter_name 参数</p>
+<p>local_var_name 本地变量</p>
+<h3 id="3-自适应线性分类器及其Python实现"><a href="#3-自适应线性分类器及其Python实现" class="headerlink" title="3.自适应线性分类器及其Python实现"></a>3.自适应线性分类器及其Python实现</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>（与感知器比较异同）</p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091828014.png" alt="image-20220913091828014" style="zoom: 50%;">
+
+<p>线性激活函数：<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091544780.png" alt="image-20220913091544780" style="zoom:50%;"></p>
+<p>目标函数：（或称 代价函数） <img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091651568.png" alt="image-20220913091651568" style="zoom: 33%;"></p>
+<p>最关键核心：引入了目标函数</p>
+<p>学习目标：让代价函数最小</p>
+<p>学习法则：梯度下降法更新权值，来达成学习目标<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092029096.png" alt="image-20220913092029096" style="zoom: 50%;">（学习率eta的意义：搜索的步长）</p>
+<p>权值wj  更新公式<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092104113.png" alt="image-20220913092104113" style="zoom:50%;"></p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092133523.png" alt="image-20220913092133523" style="zoom:33%;">
+
+<h4 id="应用示例二：自适应线性分类器"><a href="#应用示例二：自适应线性分类器" class="headerlink" title="应用示例二：自适应线性分类器"></a><strong>应用示例二：自适应线性分类器</strong></h4><p>自适应线性分类器学习： adalineGD.py<br>Iris数据集（iris.data）训练一个自适应线性分类器模型: adalineGD_with_iris.py<br>学习率对收敛的影响: adalineGD_LearningRate.py</p>
+<p>分类决策面: plot_decision_regions.py</p>
+<h3 id="4-通过特征缩放改善梯度下降优化算法性能"><a href="#4-通过特征缩放改善梯度下降优化算法性能" class="headerlink" title="4.通过特征缩放改善梯度下降优化算法性能"></a>4.<strong>通过特征缩放改善梯度下降优化算法性能</strong></h3><p>特征缩放：标准化，获得一个标准正态分布 —— 减少特征数据差异性(数据具有0均值和单位方差)</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092411688.png" alt="image-20220913092411688" style="zoom: 33%;"><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092428040.png" alt="image-20220913092428040" style="zoom: 33%;"><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092448403.png" alt="image-20220913092448403" style="zoom: 33%;"></p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092832003.png" alt="image-20220913092832003">x为原始数据集</p>
+<p>x_std是标准化后数据集</p>
+<h3 id="5-随机梯度下降自适应线性分类器及其Python实现"><a href="#5-随机梯度下降自适应线性分类器及其Python实现" class="headerlink" title="5.随机梯度下降自适应线性分类器及其Python实现"></a>5.随机梯度下降自适应线性分类器及其Python实现</h3><p>随机梯度下降自适应线性分类器（与梯度下降的Adaline比较异同）</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913093218304.png" alt="image-20220913093218304"></p>
+<p>自适应线性分类器学习 —— 随机梯度下降SGD<br> adalineSGD.py<br>Iris数据集（iris.data）训练一个自适应线性分类器模型<br> adalineSGD_with_iris.py</p>
+<p>分类决策面<br> plot_decision_regions.py</p>
+<h2 id="课堂活动"><a href="#课堂活动" class="headerlink" title="课堂活动"></a>课堂活动</h2><h3 id="对比感知器学习和自适应神经元学习的异同"><a href="#对比感知器学习和自适应神经元学习的异同" class="headerlink" title="对比感知器学习和自适应神经元学习的异同"></a>对比感知器学习和自适应神经元学习的异同</h3><p>1.自适应线性神经网络的激活函数不再采用步调函数，而是直接将样本运算的结果（点乘）与实际结果相比较。(白话版：自适应线性神经网络的激活函数，是一个线性函数)</p>
+<p>2.自适应线性神经网络提出了代价函数的概念，并对其做了最小优化。基于Adaline规则的权重更新是通过一个连续的线性激活函数(本例子中采用)来完成，而感知器采用的单位阶跃函数。</p>
+<h3 id="对比梯度下降和随机梯度下降的异同"><a href="#对比梯度下降和随机梯度下降的异同" class="headerlink" title="对比梯度下降和随机梯度下降的异同"></a>对比梯度下降和随机梯度下降的异同</h3><p>梯度下降中的导数部分是把所有样本代入到导数中，然后累加，然后更新参数。而随机梯度下降则是选一个样本计算一个导数，然后马上更新参数</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913095149926.png" alt="image-20220913095149926"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/" itemprop="url">Multimix从医学图像中进行的少量监督可解释的多任务学习-阅读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-08T10:32:11+08:00">
+                2022-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Multimix：从医学图像中进行的少量监督，可解释的多任务学习"><a href="#Multimix：从医学图像中进行的少量监督，可解释的多任务学习" class="headerlink" title="Multimix：从医学图像中进行的少量监督，可解释的多任务学习"></a>Multimix：从医学图像中进行的少量监督，可解释的多任务学习</h1><p>MULTIMIX: SPARINGLY SUPERVISED, EXTREME MULTITASK LEARNING FROM MEDICAL IMAGES</p>
+<p>期刊：2021 IEEE 18th</p>
+<p>code： <a target="_blank" rel="noopener" href="https://github.com/ayaanzhaque/MultiMix">https://github.com/ayaanzhaque/MultiMix</a></p>
+<h2 id="一-背景"><a href="#一-背景" class="headerlink" title="一.背景"></a>一.背景</h2><p>深度学习模型大多依赖于<strong>大量的标记数据</strong>。特别是在医学领域，获取带标签的图像往往是不可行的，因为标注需要领域专业知识和人工劳动，这使得训练大规模的深度学习模型变得昂贵、耗时。为了解决图像分析任务中有限的标注数据问题，半监督学习(SSL)得到了越来越多的关注。</p>
+<p>另外在医学成像领域中，<strong>泛化</strong>也是一个关键问题，因为来自不同来源的图像在定性和定量上都有很大的差异，所以很难在多个领域中使用一个模型获得较强的性能，这些问题促使了该论文的研究：希望通过一些以半监督和多任务学习为中心的关键方法来解决这些基本问题。</p>
+<p><strong>半监督学习（SSL）</strong>：将无标记示例与有标记示例结合使用，使信息收益最大化</p>
+<p>**多任务学习(multitask Learning, MTL)**：可以提高许多模型的泛化能力。多任务学习被定义为在单个模型中优化多个损失，通过共享表示学习完成多个相关任务。在一个模型中联合训练多个任务可以提高模型的泛化性，因为每个任务都相互影响（要选择有相关性的任务）。假设训练数据来自不同的分布，这样可以用于有限的不同任务，多任务在这样的场景中对于以很少监督的方式学习是有用的。</p>
+<p><em><strong>将多任务与半监督学习相结合</strong></em>可以提高性能，并在这两个任务中取得成功。</p>
+<h2 id="二-方法"><a href="#二-方法" class="headerlink" title="二.方法"></a>二.方法</h2><p>提出新的<strong>多任务模型MultiMix</strong>，该模型结合基于置信度的桥接块，从多源数据中共同学习诊断分类和解剖结构分割。显著图可以通过可视化有意义的视觉特征来分析模型预测。有几种方法可以生成显著性映射，最显著的方法是从输入图像计算类分数的梯度。虽然任何深度学习模型都可以通过显著性图来研究更好的解释性，但据我们所知，在单一模型中两个共享任务之间的显著性桥梁还没有被探索。。</p>
+<h3 id="1-创新点："><a href="#1-创新点：" class="headerlink" title="1.创新点："></a>1.<strong>创新点</strong>：</h3><p>•一种新的半监督方法，利用一致性增强和多源数据联合学习诊断分类和解剖结构分割。</p>
+<p>•一个创新的显著性桥模块连接在同一模型内的两个相关任务。</p>
+<p>•对来自不同来源(包括域内和跨域)的不同数量的标记数据进行了广泛的实验，证明了所提出模型的改进泛化能力。</p>
+<h3 id="2-MultiMix模型示意图"><a href="#2-MultiMix模型示意图" class="headerlink" title="2.MultiMix模型示意图"></a>2.<strong>MultiMix模型示意图</strong></h3><img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220908105345783.png" alt="image-20220908105345783" style="zoom:80%;">
+
+<p>(分类)使用对未标记弱增强图像的预测，带置信度生成伪标签，并使用这些标签和这些图像的强增强版本计算损失。</p>
+<p>(分割)从类预测中生成的显著性图通过显著性桥模块连接起来，以指导解码器进行最终分割。</p>
+<p>显著性图可以通过可视化有意义的视觉特征来分析模型预测</p>
+<h3 id="3-具体流程"><a href="#3-具体流程" class="headerlink" title="3.具体流程"></a>3.具体流程</h3><p>让我们首先定义我们的问题。 使用两个数据集进行训练，一个用于分割，一个用于分类。 对于分割数据，我们可以使用符号XS和Y，分别是图像和分割掩码。 对于分类数据，我们可以使用符号XC和C，即图像和类标签。</p>
+<p>模型体系结构使用基线U-NET架构，该结构是常用分割模型。 编码器的功能类似于标准CNN。 要使用U-NET执行多任务处理，我们将从编码器上分支，并使用池化和全连接的层分支以获取最终的分类输出。</p>
+<img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/a71ea8d3fd1f4134d94c34ddcd74efc0d0c85e8b.png" alt="img" style="zoom: 67%;">
+
+<h4 id="（1）分类部分"><a href="#（1）分类部分" class="headerlink" title="（1）分类部分"></a>（1）分类部分</h4><p>对于分类方法，利用<strong>数据增强</strong>和<strong>伪标记</strong>。使用了一个未标记的图像并执行两个单独的增强。</p>
+<p>首先，未标记的图像被<strong>弱增强</strong>。并且从图像的弱增强版本中，将模型当前状态的预测定为伪标签。</p>
+<p>其次，<strong>强增强</strong>相同未标记的图像，并用弱增强图像和强增强图像本身的伪标记计算损失。</p>
+<p>这样的操作理论基础是，希望该模型将弱增强图像映射到强增强的图像中，这样可以迫使模型学习诊断分类所需的基本基础特征。增强图像两次还可以最大化唯一图像的潜在知识收益。这也有助于改善模型的概括能力，就好像模型被迫学习图像中最重要的部分一样，它将能够克服由于不同域而出现的图像中出现的差异。</p>
+<p>论文使用常规的增强方法来进行弱增强的图像，例如水平翻转和轻微旋转。而强增强策略要有趣得多：创建一个非常规，强大的增强池，并将随机数量的增强量应用于任何给定的图像。这些增强非常“变态”，比如裁剪、自对比度、亮度、对比度、均衡、一致性、旋转、锐度、剪切等等。通过应用任意数量的这些元素，我们可以创建非常广泛的图像，这在处理低样本数据集时尤为重要。我们最终发现，这种增强策略对于强大的性能非常重要。</p>
+<p><strong>伪标记的过程</strong>。只有当模型生成伪标签的置信度高于调谐阈值时，这个图像-标签对才会被保留，这可以防止模型从不正确和差的标签中学习。</p>
+<p>如果模型生成伪标签的置信度超过了一个调优的阈值，则该图像标签可以防止模型从错误和糟糕的标签中学习。因为当预测在一开始不太确认时，模型主要从标记的数据中学习。慢慢的，该模型对未标记图像的标签生成变得更加自信，因此该模型变得更加高效。在提高性能方面，这也是一个非常重要的特性。</p>
+<p>分类损失可以用以下公式来建模:</p>
+<p><img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220908110657624.png" alt="image-20220908110657624"></p>
+<p>其中L-sub-l为监督损失，c-hat-l为分类预测，c-l为标签，lambda为无监督分类权重，L-sub-u为无监督损失，c-hat-s为强增强图像的预测，argmax(c-hat-w)为弱增强图像的伪标签，t为伪标签阈值。</p>
+<h4 id="（2）分割部分"><a href="#（2）分割部分" class="headerlink" title="（2）分割部分"></a>（2）分割部分</h4><img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/024f78f0f736afc3cae8e8195a7291ceb6451258.png" alt="img" style="zoom:67%;">
+
+<p>对于分割，通过带有跳过连接的编码器-解码器体系结构进行预测。论文对分割的主要贡献是合并了一个桥接模块来连接两个任务，如上图所示。根据模型预测的类生成显著映射，使用从编码器扩展到分类分支的梯度。整个过程如上所示，但本质上强调了模型用于对肺炎图像进行分类的图像的哪些部分。</p>
+<p>在MultiMix中，使用编码器的梯度根据预测的类生成显著性图。虽然分割图像不一定代表肺炎，但分类任务，生成的图突出肺部，创建最终分割分辨率的图像。我们假设这些显著性图可以用于在解码器阶段指导分割，在从有限的标记数据中学习的同时产生改进的分割。在我们的算法中，生成的显著图与输入图像连接，进行下采样，并添加到输入到第一解码器阶段的特征图中。此外，为了确保一致性，我们计算有标签和无标签示例的分割预测之间的KL散度。这惩罚了模型做出的预测，使其与标记数据的预测越来越不同，这有助于模型更恰当地拟合未标记数据。</p>
+<p>因此，分割损失是:</p>
+<p><img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220908111645429.png" alt="image-20220908111645429"></p>
+<p>与分类相比，alpha是分割减少权重，y-hat-l是标记的分割预测，y-l是相应的掩码，beta是无监督的分割权重，而y-hat-u是未标记的分段预测。</p>
+<p>模型使用分类和分割损失的组合目标进行训练。</p>
+<h2 id="三-实现细节"><a href="#三-实现细节" class="headerlink" title="三.实现细节"></a>三.实现细节</h2><p>1.数据集</p>
+<p>使用来自两个不同来源的数据对模型进行训练和测试:肺炎检测(CheX)和JSRT，分别用于分类和分割。</p>
+<p>为了验证了模型，使用了两个外部数据集 蒙哥马利县胸部x光片(MCU)和NIH胸部x光数据集(NIHX)的一个子集，进行跨域评估</p>
+<p>2.输入</p>
+<p>在将所有图像输入模型之前，将其归一化并调整为256 × 256 × 1。</p>
+<p>模型架构:作为分割主干，我们使用了具有跳跃连接的U- net类编码器-解码器网络，并通过添加两个池化层和用于分类预测的FC层进行分支。</p>
+<p>3.使用NVIDIA K80 GPU的PyTorch框架使用Python的模型。</p>
+<h2 id="四-结果和讨论"><a href="#四-结果和讨论" class="headerlink" title="四.结果和讨论"></a>四.结果和讨论</h2><p>论文进行了许多实验，并在多个数据集中和跨域上使用了不同数量的标记数据。</p>
+<p>在测试中使用了多个基线，从Arale-net和标准分类器（ENC）开始，该分类器是具有密集层的编码器提取器。然后，我们将两者组合为基线多任务模型（UMTL）。还使用半监督方法（ENCSL），（UMTLS）以及多任务模型和半监督方法（UMTLS-SSL）的多任务模型。</p>
+<p>在<strong>训练</strong>方面，在多个标记的数据集上进行了训练。</p>
+<p>为了进行<strong>分类</strong>，我们使用了100、1000和所有标签</p>
+<p>对于<strong>分割</strong>，我们使用了10、50和所有标签。</p>
+<p>对于<strong>结果</strong>，将使用符号：模型 - 标签（例如Multimix-10–100）的方式进行标记。</p>
+<p><strong>评估</strong>，使用准确性（ACC）和F1分数（F1-N和F1-P）进行分类，分割则使用了DS相似性（DS），JACCARD相似性评分（JS），结构相似性指数（SSIM） ，平均Hausdorff距离（HD），精度（P）和召回（R）。</p>
+<img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220908112430738.png" alt="image-20220908112430738" style="zoom:80%;">
+
+<p>该表显示了添加了每个新组件的模型性能如何改善。对于分类任务，与基线模型相比，基于置信的增强方法可显着提高性能。Multimix-10–100也以准确性的方式优于完全监督的基线编码器。为了进行分割，桥模块对基线U-NET和UMTL模型产生巨大改进。即使具有最低分段标签，我们也可以看到其性能增长30％，这证明了论文提出的Multimix模型的有效性。</p>
+<img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220908112725906.png" alt="image-20220908112725906" style="zoom:80%;">
+
+<p>上图显示了分割结果对内域和跨域评估的一致性。 我数据集中的每个图像显示了模型的dice分数。 从图中，可以看到，与基线相比，Multimix是最强的模型。</p>
+<p><img src="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220908112801560.png" alt="image-20220908112801560"></p>
+<p>最后一个图是模型的分割预测的可视化。展示了的预测的边界使为每一个提出的分割任务添加对不同标记数据的真值对比。图中显示了与MultiMix针对真实边界的边界预测的强烈一致性，特别是与基线相比。对于跨域MultiMix在很大程度上也是最好的，显示了强大的泛化能力。</p>
+<h2 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h2><p>在这篇文章中，我们解释了一个可用于联合学习分类和分割任务的新的稀疏监督多任务学习模型MultiMix。该论文使用四种不同的胸部x射线数据集进行了广泛的实验，证明了MultiMix在域内和跨域评估中的有效性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/" itemprop="url">使用递归逼近任务进行图像分割的多任务深度学习-阅读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-08-26T18:43:50+08:00">
+                2022-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用递归逼近任务进行图像分割的多任务深度学习"><a href="#使用递归逼近任务进行图像分割的多任务深度学习" class="headerlink" title="使用递归逼近任务进行图像分割的多任务深度学习"></a>使用递归逼近任务进行图像分割的多任务深度学习</h1><p>Multi-Task Deep Learning for Image Segmentation Using Recursive Approximation Tasks</p>
+<h2 id="1-方法"><a href="#1-方法" class="headerlink" title="1.方法"></a>1.方法</h2><p>在本文中，作者研究了在数据驱动设置中从粗标签中定位准确对象轮廓的问题，特别是对于对比度差的图像或具有复杂边界的对象。</p>
+<p>本文把分割问题看作是一系列递归定义的近似子问题，并不断提高近似精度。子问题是由一个多任务学习框架组成 ，</p>
+<p>包括：</p>
+<p>1）精细分割任务，在一小部分图像中进行像素级地面实况分割；</p>
+<p>2）递归近似任务；</p>
+<p>3）使用稀疏标注训练的其他面向问题的辅助任务，促进专门特征的学习。</p>
+<h2 id="2-多任务学习框架"><a href="#2-多任务学习框架" class="headerlink" title="2.多任务学习框架"></a>2.多任务学习框架</h2><p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827185120906.png" alt="image-20220827185120906"></p>
+<p>本文提出的多任务学习框架如上图所示。多任务学习利用两个或多个连接任务之间共享的信息来更好地处理任务，该框架由多个任务（包括一个分割任务、一个近似任务和额外的辅助任务）和蒙版近似学习的迭代序列组成。</p>
+<blockquote>
+<p>task1 ：是在⾮常少的带有基本准确分割掩码的图像上,训练的分割任务（参⻅图 1 中的 s(1) ）。</p>
+<p>Task 2是预测在学习过程中由标注者或其改进版本(sk(2)， k≥2)给出的粗糙部分掩码(s1(2))的近似任务</p>
+<p>task 3,4,…. 根据⼿头的问题，可以 选择将在稀疏注释上训练的其他辅助任务（任务 3、···任务 T，在图 1 中 未绘制）合并到框架中，以改进特定相关的学习特征。</p>
+</blockquote>
+<p>近似任务在集成所有任务的多任务学习循环中更新，如图 1 所⽰。</p>
+<p>这些任务是联合递归学习的。在每次学习迭代中，分割任务和附加辅助任务的⽬标保持不变，因为这些任务使⽤相同的数据（图像及其标签）进行训 练并尝试拟合相同的概率分布。相⽐之下，近似任务在迭代期间更新，task2区域越来越接近对象边界</p>
+<p>受区域增长方法的启发，每个迭代包括学习近似的训练阶段和一个学习标签进化的推理阶段：</p>
+<p>在训练阶段，任务2从非常粗糙的物体区域 s 1 ( 2 )  开始，每个新的迭代预测一个更大的物体区域 s 2 ( 2 ) ，s 3 ( 2 ) ，⋯，以得到一个与物体轮廓更好的掩模。这是在训练任务1和递归更新过程R的同时进行的。</p>
+<p><strong>好处</strong>:只有⼀⼩部分图像是像素级注释（任务 1），⼤多数图像是粗注释（任务  2、任务 3、··· )，因此注释预算很低。</p>
+<p><strong>多任务</strong>体现在:多任务学习利⽤两个或多个连接任务之间共享的信息来更好地处理任务。在这 项⼯作中开发的框架包括⼀个分割任务、⼀个近似任务和额外的辅助任务（参⻅ 图 1）</p>
+<p>论文中的伪代码如下图所示：</p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183622120.png" alt="image-20220827183622120"></p>
+<p>I:be a set of images</p>
+<p>T:different tasks</p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183821395.png" alt="image-20220827183821395"></p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183835336.png" alt="image-20220827183835336"></p>
+<p><strong>总的损失函数：</strong></p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183858867.png" alt="image-20220827183858867"></p>
+<h2 id="3-如何获取注释"><a href="#3-如何获取注释" class="headerlink" title="3.如何获取注释"></a>3.如何获取注释</h2><p>第一步提供了地面真实分割掩模的粗略近似 s 1 ( 2 )  ，使用它们作为对象的遮罩的初始近似值。</p>
+<p>第二步中，需要对相对较少的图像收集精细的ground truth segmentation mask s 1 ( 1 )  ，，交互式分割技术可以将可用的初始区域与进一步的手动注释集成在一起。通常需要人工的输入和修正才能得到精确的分割掩模，每张图像的成本要高得多。</p>
+<p>第三步是生成其他粗糙的任务标注，例如下图中的，用粗糙的涂抹将没有明确分离边界的相邻物体之间的连接挑出来。<br><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827184222509.png" alt="image-20220827184222509"></p>
+<p>图 5. 三个不同数据集的注释。在每个⼦图中，顶行显⽰图像，底行包含标签。每列代表⼀个任务。请注意，为 不同任务标记的图像（即不同列中的图像）可以在整个训练集中以不同的⽅式分布。通常，对于任务 1，只有 ⼀⼩部分训练集被强标记（参⻅第⼀列），⽽⼤多数图像被弱标记（参⻅第⼆列和第三列）。在⼦图 (a)  中，红⾊表⽰⽓泡，绿⾊表⽰冰晶。</p>
+<h2 id="4-网络结构"><a href="#4-网络结构" class="headerlink" title="4.网络结构"></a>4.网络结构</h2><p>本文提出的网络结构受U-Net启发，具有两个输出的多任务网络的架构（如图所示为两个任务）。</p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827190645798.png" alt="image-20220827190645798"></p>
+<p>（a）网络的灰色块被任务共享，右边的多任务块（蓝色部分）用于学习任务特定的特征。水平的灰色箭头表示通过连接从收缩路径到膨胀路径的长跳跃连接。紫色线和橙色线分别代表分割任务和近似任务的路径。</p>
+<p>（b）多任务块。其中 y l + 1 和 x l + 1 分别表示网络第 l层中递归任务和分割任务的输出，这两条路径贯穿多任务块。在多任务块中，两条路径的第一层共享相同的权重（灰色块），对于分割路径，在灰色块后插入一个额外的残差单元（棕色块）。</p>
+<h2 id="5-实验数据"><a href="#5-实验数据" class="headerlink" title="5.实验数据"></a>5.实验数据</h2><p>本文采用了强标签和弱标签的多任务学习方法。共在三个数据集中进行了试验，冰激凌的扫描电镜(SEM)图像、gland的h&amp;e染色图像数据集，和胎儿头部的超声图像数据集。对于任务1，只有一小部分训练集被强标记，而大多数图像被弱标记。</p>
+<h2 id="6-实验结果"><a href="#6-实验结果" class="headerlink" title="6.实验结果"></a>6.实验结果</h2><p>为了处理相关的分割问题，我们采⽤了使⽤强标签（SL）和弱标 签（WL）的多任务学习⽅法。</p>
+<p>三个数据集的SL和WL的⽐率</p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191052551.png" alt="image-20220827191052551"></p>
+<p>A.冰淇淋的 SEM 图像:⾷品材料不同成分的分割是分析其微观结构的重要步骤。</p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191414068.png" alt="image-20220827191414068"></p>
+<p>SEM图像测试集上分割结果的DICE分数。 WL基线在近似掩码上进行训练（没有 递归近似） ， SL基线在10%可⽤的精细分割掩码上进行训练</p>
+<p><img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191443105.png" alt="image-20220827191443105"></p>
+<p>B.H&amp;E数据集的结果</p>
+<img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tjaGVuMTc=,size_16,color_FFFFFF,t_70.png" alt="img" style="zoom:67%;">
+
+<p>C.婴儿超声数据集的结果</p>
+<img src="/2022/08/26/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tjaGVuMTc=,size_16,color_FFFFFF,t_70-16615990602123.png" alt="Dice score of the three compared methods on ultrasound images split into a validation set and a test set." style="zoom:67%;">
+
+<h2 id="7-不足"><a href="#7-不足" class="headerlink" title="7.不足"></a>7.不足</h2><p>该方法依赖于2% - 10%的强标签以及粗糙的注释，在测试集中能够达到接近于使用准确的强标签训练的模型的精度。</p>
+<p>该方法的一个缺点是需要使用更大的网络来处理不同的任务，因此需要更多的计算资源，包括GPU内存和训练时间。但这种多任务⽅法节省的⼿动注释⼯作超过了额外的计算成本。</p>
+<p>将来，我们希望将所提出的框架扩展到由医学成像等产⽣的体 积图像分割，其中 3D 数据的逐像素注释更具挑战性，需要专家来 完成。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/" itemprop="url">基于多任务学习的口腔白斑与扁平苔藓的分割与识别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-08-22T17:10:44+08:00">
+                2022-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <span id="more"></span>
+
+<h2 id="基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读"><a href="#基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读" class="headerlink" title="基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读"></a>基于多任务学习的口腔白斑与扁平苔藓的分割与识别-阅读</h2><h2 id="一、研究背景"><a href="#一、研究背景" class="headerlink" title="一、研究背景"></a>一、研究背景</h2><p><strong>口腔白斑</strong> 属于癌前病变或潜在的恶性疾患范畴，诊断意义尤为重要</p>
+<p><strong>口腔扁平苔藓</strong> 是一种常见的口腔黏膜慢性炎性疾病.</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822171511348.png" alt="image-20220822171511348"></p>
+<p>两种疾病的症状相似度高导致利用传统目标识别 算法难以准确识别. </p>
+<p>为此，该文提出了一种基于多任务学习卷积神经网络的口腔斑纹类 疾病的目标检测、分割与识别算法.</p>
+<h2 id="二、模型框架-改进Mask-R-CNN"><a href="#二、模型框架-改进Mask-R-CNN" class="headerlink" title="二、模型框架 改进Mask R-CNN"></a>二、模型框架 改进Mask R-CNN</h2><p>基于 tensorflow 和 keras 平台,采用改进 的 Mask R-CNN</p>
+<h5 id="0-数据来源"><a href="#0-数据来源" class="headerlink" title="0.数据来源"></a>0.数据来源</h5><p>本文所采用的数据集中,口腔斑纹类疾病数 据共具有 115 张图像,数据量相对较少. 因此,数 据增强 可以在很大程度上弥补数据不足的 问题,能够进一步提高网络的泛化能力和识别性 能.</p>
+<p>1）图像大小的缩放，使用固 定大小的图像作为输入。对于口腔斑纹类疾病数据 集, 将这些图像进行处理, 较小的图像按照最短 边的尺寸采用双边线性插值放大图像到 1 024, 较大的图片等比例缩放后从图片中随机剪裁一个 1 024 ×1 024的图片作为输入,最终得到图像大 小为 1 024 ×1 024 的口腔斑纹类疾病图像训练数 据集. 这样保证了口腔病损部位原有的结构纹理 信息,利于模型训练</p>
+<p>2）数据增强.本文通过旋 转处理、镜像处理、平移处理和随机剪切 4 种方式 对训练数据进行增强,加大训练数据量.</p>
+<h5 id="1-第一步模型预训练与迁移策略"><a href="#1-第一步模型预训练与迁移策略" class="headerlink" title="1.第一步模型预训练与迁移策略"></a>1.第一步模型预训练与迁移策略</h5><p>本文采用 ISIC2017（国际皮肤成像合作 组织提供的最大的可公开获得的皮肤病变的皮肤 镜像）训练得到的模型,迁移到我们口腔斑纹类 疾病数据进行微调训练.</p>
+<h5 id="2-第二步：输入数据"><a href="#2-第二步：输入数据" class="headerlink" title="2.第二步：输入数据"></a>2.第二步：输入数据</h5><h5 id="3-第三步：共享特征"><a href="#3-第三步：共享特征" class="headerlink" title="3.第三步：共享特征"></a>3.第三步：共享特征</h5><p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172450415.png" alt="image-20220822172450415"></p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172758703.png" alt="image-20220822172758703"></p>
+<p>通过硬共享网络获取共享的深层特征图并提取拟候选区域, 将拟选区域映射到特征图中,通过 RoIAlign 层进行池化，作为两个分支的输入,这样的共享网络事 实上降低了过拟合的风险 .</p>
+<p>Resnet101 为基础网络提取图像深层特征</p>
+<p>通过实验分析,提取共享特征信息的网络从 口腔病人图像中最终得到 256 个深层特征图序 列.</p>
+<h5 id="4-第四步进入子网络"><a href="#4-第四步进入子网络" class="headerlink" title="4.第四步进入子网络"></a>4.第四步进入子网络</h5><p>将网 络前半部分获取的更为一般性特征信息作为检测 识别的分支和分割分支的输入,然后,每个分支网络提取更适合自己任务的特征信息,分类子网络 再联合分割分支的特征输入到全连接层,经 SoftMax 分类输出得到目标类别,同时获得了病损部 位的分割图.</p>
+<p>后半部分包含两个子网络,为检测与识别子网络并分割子网络</p>
+<h6 id="（一）分割子网络"><a href="#（一）分割子网络" class="headerlink" title="（一）分割子网络"></a>（一）分割子网络</h6><p>将共享网络的特征图序列作为分割子网络与 检测识别子网络的输入. 将分割子网络最终确定 为由 5 个卷积层和 2 个转置卷积层组成的 CNN 网络:</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822172855068.png" alt="image-20220822172855068"></p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173009363.png" alt="image-20220822173009363"></p>
+<p>分割子网络的前 4 个卷积层卷积核大小均为 3 × 3,步长为1,每一个卷积层后面加 BatchNorm 层以 加速网络收敛,提高泛化能力 ,激活函数均采 用 ReLU 函数 . </p>
+<p>通过卷积得到了256 个特征图信息,再通过一个转置卷积层,卷积核为 2 ×2,步 长为 2,对前面得到的特征图进行上采样,使其学习到图片的中低层特征丰富特征集,这些特征集 对任务的鲁棒性有着积极的作用 .</p>
+<p>最后,采用 1 ×1 的卷积核对每个像素语义类别预测.</p>
+<h6 id="（二）检测与识别子网络模型"><a href="#（二）检测与识别子网络模型" class="headerlink" title="（二）检测与识别子网络模型"></a>（二）检测与识别子网络模型</h6><p>将检测与识别子网络模型最终确定为 3 个卷积层与两 个全连接层组成的 CNN</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173500249.png" alt="image-20220822173500249"></p>
+<p>检测与识别子网络卷积层的卷积核大小为 3 ×3, 步长为 1,激活函数为 ReLU 函数,通过 3 层卷积 获得 256 个高层特征图,再通过 2 个全连接层分别做目标检测任务和分类任务输出</p>
+<h5 id="4-第四步：计算预测概率"><a href="#4-第四步：计算预测概率" class="headerlink" title="4.第四步：计算预测概率"></a>4.第四步：计算预测概率</h5><p>将图像输入到共享网络,学习到的特征表示 为 F（x）,然后将共享特征信息 F（x） 输入到两个 分支网络,</p>
+<p>检测识别子网络学习到的特征表示为 F（x1 ）,分割子网络学习到的特征为 F（x2 ）.</p>
+<p>口腔 斑纹类疾病的分类结果依赖与 F（x1 ） 和 F（x2 ）, 将 F（x1） +F（x2 ） 特征图输入到全连接层,最终 属于哪类疾病的预测概率可以用式（3） 计算：</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822173806665.png" alt="image-20220822173806665"></p>
+<p>其中:w 为神经网络的权重参数;b 为偏置参数;x 为输入的图像信息;i 为所属类别（口腔白斑、口 腔扁平苔藓、其他）</p>
+<h5 id="5-第五步：进行验证"><a href="#5-第五步：进行验证" class="headerlink" title="5.第五步：进行验证"></a>5.第五步：进行验证</h5><p>为验证本文提出的方法能够有 效地识别口腔白斑与扁平苔藓,我们采集了真实 口腔白斑与扁平苔藓患者的图像进行了实验. 其 中,口腔白斑图像数据 86 例,口腔扁平苔藓图像 79 例. 并且,由 3 位专科医生对患者的病损部位 进行划线标注,以及通过资质专家对标注进行最 终审核确认. 本文按一定比例随机划分数据,分 别使用 70%的图像作为训练数据、10%的图像作为验证数据,剩余的 20%作为测试集数据.</p>
+<h2 id="三、结果"><a href="#三、结果" class="headerlink" title="三、结果"></a>三、结果</h2><p>将本文方法与 AlexNet,VGG 和 Resnet 在 分类结果上对比,与 Mask R-CNN 在分类与分割 结果进行对比.</p>
+<p>前 3 个网络模型均为 单一的神经网络以进行口腔斑纹类疾病的识别. 而 Mask R-CNN 是将标签与分割图的训练数据输 入网络,提取特征以进行分类识别并分割出病损 区域.</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174223263.png" alt="image-20220822174223263"></p>
+<p>实验结果如表 1 所示,可以看出传统的网 络模型对口腔斑纹类数据识别效果不佳,其中,性 能最好的 Resnet101 分类结果仅能达到 47.51%. 本文使用改进的 Mask R-CNN,准确率比 AlexNet, VGG, ResNet 和 Mask-RCNN 高 出 10.95%, 11.73%,8.09%,4.25%</p>
+<p><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174310275.png" alt="image-20220822174310275"><img src="/2022/08/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/image-20220822174321519.png" alt="image-20220822174321519"></p>
+<p>图 4 为 Mask R-CNN 与本文提出的方法在口 腔斑纹类数据测试集上的分割结果对比图,包含 了检测、分类及分割.</p>
+<p>图 4（ b1） 的左图在 Mask R-CNN 上没有分割出病变区域,图 4（ b1）的右图 以及图 4（b2）的两例图像在 Mask R-CNN 上分割 出的病损区域远小于真实病损区域,并且图 4 （b1）和 4（ b2） 的右图被错误分类. 而这几个测 试图像在改进的 Mask R-CNN 网络上都有较好的 表现,展示了提出方法的有效性和优越性.</p>
+<p>针对口腔白斑与扁平苔藓检测、识别与分割 任务,本文提出利用多任务学习的思想,对 Mask R-CNN 网络进行改进,使得分类网络能够利用分 割网络的特征信息,从而在分类过程中更加关注 病损部位的特征信息. </p>
+<p>针对口腔斑纹类疾病病损 区域特征的复杂性,本文解决了口腔白斑与扁平 苔藓的病损区域难以准确分割与分类识别的问题. </p>
+<p>实验表明,本文改进的 Mask R-CNN 网络相 对于现有传统的识别方法和相关多任务学习的方法具有更高的准确性和敏感性</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/17/task02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/17/task02/" itemprop="url">西瓜书+南瓜书第三章</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-08-17T11:26:06+08:00">
+                2022-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%83%E7%93%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">吃瓜</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>详读西瓜书➕ 南瓜书第三章（6天）<br>打卡截止时间：8月23日03:00 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/08/17/task02/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/16/%E5%AE%9E%E8%AE%AD%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1853,7 +2697,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/08/16/task01/" itemprop="url">吃瓜第一、二章</a></h1>
+                <a class="post-title-link" href="/2022/08/16/task01/" itemprop="url">西瓜书+南瓜书第一、二章</a></h1>
         
 
         <div class="post-meta">
@@ -2072,14 +2916,152 @@
 
       
         
-          <h1 id="地理空间数据库学习"><a href="#地理空间数据库学习" class="headerlink" title="地理空间数据库学习"></a>地理空间数据库学习</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <span id="more"></span>
+
+<h2 id="lecture1-地理空间数据库概论"><a href="#lecture1-地理空间数据库概论" class="headerlink" title="lecture1 地理空间数据库概论"></a>lecture1 地理空间数据库概论</h2><h4 id="空间数据的特征"><a href="#空间数据的特征" class="headerlink" title="空间数据的特征"></a>空间数据的特征</h4><h5 id="空间特征"><a href="#空间特征" class="headerlink" title="空间特征"></a>空间特征</h5><p>每个空间对象都具有空间坐标，即空间对象隐含了空间分 布特征</p>
+<p> 空间数据组织需要考虑它的空间分布特征</p>
+<p>除了属性索引外，还需要建立空间索引</p>
+<h5 id="非结构化特征"><a href="#非结构化特征" class="headerlink" title="非结构化特征"></a>非结构化特征</h5><p>关系数据库中数据记录是结构化的</p>
+<p>结构化数据:满足关系模式的范式基本要求，可以用二维表结构来逻辑表达的 数据</p>
+<p>非结构化的数据:不方便用数据库二维逻辑表来表现的数据，包括文本、图片、<br>XML、HTML、音频、视频等</p>
+<p>空间数据是一种非结构化数据:空间实体是不定长的，例如一条弧段可能包含两对坐标点，也有 可能10万对坐标点;空间实体是非原子的，有的甚至是嵌套的，例如一个多边形可能 包含多条弧段</p>
+<p>通用的关系数据库管理系统难以直接管理空间数据</p>
+<h5 id="空间关系特征"><a href="#空间关系特征" class="headerlink" title="空间关系特征"></a>空间关系特征</h5><p>空间数据包括空间坐标和拓扑关系</p>
+<p>方便空间数据的查询和空间分析 (几何对象模型和空间网络模型) </p>
+<p>给空间数据的一致性和完整性维护增加了复杂性 :特别是一些没有直接记录空间坐标信息的几何对象 (例如拓 扑的面状表面仅记录组成它的弧段的标识)，在进行相关的查 找、显示和分析操作时，都要操纵和检索多个数据文件才行 完成</p>
+<h5 id="时态特征"><a href="#时态特征" class="headerlink" title="时态特征"></a>时态特征</h5><p>反映地理实体的状态和演变过程的重要组成部分</p>
+<p>如何组织、管理地理实体随时间变化信息(或时空信息)， 是空间数据库面临的新课</p>
+<p>现有的空间数据库基本不具有管理空间数据的时间动态性 ，只是描述数据的瞬时状态:如果数据发生变化，新数据将代替旧数据，即成为另一个瞬时状 态，就数据将会消失，无法对数据的更新变化进行分析，更不能 预测未来的趋势,地籍变更、环境监测、抢险救灾、交通管理等都需要时空信息</p>
+<h5 id="多尺度特征"><a href="#多尺度特征" class="headerlink" title="多尺度特征"></a>多尺度特征</h5><p>地球系统是各种不同级别子系统组成的复杂巨系统，各个级别的子系统在空间规律和事件长短方面存在很大差异， 而其由于空间认知水平、认知精度和比例尺等不同，地理实体的表现形式也不同</p>
+<p><strong>空间多尺度</strong>是指根据地学过程或地理地球系统中各部分规 模的大小，可分为不同的层次’</p>
+<p><strong>时间多尺度</strong>是指地学过程或地理特征具有一定的自然节律 性，其时间周期长短不一</p>
+<h4 id="空间数据库"><a href="#空间数据库" class="headerlink" title="空间数据库"></a>空间数据库</h4><p>在地球表面某一范围内与空间地理相关的反应某一主题的 数据集合</p>
+<p>按一定的数据模型组织、描述和存储，具有较小的冗余度 、较高的数据独立性和易扩展性，并可为各种用户共享</p>
+<p> 例如国家基础地理信息数据库、资源环境数据库</p>
+<h2 id="lecture2-关系模型与关系代数"><a href="#lecture2-关系模型与关系代数" class="headerlink" title="lecture2 关系模型与关系代数"></a>lecture2 关系模型与关系代数</h2><h3 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h3><p>关系模型是一种数据模型，它和一般的数据模型一 样，由如下三部分组成</p>
+<h4 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h4><p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803154840994.png" alt="image-20220803154840994"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803154933201.png" alt="image-20220803154933201"></p>
+<h4 id="关系数据操作"><a href="#关系数据操作" class="headerlink" title="关系数据操作"></a>关系数据操作</h4><h4 id="关系模型中完整性约束（三类）"><a href="#关系模型中完整性约束（三类）" class="headerlink" title="关系模型中完整性约束（三类）"></a>关系模型中完整性约束（三类）</h4><h5 id="实体完整性规则-Entity-Integrity"><a href="#实体完整性规则-Entity-Integrity" class="headerlink" title="实体完整性规则 (Entity Integrity)"></a>实体完整性规则 (Entity Integrity)</h5><p>若属性A是基本关系R的主属性，则任何一个元组在属性A上不能取空值 (NULL</p>
+<h5 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h5><p>关系间的引用、外码、参照完整性规则</p>
+<h5 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h5><p>Schema &#x3D; 数据库中关系的结构描述 </p>
+<p>Instance &#x3D; 实际存储内容</p>
+<h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><p>一种抽象的查询语言，用对关系的运算来表达查询</p>
+<p>关系代数运算的三个要素：运算对象、运算结果、运算符</p>
+<img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803155211819.png" alt="image-20220803155211819" style="zoom:50%;">
+
+<img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803155220527.png" alt="image-20220803155220527" style="zoom:50%;">
+
+<h5 id="选择-σ"><a href="#选择-σ" class="headerlink" title="选择(σ)"></a>选择(σ)</h5><p>针对单个关系中的数据进行操作，属于一元运 算符，是指从关系中选择若干行 l 例如，可以使用选择操作符(σ)从学生关系S中选择 出那些年龄大于19岁的学生。该查询可以用如下的 表达式来表示： σSage&gt;19(S) 查询表达式中的下标“Sage&gt;19”给出的是选择条 件，只有符合该条件的元组才可以被返回到结果中</p>
+<h5 id="投影操作-π"><a href="#投影操作-π" class="headerlink" title="投影操作 (π)"></a>投影操作 (π)</h5><p>是指从关系中选择若干列 </p>
+<p>例如，可以使用投影操作符 (π)从学生关系S中找出 所有学生的名字和年龄。该查询可以用如下的表达 式来表示： πSname, Sage(S) 查询表达式中的下标“Sname, Sage”指出需要返回 的列的名字，其他的列在结果关系中被去掉了</p>
+<p>选择与投影满足交换律 σc(πA1,…An(S) ) &#x3D; πA1,…An(σcS) </p>
+<h5 id="连接运算的含义（Theta-Join）"><a href="#连接运算的含义（Theta-Join）" class="headerlink" title="连接运算的含义（Theta-Join）"></a>连接运算的含义（Theta-Join）</h5><p> 从两个关系的笛卡尔积中选取属性间满足一定条件的元组 R S ▬ </p>
+<p>其中条件的一般形式是AθB，θ&#x3D; { &#x3D;，&gt;，&gt;&#x3D;，&lt;，&lt;&#x3D;， &lt;&gt; }，A是关系R中的属性或者是一个常数，B是关系S中 的属性或者是一个常数，A和B必须是同一个定义域（相 同的类型）。还可以用逻辑运算符和上面的一般形式构成 更复杂的条件 ▬ πname(Hospitals ⨝distance(location, location) &lt; 5 Schools) </p>
+<p> 两类常用连接运算</p>
+<h6 id="等值连接-Equijoin）"><a href="#等值连接-Equijoin）" class="headerlink" title="等值连接 (Equijoin）"></a>等值连接 (Equijoin）</h6><p>当条件AθB中的θ为“＝”的连接运算称为等值连 接</p>
+<h6 id="自然连接-Natural-join"><a href="#自然连接-Natural-join" class="headerlink" title="自然连接 (Natural join)"></a>自然连接 (Natural join)</h6><p>自然连接是一种特殊的等值连接 » 它要求关系R中的属性A和关系S中的属性B名 字相同 » 在结果中把重复的属性列去掉</p>
+<h5 id="除运算"><a href="#除运算" class="headerlink" title="除运算"></a>除运算</h5><p>下图中的关系A表示某个学生选修了某门课程，B表 示可选的选修课列表。A÷B表示选修了B中所有课 程的学生名单</p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803160555015.png" alt="image-20220803160555015"></p>
+<p>除运算可以这样来理解：假设有两个关系A和B，其 中A只有两个属性X和Y，B只有一个属性Y（和关系 A中的Y属性具有相同的域），对于A中的每一个x（ 属性X的取值）所对应的y（属性Y的取值）集合， 看它是否包含B中所有的y值，如果包含，则x属于 A÷B的结果集</p>
+<h5 id="重命名？"><a href="#重命名？" class="headerlink" title="重命名？"></a>重命名？</h5><p>？</p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220803192818984.png" alt="image-20220803192818984"></p>
+<h2 id="lecture3-关系数据库标准语言"><a href="#lecture3-关系数据库标准语言" class="headerlink" title="lecture3 关系数据库标准语言"></a>lecture3 关系数据库标准语言</h2><h2 id="lecture4几何对象模型与查询"><a href="#lecture4几何对象模型与查询" class="headerlink" title="lecture4几何对象模型与查询"></a>lecture4几何对象模型与查询</h2><h4 id="空间数据模型"><a href="#空间数据模型" class="headerlink" title="空间数据模型"></a>空间数据模型</h4><p>空间信息的一种数据组织方式</p>
+<p> 对象模型、场模型、网络模型</p>
+<p>现有的空间数据库都是基于某种空间数据模型</p>
+<h4 id="GIS中常见的两大数据模型"><a href="#GIS中常见的两大数据模型" class="headerlink" title="GIS中常见的两大数据模型"></a>GIS中常见的两大数据模型</h4><p>矢量模型：</p>
+<p>利用点、线、多边形的形式来表达现实世界 </p>
+<p>具有定位明显，属性隐含的特点 </p>
+<p>不可再分的最小单元现象称为空间实体</p>
+<p>栅格模型：</p>
+<p>以二维矩阵的形式来表示空间地物或现象分布的数据组织方式 </p>
+<p>每个矩阵单位称为一个栅格单元，单元值表示地物或现象的属性 数据</p>
+<h4 id="4-2-1-概念模型"><a href="#4-2-1-概念模型" class="headerlink" title="4.2.1 概念模型"></a>4.2.1 概念模型</h4><h5 id="几何对象模型层次结构-OGC-Simple-Features-for-SQL"><a href="#几何对象模型层次结构-OGC-Simple-Features-for-SQL" class="headerlink" title="几何对象模型层次结构 OGC Simple Features for SQL"></a>几何对象模型层次结构 OGC Simple Features for SQL</h5><p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804085404221.png" alt="image-20220804085404221"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804090450431.png" alt="image-20220804090450431"></p>
+<p>wgs-84</p>
+<p>点(Point) ▬ 零维几何对象类，代表空间中的一个点，如城市</p>
+<p>曲线(Curve) ▬ 由点序列描述一维的几何对象类，如街道、管线 ▬ 相邻两点间的插值方法：线性插值和非线性插值</p>
+<p>折线(LineString) ▬ 曲线的子类，采用线性插值</p>
+<p>线段(Line) ▬ 折线的特例，只有两个点的线串</p>
+<p>环线(LineRing) ▬ 由折线派生而来，闭合的、不自相交或相切的折线</p>
+<p>面(Surface) ▬ 二维几何对象类，代表一个外边界、零到多个内边界组成 的几何对象 ▬ 在三维空间中，可能是一个同构的曲面</p>
+<p>多边形(Polygon) ▬ 二维坐标空间中由一个外边界、零到多个内边界定义的平 坦表面，由一个或一个以上的线环聚合而成，如省份 ▬ 仅支持由折线串围成的多边形，暂不支持曲线</p>
+<p>l 三角形(Triangle) ▬ 多边形类的一个特例</p>
+<p>体表面(PolyhedraSurface) ▬ 由简单面沿着它们的边界“缝合”而成 ▬ 三维空间中的多面体曲面总体上可以不平坦 ▬ 相互接触的一对多边形的公共边可以表达为有限折线的集 合</p>
+<p>不规则三角网(Triangulated irregular network, TIN) ▬ 体表面的一个特例，由多个共享公共边的连续三角形聚合 而成</p>
+<p>几何集合(GeometryCollection) ▬ 由一个或多个几何对象组成的集合，其中的元素必须具有 相同的空间参考系和测量参考系</p>
+<p>多点(MultiPoint) ▬ 零维的几何类集合，由多个点聚合而成，代表空间中的多 个点，例如多个岛屿</p>
+<p>多面(MultiSurface) ▬ 二维的几何集合类，由多个面聚合而成</p>
+<p>多曲线(MultiCurve) ▬ 一维的几何类，由多条曲线聚合而成 l </p>
+<p>多折线(MultiLineString) ▬ 多曲线类的子类，由多条折线聚合而成，如由多条河流组 成的水系 ▬ 多曲线允许出现弧线，多折线由折线组成 l </p>
+<p>多多边形(MultiPolygon) ▬ 多面的子类，由多个多边形对象聚合而成，例如多个岛屿 组成的群岛(大比例尺)</p>
+<h6 id="理解该模型几个要点"><a href="#理解该模型几个要点" class="headerlink" title="理解该模型几个要点"></a>理解该模型几个要点</h6><p>1.坐标维数和几何维数的区别</p>
+<p>坐标维数是指在一个坐标系统描述一个位置所需的测量或 坐标轴的个数 (空间维数)</p>
+<p> 现实世界是三维的，需要(x, y, z)三个坐标进行描述</p>
+<p>几何维度是在一定前提下描述一个几何对象所需的参数个数 ：点是0维，线是1维，面是2维，体是3维</p>
+<p>OGC仅能表达和处理简单(Simple)的几何对象（指不自相交的几何对象）</p>
+<p>任何几何模型都有其边界(boundary)、内部(interior) 和外部(exterior)</p>
+<p>边界：一个几何实体界限的集合，几何维数是其本身几何 形状的维数减一</p>
+<p>内部：几何对象除边界外的所有直接位置(direct position) 的集合，直接位置是用坐标参考系中的一组坐标描述的位置 ， 几何维数与其本身的维数一致</p>
+<p>外部：空间全域与几何闭包之差，任意几何对象外部的维数总是2 ， 所有的几何形状都有外部，即其几何形状的补集</p>
+<p>几何对象模型的坐标维数为3，但目前仅能描述二维 几何对象</p>
+<p>M值 ▬ 点类除了x, y, z坐标外，还有一个M坐标 ▬ M值是线性参考系统的一个重要的度量值 ▬ 例如，高速公路上的里程碑点可用其M值表示从高速公路 起点到当前位置的距离</p>
+<p>不规则三角网格主要用来表达高程或其他状况(如浓 度)的表面 ▬ 用来高程、坡度、坡向的计算，等高线的提取，体积的计 算，垂直剖面分析，通视分析等</p>
+<p> ▬ 在OGC的数据模型中，TIN被认为是矢量数据的一种表达 方式，而ESRI的GeoDatabase则将其视为一种不同于矢 量表达的另一种空间数据表达方式</p>
+<p>2.几何对象的方法 (函数)</p>
+<p>分类 </p>
+<p>▬ 常规方法 12种方法，概念和方法不难理解 </p>
+<p>▬ 常规GIS分析方法 7种方法，基于GIS基础也不难理解 </p>
+<p>▬ 空间查询方法(拓扑分析)  前9种与空间拓扑关系查询有关 n 后2种是基于线性参考的空间查询方法</p>
+<p>测试几何类空间拓扑关系方法 </p>
+<p>▬ 空间拓扑关系反映了空间连续变化的不变性 ： 图形的形状、大小会随图形的变化而改变，但相邻、包含、相交 等空间拓扑关系不会发生变化</p>
+<p> ▬ 由于3D中面、体对象的拓扑关系是极其复杂的，故目前 该模型主要集中在2D空间拓扑关系方面</p>
+<h5 id="九交模型"><a href="#九交模型" class="headerlink" title="九交模型"></a>九交模型</h5><p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804095109399.png" alt="image-20220804095109399"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804100146133.png" alt="image-20220804100146133"></p>
+<h5 id="空间拓扑关系"><a href="#空间拓扑关系" class="headerlink" title="空间拓扑关系"></a>空间拓扑关系</h5><p>相离(disjoint) n 若a ∩ b &#x3D; ∅，则a和b相离</p>
+<p>相交(intersects) n 若a ∩ b ≠ ∅，则a和b相交 ；a.Intersects(b) ↔ !a.Disjoint(b)</p>
+<p>相等(equals) n 若a包含于b，且b包含于a，则a和b相等</p>
+<p>交叠(overlaps) n 如Dim(I(a)) &#x3D; Dim(I(b)) &#x3D; Dim(I(a) ∩ I(b))，且a ∩ b ≠ a，同时 a ∩ b ≠ b，则a和b交叠 ;点&#x2F;点、线&#x2F;线、面&#x2F;面交叠关系，没有线&#x2F;面等交叠关系</p>
+<p>包含于(within) n 若a ∩ b &#x3D; a，且I a∩ Eb &#x3D; ∅，则a包含于b内</p>
+<p>包含(contains) n 若b包含于a，则a包含b n a.Contains(b) ↔ b.Within(a)</p>
+<p> 相接(touches) n 若I a∩ Ib &#x3D; ∅，且a ∩ b ≠ ∅，则a和b相接 n 面&#x2F;面、线&#x2F;线、线&#x2F;面、点&#x2F;面、点&#x2F;线相接关系</p>
+<p>穿越(crosses)</p>
+<p> 若[Dim(I a ∩ I b) &lt; max(Dim(I(a)), Dim(I(b)))，且Dim(I(b)) !&#x3D;  0， a ∩ b≠ a， a ∩ b ≠ b，则a穿越b,点&#x2F;线、点&#x2F;面、线&#x2F;线、线&#x2F;面穿越关系</p>
+<h4 id="4-2-2-几何对象逻辑模型"><a href="#4-2-2-几何对象逻辑模型" class="headerlink" title="4.2.2 几何对象逻辑模型"></a>4.2.2 几何对象逻辑模型</h4><p>基于概念模型，OGC提出了基于预定义数据类型和 基于扩展几何类型的两种实现方法</p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804101918403.png" alt="image-20220804101918403"></p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804102410950.png" alt="image-20220804102410950"></p>
+<p>WKB表达</p>
+<p> ▬ SFA SQL给出了一种较为紧凑的几何数据的二进制方式 的存储格式 </p>
+<p>▬ 数字类型串行化为网络数据表示(network data  representation, NDR)(按小Endian方式编码)和</p>
+<p>或外部数据表示(external data  representation, XDR)存储在磁盘上(按大Endian方式编码)</p>
+<p><img src="/2022/08/15/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/Users\LOIS\AppData\Roaming\Typora\typora-user-images\image-20220804110136753.png" alt="image-20220804110136753"></p>
+<p> WKT表达</p>
+<p>▬ OGC还提供一种基于文本格式几何数据交汇标准表达方式 ▬ 例如POINT(10, 10)，POLYGON((10 10, 10 20, 20 20, 20  15, 10 10))</p>
+<p>一个简单的多边形，为啥非要用2个括号呢？一个括号明明就可以啊</p>
+<p>这就是因为，我们把一个含有洞的面也被定义为“简单面”</p>
+<p>所以，简单面统一变成2个括号</p>
+<h3 id="4-3-空间结构化查询语言"><a href="#4-3-空间结构化查询语言" class="headerlink" title="4.3 空间结构化查询语言"></a>4.3 空间结构化查询语言</h3><p>空间结构化查询语言(Spatial Structured Query  Language, SSQL) ▬ 基于SQL99提供的对象扩展机制，扩充的一种用于实现 空间数据的存储、管理、查询、更新与维护的结构化查询 语言 ▬ 由于与地理位置密切，也称为GSQL</p>
+<p>SSQL是基于某种空间数据模型，对标准的SQL进行 扩展 ▬ 空间数据类型的基本操作 ▬ 描述空间对象间拓扑关系的函数 ▬ 空间分析与处理的一般操作</p>
+<p>l PostGIS中常用数据类型 </p>
+<p>▬ boolean 布尔类型，其值为T或F</p>
+<p> ▬ box2d 矩形框类型，由矩形左下角和右上角组成</p>
+<p> ▬ box3d 长方体类型，由左前下角和右后上角组成</p>
+<p> ▬ bytea 相当于BLOB类型，可变长的二进制值</p>
+<p> ▬ integer 字节为4的整数(int4) </p>
+<p>▬ double precision 字节为8的浮点数(float8)</p>
+<p>▬ geometry 几何类型 </p>
+<p>▬ geometry[] 几何数据类型数组</p>
+<p> ▬ geometry set 几何数据类型的集合</p>
+<p> ▬ raster 栅格类型 </p>
+<p>▬ setof geomval 几何对象与值对的集合，用于返回几个对 象及与该集合对象对应的栅格值 </p>
+<p>▬ text 文本类型 </p>
+<p>▬ character varying 相当于BLOB类型，可变长的文本描述</p>
+<h3 id="4-5-矢量数据的定义与操纵"><a href="#4-5-矢量数据的定义与操纵" class="headerlink" title="4.5 矢量数据的定义与操纵"></a>4.5 矢量数据的定义与操纵</h3><h4 id="4-5-1-数据定义与插入"><a href="#4-5-1-数据定义与插入" class="headerlink" title="4.5.1 数据定义与插入"></a>4.5.1 数据定义与插入</h4><p>A three-dimensional (3DZ) geometry is specified by longitude, latitude, and altitude coordinates on a spheroid</p>
+<p>三维(3DZ)几何体由球面上的经度、纬度和高度坐标指定</p>
+<p>A two-dimensional with measure (3DM) geometry is specified by three coordinates (longitude, latitude, measure), where the first two are angular coordinates on a sphere and the third is a measurement. </p>
+<p>具有度量(3DM)的二维几何由三个坐标(经度、纬度、度量)指定，其中前两个是球面上的角坐标，第三个是度量</p>
+
+          
         
       
     </div>
@@ -2305,7 +3287,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

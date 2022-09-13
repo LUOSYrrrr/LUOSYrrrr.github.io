@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="人工智能笔记09131.机器学习形式化定义感知器学习概念-激活输出激活函数：ϕ(z)  阈值：θ 权值矩阵：w  例子：激活函数: ϕ(z)  偏置单元w0**&#x3D; -**θ,  x0&#x3D;1   表示大于θ,则ϕ(z）&#x3D;1 问题一：感知器学到的知识（即模型）是用什么表征的？权值矩阵 W 变化吗？ 答：感知器模型：由权值矩阵 W 表征；训练过程：迭代，利用感知器激活输出与标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工智能-感知器和三种库读入数据">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="人工智能笔记09131.机器学习形式化定义感知器学习概念-激活输出激活函数：ϕ(z)  阈值：θ 权值矩阵：w  例子：激活函数: ϕ(z)  偏置单元w0**&#x3D; -**θ,  x0&#x3D;1   表示大于θ,则ϕ(z）&#x3D;1 问题一：感知器学到的知识（即模型）是用什么表征的？权值矩阵 W 变化吗？ 答：感知器模型：由权值矩阵 W 表征；训练过程：迭代，利用感知器激活输出与标">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090259894.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090309953.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090609263.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090721362.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090803236.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091828014.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091544780.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091651568.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092029096.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092104113.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092133523.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092411688.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092428040.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092448403.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092832003.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913093218304.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913095149926.png">
+<meta property="article:published_time" content="2022-09-13T01:02:35.000Z">
+<meta property="article:modified_time" content="2022-09-13T01:51:56.569Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090259894.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/09/13/人工智能/人工智能-感知器和三种库读入数据/"/>
+
+
+
+
+
+  <title>人工智能-感知器和三种库读入数据 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">人工智能-感知器和三种库读入数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-13T09:02:35+08:00">
+                2022-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="人工智能笔记"><a href="#人工智能笔记" class="headerlink" title="人工智能笔记"></a>人工智能笔记</h1><h2 id="0913"><a href="#0913" class="headerlink" title="0913"></a>0913</h2><h3 id="1-机器学习形式化定义"><a href="#1-机器学习形式化定义" class="headerlink" title="1.机器学习形式化定义"></a>1.<strong>机器学习形式化定义</strong></h3><h4 id="感知器学习概念-激活输出"><a href="#感知器学习概念-激活输出" class="headerlink" title="感知器学习概念-激活输出"></a>感知器学习概念-激活输出</h4><h5 id><a href="#" class="headerlink" title></a></h5><p>激活函数：ϕ(z)  阈值：θ 权值矩阵：w</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090259894.png" alt="image-20220913090259894" style="zoom:50%;"><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090309953.png" alt="image-20220913090309953" style="zoom: 33%;"></p>
+<p>例子：激活函数: <em>ϕ(z)</em>  偏置单元w0**&#x3D; -**θ,  x0&#x3D;1</p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090609263.png" alt="image-20220913090609263" style="zoom:50%;">
+
+<p>表示大于θ,则ϕ(z）&#x3D;1</p>
+<p>问题一：感知器学到的知识（即模型）是用什么表征的？权值矩阵 W 变化吗？</p>
+<p>答：感知器模型：由权值矩阵 <strong>W</strong> 表征；训练过程：迭代，利用感知器激活输出与标签误差，更新权值矩阵 <strong>W</strong></p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090721362.png" alt="image-20220913090721362" style="zoom:50%;">
+
+<p>上图的激活函数，或决策函数，是单位阶跃函数</p>
+<p>感知器的训练方法（训练过程）</p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913090803236.png" alt="image-20220913090803236" style="zoom:50%;">
+
+<p>Yita 为学习率，看能不能搜索到最优解</p>
+<h4 id="应用示例一：感知器"><a href="#应用示例一：感知器" class="headerlink" title="应用示例一：感知器"></a>应用示例一：感知器</h4><p><em>Python</em>感知器学习: preceptron.py</p>
+<p><strong>Iris</strong>数据集（<strong>iris.data</strong>）训练一个感知器模型: perceptron_with_iris.py</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44669578/article/details/103348076">(52条消息) plt.contourf（）_庾信平生最萧瑟的博客-CSDN博客_plt.contourf</a></p>
+<p>plt.contourf(）画不同分类的边界线</p>
+<h3 id="2-使用-pandas-NumPy-和-Matplotlib-读入、处理并可视化数据"><a href="#2-使用-pandas-NumPy-和-Matplotlib-读入、处理并可视化数据" class="headerlink" title="2.使用 pandas, NumPy, 和 Matplotlib 读入、处理并可视化数据"></a>2.<strong>使用</strong> <strong>pandas, NumPy,</strong> <strong>和</strong> <strong>Matplotlib</strong> <strong>读入、处理并可视化数据</strong></h3><h4 id="官网地址"><a href="#官网地址" class="headerlink" title="官网地址"></a>官网地址</h4><blockquote>
+<p><strong>Pandas</strong></p>
+<p>  <strong><a target="_blank" rel="noopener" href="https://pandas.pydata.org/">https://pandas.pydata.org</a></strong></p>
+<p><strong>NumPy</strong></p>
+<p>   <strong><a target="_blank" rel="noopener" href="https://numpy.org/">https://numpy.org</a></strong></p>
+<p><strong>Matplotlib</strong></p>
+<p>   <strong><a target="_blank" rel="noopener" href="https://matplotlib.org/">https://matplotlib.org</a></strong></p>
+</blockquote>
+<h4 id="Python-命名规则"><a href="#Python-命名规则" class="headerlink" title="Python 命名规则"></a><strong>Python</strong> <strong>命名规则</strong></h4><p>file_name 文件</p>
+<p>module_name 模块</p>
+<p>package_name 包</p>
+<p>ClassName 类</p>
+<p>method_name 方法 </p>
+<p>ExceptionName 异常</p>
+<p>function_name 函数 </p>
+<p>GLOBAL_VAR_NAME 全局变量</p>
+<p>instance_var_name 实例</p>
+<p>function_parameter_name 参数</p>
+<p>local_var_name 本地变量</p>
+<h3 id="3-自适应线性分类器及其Python实现"><a href="#3-自适应线性分类器及其Python实现" class="headerlink" title="3.自适应线性分类器及其Python实现"></a>3.自适应线性分类器及其Python实现</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>（与感知器比较异同）</p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091828014.png" alt="image-20220913091828014" style="zoom: 50%;">
+
+<p>线性激活函数：<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091544780.png" alt="image-20220913091544780" style="zoom:50%;"></p>
+<p>目标函数：（或称 代价函数） <img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913091651568.png" alt="image-20220913091651568" style="zoom: 33%;"></p>
+<p>最关键核心：引入了目标函数</p>
+<p>学习目标：让代价函数最小</p>
+<p>学习法则：梯度下降法更新权值，来达成学习目标<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092029096.png" alt="image-20220913092029096" style="zoom: 50%;">（学习率eta的意义：搜索的步长）</p>
+<p>权值wj  更新公式<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092104113.png" alt="image-20220913092104113" style="zoom:50%;"></p>
+<img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092133523.png" alt="image-20220913092133523" style="zoom:33%;">
+
+<h4 id="应用示例二：自适应线性分类器"><a href="#应用示例二：自适应线性分类器" class="headerlink" title="应用示例二：自适应线性分类器"></a><strong>应用示例二：自适应线性分类器</strong></h4><p>自适应线性分类器学习： adalineGD.py<br>Iris数据集（iris.data）训练一个自适应线性分类器模型: adalineGD_with_iris.py<br>学习率对收敛的影响: adalineGD_LearningRate.py</p>
+<p>分类决策面: plot_decision_regions.py</p>
+<h3 id="4-通过特征缩放改善梯度下降优化算法性能"><a href="#4-通过特征缩放改善梯度下降优化算法性能" class="headerlink" title="4.通过特征缩放改善梯度下降优化算法性能"></a>4.<strong>通过特征缩放改善梯度下降优化算法性能</strong></h3><p>特征缩放：标准化，获得一个标准正态分布 —— 减少特征数据差异性(数据具有0均值和单位方差)</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092411688.png" alt="image-20220913092411688" style="zoom: 33%;"><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092428040.png" alt="image-20220913092428040" style="zoom: 33%;"><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092448403.png" alt="image-20220913092448403" style="zoom: 33%;"></p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913092832003.png" alt="image-20220913092832003">x为原始数据集</p>
+<p>x_std是标准化后数据集</p>
+<h3 id="5-随机梯度下降自适应线性分类器及其Python实现"><a href="#5-随机梯度下降自适应线性分类器及其Python实现" class="headerlink" title="5.随机梯度下降自适应线性分类器及其Python实现"></a>5.随机梯度下降自适应线性分类器及其Python实现</h3><p>随机梯度下降自适应线性分类器（与梯度下降的Adaline比较异同）</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913093218304.png" alt="image-20220913093218304"></p>
+<p>自适应线性分类器学习 —— 随机梯度下降SGD<br> adalineSGD.py<br>Iris数据集（iris.data）训练一个自适应线性分类器模型<br> adalineSGD_with_iris.py</p>
+<p>分类决策面<br> plot_decision_regions.py</p>
+<h2 id="课堂活动"><a href="#课堂活动" class="headerlink" title="课堂活动"></a>课堂活动</h2><h3 id="对比感知器学习和自适应神经元学习的异同"><a href="#对比感知器学习和自适应神经元学习的异同" class="headerlink" title="对比感知器学习和自适应神经元学习的异同"></a>对比感知器学习和自适应神经元学习的异同</h3><p>1.自适应线性神经网络的激活函数不再采用步调函数，而是直接将样本运算的结果（点乘）与实际结果相比较。(白话版：自适应线性神经网络的激活函数，是一个线性函数)</p>
+<p>2.自适应线性神经网络提出了代价函数的概念，并对其做了最小优化。基于Adaline规则的权重更新是通过一个连续的线性激活函数(本例子中采用)来完成，而感知器采用的单位阶跃函数。</p>
+<h3 id="对比梯度下降和随机梯度下降的异同"><a href="#对比梯度下降和随机梯度下降的异同" class="headerlink" title="对比梯度下降和随机梯度下降的异同"></a>对比梯度下降和随机梯度下降的异同</h3><p>梯度下降中的导数部分是把所有样本代入到导数中，然后累加，然后更新参数。而随机梯度下降则是选一个样本计算一个导数，然后马上更新参数</p>
+<p><img src="/2022/09/13/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%84%9F%E7%9F%A5%E5%99%A8%E5%92%8C%E4%B8%89%E7%A7%8D%E5%BA%93%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE/image-20220913095149926.png" alt="image-20220913095149926"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/09/08/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/" rel="next" title="Multimix从医学图像中进行的少量监督可解释的多任务学习-阅读">
+                <i class="fa fa-chevron-left"></i> Multimix从医学图像中进行的少量监督可解释的多任务学习-阅读
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AC%94%E8%AE%B0"><span class="nav-text">人工智能笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0913"><span class="nav-text">0913</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-text">1.机器学习形式化定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5-%E6%BF%80%E6%B4%BB%E8%BE%93%E5%87%BA"><span class="nav-text">感知器学习概念-激活输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B%E4%B8%80%EF%BC%9A%E6%84%9F%E7%9F%A5%E5%99%A8"><span class="nav-text">应用示例一：感知器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-pandas-NumPy-%E5%92%8C-Matplotlib-%E8%AF%BB%E5%85%A5%E3%80%81%E5%A4%84%E7%90%86%E5%B9%B6%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE"><span class="nav-text">2.使用 pandas, NumPy, 和 Matplotlib 读入、处理并可视化数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%98%E7%BD%91%E5%9C%B0%E5%9D%80"><span class="nav-text">官网地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="nav-text">Python 命名规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%87%AA%E9%80%82%E5%BA%94%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8%E5%8F%8A%E5%85%B6Python%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.自适应线性分类器及其Python实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B%E4%BA%8C%EF%BC%9A%E8%87%AA%E9%80%82%E5%BA%94%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="nav-text">应用示例二：自适应线性分类器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%80%9A%E8%BF%87%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%E6%94%B9%E5%96%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD"><span class="nav-text">4.通过特征缩放改善梯度下降优化算法性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E8%87%AA%E9%80%82%E5%BA%94%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8%E5%8F%8A%E5%85%B6Python%E5%AE%9E%E7%8E%B0"><span class="nav-text">5.随机梯度下降自适应线性分类器及其Python实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E5%A0%82%E6%B4%BB%E5%8A%A8"><span class="nav-text">课堂活动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%84%9F%E7%9F%A5%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%87%AA%E9%80%82%E5%BA%94%E7%A5%9E%E7%BB%8F%E5%85%83%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%BC%82%E5%90%8C"><span class="nav-text">对比感知器学习和自适应神经元学习的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%92%8C%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E5%BC%82%E5%90%8C"><span class="nav-text">对比梯度下降和随机梯度下降的异同</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
