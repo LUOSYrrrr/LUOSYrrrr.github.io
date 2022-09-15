@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第0章 恶意代码分析技术简介与入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恶意代码 第0章">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="第0章 恶意代码分析技术简介与入门">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915102950259.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103116208.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103137603.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103157777.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105013049.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915104958983.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105155967.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105340572.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105559397.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105627099.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915102543981.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103319988.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103416188.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103551985.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103905473.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915104349245.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915104445061.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105709505.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105729208.png">
+<meta property="article:published_time" content="2022-09-15T02:22:54.000Z">
+<meta property="article:modified_time" content="2022-09-15T02:59:06.817Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915102950259.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/09/15/恶意代码第0章/"/>
+
+
+
+
+
+  <title>恶意代码 第0章 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">恶意代码 第0章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-15T10:22:54+08:00">
+                2022-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index">
+                    <span itemprop="name">恶意代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  第0章 恶意代码分析技术简介与入门
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第0章-恶意代码分析技术简介与入门"><a href="#第0章-恶意代码分析技术简介与入门" class="headerlink" title="第0章 恶意代码分析技术简介与入门"></a>第0章 恶意代码分析技术简介与入门</h1><img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915102950259.png" alt="image-20220915102950259" style="zoom:50%;">
+
+<p><a target="_blank" rel="noopener" href="https://www.cverc.org.cn/head/zhaiyao/news20220905-NPU.htm">信息安全摘要 (cverc.org.cn)</a></p>
+<h2 id="1-课程简介"><a href="#1-课程简介" class="headerlink" title="1.课程简介"></a>1.课程简介</h2><img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103116208.png" alt="image-20220915103116208" style="zoom:50%;">
+
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103137603.png" alt="image-20220915103137603" style="zoom:50%;">
+
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103157777.png" alt="image-20220915103157777" style="zoom:50%;">
+
+<h2 id="2-恶意代码基础知识"><a href="#2-恶意代码基础知识" class="headerlink" title="2.恶意代码基础知识"></a>2.恶意代码基础知识</h2><p><strong>恶意代码的定义：</strong></p>
+<blockquote>
+<p>◼ Malware is a set of instructions that run on your computer and make your system do something that an attacker wants it to do.</p>
+<p>◼ 使计算机按照攻击者的意图运行以达到恶意目的的指令集合。</p>
+<p>◼ 指令集合：二进制执行文件，脚本语言代码，宏代码，寄生在文件、启动扇区的指令流。</p>
+<p>◼ 恶意代码目的：技术炫耀&#x2F;恶作剧，远程控制，窃取私密信息，盗用资源，拒绝服务&#x2F;破坏，国家意志…</p>
+</blockquote>
+<p><strong>恶意代码类型</strong>：</p>
+<p>计算机病毒(Virus)、蠕虫(Worm)、启动器(Downloader)、后门(Backdoor)、僵尸程序(Bot)、内核套(Rootkit)、融合型恶意代码及Bootkit（固件感染）、特洛伊木马(Trojan)</p>
+<p>计算机病毒(Virus)</p>
+<blockquote>
+<p>定义特征：通过感染文件(可执行文件、数据文件、电子邮件等)或磁盘引导扇区进行传播，一般需要宿主程序被执行或人为交互才能运行。<br>典型实例：Brain，Concept，CIH，勒索软件</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105013049.png" alt="image-20220915105013049" style="zoom:50%;">
+</blockquote>
+<p>蠕虫(Worm)</p>
+<blockquote>
+<p>定义特征：一般为不需要宿主的单独文件，通过网络传播，自动复制，通常无需人为交互便可感染传播。<br>典型实例：Morris，CodeRed，Slammer</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915104958983.png" alt="image-20220915104958983" style="zoom: 67%;">
+</blockquote>
+<p>启动器(Downloader)</p>
+<blockquote>
+<p>定义特征：从远程主机下载到本地执行的轻量级恶意代码，不需要或仅需要极少的人为干预。代表性的开发工具有：JavaScript，VBScript，Java，以及ActiveX。启动其他恶意程序的恶意代码。</p>
+<p>典型实例：SantyWorm等</p>
+</blockquote>
+<p>后门(Backdoor)</p>
+<blockquote>
+<p>定义特征：绕过正常的安全控制机制，从而为攻击者提供访问途径。<br>典型实例：Netcat，BO，冰河，Glupteba。</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105155967.png" alt="image-20220915105155967" style="zoom: 50%;">
+</blockquote>
+<p>特洛伊木马(Trojan)</p>
+<blockquote>
+<p>定义特征：伪装成有用软件，隐藏其恶意目标，欺骗用户安装执行。<br>典型实例：Setiri，Emotet，Dridex，Ramnit</p>
+</blockquote>
+<p>僵尸程序(Bot)</p>
+<blockquote>
+<p>定义特征：一般为不需要宿主的单独文件，通过网络传播，自动复制，通常无需人为交互便可感染传播；使用一对多的命令与控制机制组成僵尸网络。<br>典型实例：Sdbot，Agobot，Mirai，Glupteba</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105340572.png" alt="image-20220915105340572" style="zoom: 67%;">
+</blockquote>
+<p>内核套件(Rootkit)</p>
+<blockquote>
+<p>定义特征：通过替换或修改系统关键可执行文件（用户态），或者通过控制操作系统内核(内核态)，用以获取并保持最高控制权(root access)。<br>典型实例：LRK，FU，hdef</p>
+</blockquote>
+<p>融合型恶意代码及Bootkit(固件感染)</p>
+<blockquote>
+<p>定义特征：融合上述多种恶意代码技术，构成更具破坏性的恶意代码形态，如Bootkit。<br>典型实例：Nimda、Stuxnet、Flame、Duqu</p>
+</blockquote>
+<p><strong>恶意代码威胁情况总结</strong>:</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105559397.png" alt="image-20220915105559397" style="zoom:50%;">
+
+<p><strong>恶意代码技术新趋势</strong>:</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105627099.png" alt="image-20220915105627099" style="zoom:50%;">
+
+<h2 id="3-恶意代码分析技术介绍"><a href="#3-恶意代码分析技术介绍" class="headerlink" title="3.恶意代码分析技术介绍"></a>3.<strong>恶意代码分析技术介绍</strong></h2><p><strong>恶意代码分析 vs 良性代码分析</strong><br>◼ 相同点：通用代码分析技术</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915102543981.png" alt="image-20220915102543981" style="zoom: 50%;">
+
+<p><strong>恶意代码分析的关键点</strong>：构建受控的分析环境，通过静态&#x2F;动态方法实施分析</p>
+<p><strong>实验室规模的恶意代码分析环境</strong>：</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103319988.png" alt="image-20220915103319988" style="zoom:50%;">
+
+<p><strong>基于虚拟化构建便携式分析环境</strong>：</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103416188.png" alt="image-20220915103416188" style="zoom:50%;">
+
+<p>蜜罐：诱骗攻击者，让他以为他在攻击真正的机器，可以捕获一些攻击行为，进行攻击路劲溯源</p>
+<p><strong>用于研究的恶意代码自动分析环境</strong>：（242信息安全计划项目）</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103551985.png" alt="image-20220915103551985" style="zoom:50%;">
+
+<p>沙箱：用于让恶意代码在其中运行，用沙箱对其监视，进行操作系统级别操作进行分析</p>
+<p><strong>反病毒厂商的恶意代码分析环境</strong>：</p>
+<p><img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915103905473.png" alt="image-20220915103905473"></p>
+<p><strong>恶意代码分析方法概述</strong>：</p>
+<blockquote>
+<p><strong>静态分析</strong>:</p>
+<blockquote>
+<p>通过反病毒引擎扫描识别已知的恶意代码家族和变种名<br>逆向分析恶意代码模块构成，内部数据结构，关键控制流程等，理解恶意代码的机理，并提取特征码用于检测</p>
+<p><strong>恶意代码静态分析方法列表</strong>:</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915104349245.png" alt="image-20220915104349245" style="zoom:50%;">
+</blockquote>
+<p>动态分析：</p>
+<blockquote>
+<p>通过在受控环境中执行目标代码，以获取目标代码的行为及运行结果。</p>
+<p>恶意代码动态分析方法列表:</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915104445061.png" alt="image-20220915104445061" style="zoom:50%;">
+</blockquote>
+</blockquote>
+<p><strong>恶意代码分析目标</strong>:</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105709505.png" alt="image-20220915105709505" style="zoom:50%;">
+
+<p><strong>恶意代码分析通用规则</strong>:</p>
+<img src="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/image-20220915105729208.png" alt="image-20220915105729208" style="zoom:33%;">
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/09/13/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/" rel="next" title="网络攻防技术-第一讲第二讲笔记">
+                <i class="fa fa-chevron-left"></i> 网络攻防技术-第一讲第二讲笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC1%E7%AB%A0/" rel="prev" title="恶意代码第1章">
+                恶意代码第1章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC0%E7%AB%A0-%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%85%A5%E9%97%A8"><span class="nav-text">第0章 恶意代码分析技术简介与入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-text">1.课程简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">2.恶意代码基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D"><span class="nav-text">3.恶意代码分析技术介绍</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
