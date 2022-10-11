@@ -79,17 +79,36 @@
 
 
 
-<meta name="description" content="WE WERE BORN TO MAKE HISTORY">
+<meta name="description" content="动态分析基础技术静态分析技术通常是研究恶意代码的第一步，是分析程序指令与结构来确定功能的过程，此时程序不是在运行状态的 对于混淆、加密后的恶意代码功能实现，以及网络行为等不能很好地洞察； 动态分析技术是恶意代码分析流程的第二步，在恶意代码运行时刻进行监控，以及运行后检查系统情况。  3.1沙箱：简便但粗糙的方法沙箱技术：  用于安全运行程序的安全环境 经常被用于执行和分析非可信的代码  用于防御的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="恶意代码第3章">
 <meta property="og:url" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/index.html">
 <meta property="og:site_name" content="LUOSY&#39;S BLOG">
-<meta property="og:description" content="WE WERE BORN TO MAKE HISTORY">
+<meta property="og:description" content="动态分析基础技术静态分析技术通常是研究恶意代码的第一步，是分析程序指令与结构来确定功能的过程，此时程序不是在运行状态的 对于混淆、加密后的恶意代码功能实现，以及网络行为等不能很好地洞察； 动态分析技术是恶意代码分析流程的第二步，在恶意代码运行时刻进行监控，以及运行后检查系统情况。  3.1沙箱：简便但粗糙的方法沙箱技术：  用于安全运行程序的安全环境 经常被用于执行和分析非可信的代码  用于防御的">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008104534628.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105005319.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105315434.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105512039.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105723013.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112003278.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112434764.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112516779.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112645703.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113125376.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113321434.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113604961.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113855592.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113941093.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008114116569.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008114218999.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008114844508.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008115145036.png">
 <meta property="article:published_time" content="2022-10-08T02:06:37.000Z">
-<meta property="article:modified_time" content="2022-10-08T02:06:37.630Z">
+<meta property="article:modified_time" content="2022-10-08T03:54:46.024Z">
 <meta property="article:author" content="LUOSY">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008104534628.png">
 
 
 
@@ -329,7 +348,92 @@
       
 
       
-        
+        <h1 id="动态分析基础技术"><a href="#动态分析基础技术" class="headerlink" title="动态分析基础技术"></a>动态分析基础技术</h1><p>静态分析技术通常是研究恶意代码的第一步，是分析程序指令与结构来确定功能的过程，此时程序不是在运行状态的</p>
+<p>对于混淆、加密后的恶意代码功能实现，以及网络行为等不能很好地洞察；</p>
+<p>动态分析技术是恶意代码分析流程的第二步，在恶意代码运行时刻进行监控，以及运行后检查系统情况。</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008104534628.png" alt="image-20221008104534628"></p>
+<h2 id="3-1沙箱：简便但粗糙的方法"><a href="#3-1沙箱：简便但粗糙的方法" class="headerlink" title="3.1沙箱：简便但粗糙的方法"></a>3.1沙箱：简便但粗糙的方法</h2><p>沙箱技术：</p>
+<blockquote>
+<p>用于安全运行程序的安全环境</p>
+<p>经常被用于执行和分析非可信的代码</p>
+</blockquote>
+<p>用于防御的沙盒技术：</p>
+<blockquote>
+<p>Java Applets、Jail（Virtual Hosting）、虚拟机</p>
+</blockquote>
+<p>用于恶意代码分析的沙盒技术实例</p>
+<blockquote>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105005319.png" alt="image-20221008105005319" style="zoom: 33%;">
+</blockquote>
+<p>沙河技术的作用：</p>
+<blockquote>
+<p>1.样本是否对硬盘读写，创建了什么文件</p>
+<p>2.样本是否进行网络连接，连接了什么端口</p>
+<p>3.创建了哪些进程（系统、用户），进程有哪些API函数调用</p>
+<p>4.相关的可疑文件大小和MD5</p>
+<p>5.文件是否加壳压缩</p>
+<p>6.是否是已知病毒</p>
+</blockquote>
+<p>金山安全沙箱（沙盒）</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105315434.png" alt="image-20221008105315434"></p>
+<p>沙箱（沙盒）sandboxie</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105512039.png" alt="image-20221008105512039"></p>
+<p>分析结果：</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008105723013.png" alt="image-20221008105723013" style="zoom: 33%;">
+
+<p>沙箱使用时需要联网</p>
+<p>需要将正在分析样本上传到服务器</p>
+<p>沙盒的缺点：</p>
+<blockquote>
+<p>1.只能简单地运行可执行程序，如果需要命令行运行，无法触发（不能传入参数啥的</p>
+<p>2.不能记录所有的事件，尤其是需要长时间等待的情况</p>
+<p>3.虚拟机检测</p>
+<p>4.运行环境需要特定的注册表项或文件</p>
+<p>5.如果是一个DLL，无法正确调用执行</p>
+<p>6.操作系统的限制</p>
+<p>7.结论需要安全人员自己总结</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<h2 id="3-2运行恶意代码"><a href="#3-2运行恶意代码" class="headerlink" title="3.2运行恶意代码"></a>3.2运行恶意代码</h2><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112003278.png" alt="image-20221008112003278" style="zoom: 33%;">
+
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112434764.png" alt="image-20221008112434764" style="zoom: 33%;">
+
+<p>用rundll32.exe运行dll文件</p>
+<p>rundll执行以下步骤：</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112516779.png" alt="image-20221008112516779"></p>
+<h2 id="3-3进程监视器"><a href="#3-3进程监视器" class="headerlink" title="3.3进程监视器"></a>3.3进程监视器</h2><p>动态行为监视概览</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008112645703.png" alt="image-20221008112645703"></p>
+<p>动态行为监控方法</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113125376.png" alt="image-20221008113125376"></p>
+<p>进程监视器：</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113321434.png" alt="image-20221008113321434" style="zoom: 33%;">
+
+<p>Process Monitor示例</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113604961.png" alt="image-20221008113604961" style="zoom:50%;">
+
+<p>可以对特定行为进行过滤，筛选</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113855592.png" alt="image-20221008113855592" style="zoom:50%;">
+
+<p>得到结果</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008113941093.png" alt="image-20221008113941093" style="zoom: 50%;">
+
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008114116569.png" alt="image-20221008114116569" style="zoom:33%;">
+
+<h2 id="3-4使用进程浏览器（process-explorer）来查看进程"><a href="#3-4使用进程浏览器（process-explorer）来查看进程" class="headerlink" title="3.4使用进程浏览器（process explorer）来查看进程"></a>3.4使用进程浏览器（process explorer）来查看进程</h2><p>process explorer是一款用来执行动态分析的工具，它能够洞察到系统当前进程</p>
+<p>双击后：</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008114218999.png" alt="image-20221008114218999" style="zoom:33%;">
+
+
+
+<h2 id="3-5使用RegShot来比较注册表快照"><a href="#3-5使用RegShot来比较注册表快照" class="headerlink" title="3.5使用RegShot来比较注册表快照"></a>3.5使用RegShot来比较注册表快照</h2><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008114844508.png" alt="image-20221008114844508" style="zoom: 33%;">
+
+<p>regshot实例</p>
+<img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008115145036.png" alt="image-20221008115145036" style="zoom: 33%;">
+
+<h2 id="3-6模拟网络"><a href="#3-6模拟网络" class="headerlink" title="3.6模拟网络"></a>3.6模拟网络</h2><p>目的：避免连接恶意代码的真实服务器（控制服务器）</p>
+<p>工具：ApateDns（FireEye收购）、nc（Netcat）、INetSim</p>
+
       
     </div>
     
@@ -362,6 +466,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/11/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E5%85%AD%E5%91%A8/" rel="prev" title="人工智能-第六周">
+                人工智能-第六周 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -413,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -429,7 +546,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -474,6 +591,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF"><span class="nav-text">动态分析基础技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1%E6%B2%99%E7%AE%B1%EF%BC%9A%E7%AE%80%E4%BE%BF%E4%BD%86%E7%B2%97%E7%B3%99%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">3.1沙箱：简便但粗糙的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2%E8%BF%90%E8%A1%8C%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81"><span class="nav-text">3.2运行恶意代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3%E8%BF%9B%E7%A8%8B%E7%9B%91%E8%A7%86%E5%99%A8"><span class="nav-text">3.3进程监视器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4%E4%BD%BF%E7%94%A8%E8%BF%9B%E7%A8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88process-explorer%EF%BC%89%E6%9D%A5%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="nav-text">3.4使用进程浏览器（process explorer）来查看进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5%E4%BD%BF%E7%94%A8RegShot%E6%9D%A5%E6%AF%94%E8%BE%83%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%BF%AB%E7%85%A7"><span class="nav-text">3.5使用RegShot来比较注册表快照</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6%E6%A8%A1%E6%8B%9F%E7%BD%91%E7%BB%9C"><span class="nav-text">3.6模拟网络</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
