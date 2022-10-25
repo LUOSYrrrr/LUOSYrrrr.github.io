@@ -108,7 +108,7 @@
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20221008140620975.png">
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20221008142844883.png">
 <meta property="article:published_time" content="2022-09-15T05:52:40.000Z">
-<meta property="article:modified_time" content="2022-10-08T08:13:18.513Z">
+<meta property="article:modified_time" content="2022-10-20T08:15:11.482Z">
 <meta property="article:author" content="LUOSY">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://luosyrrrr.github.io/2022/09/15/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20220915141201557.png">
@@ -539,6 +539,53 @@
 <h4 id="method-x2F-framework"><a href="#method-x2F-framework" class="headerlink" title="method&#x2F;framework"></a>method&#x2F;framework</h4><p>一般就看一个图，总结图，一般就能清楚</p>
 <h4 id="experiment"><a href="#experiment" class="headerlink" title="experiment"></a>experiment</h4><p>结果，数据集，实验的设置，</p>
 <h4 id="limitation-x2F-conclusion"><a href="#limitation-x2F-conclusion" class="headerlink" title="limitation&#x2F;conclusion"></a>limitation&#x2F;conclusion</h4><p>改进</p>
+<h3 id="专题二-XSS攻击检测"><a href="#专题二-XSS攻击检测" class="headerlink" title="专题二 XSS攻击检测"></a>专题二 XSS攻击检测</h3><p>语义特征</p>
+<p>参考网址</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009052376">https://segmentfault.com/a/1190000009052376</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bonelee/p/7978729.html">https://www.cnblogs.com/bonelee/p/7978729.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.stardustsky.net/svm/svm.php">http://www.stardustsky.net/svm/svm.php</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cdxy.me/?p=773">https://www.cdxy.me/?p=773</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/SparkSharly/DL_for_xss">https://github.com/SparkSharly/DL_for_xss</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.webber.tech/posts/%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A3%80%E6%B5%8BXSS/">http://www.webber.tech/posts/%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A3%80%E6%B5%8BXSS/</a></p>
+<p>字符&#x2F;字符串</p>
+<p>表面</p>
+<blockquote>
+<p><strong>表面特征,直观</strong>（长度、字符串、单词、特殊符号、信息熵、文件类型、）误报率会比较高，企业看重<strong>误报率</strong></p>
+<p>1.误报率</p>
+<p>2.字符解释（从特征方面来解释</p>
+<p>AI explanation</p>
+</blockquote>
+<p>语义</p>
+<blockquote>
+<p><strong>语义特征</strong> Word2vec、deeplearning 深度学习模型</p>
+<p>不同空间距离相似性</p>
+<p>先做分词，因为词才有语义</p>
+</blockquote>
+<p>A Survey of Detection Methods for XSS Attacks</p>
+<p>我们进行这项调查的目的是编目和比较对抗 XSS 攻击的防御机制。防御机制可以根据它们分析应用程序代码的方式进行分类。我们的调查主要集中在会议记录和期刊的出版物上，这些出版物主要集中在 i)漏洞检测 ii)攻击检测和 iii)攻击预防。任何希望了解、评估、建立或设计检测机制以对抗 XSS 攻击的人都可以将此调查作为基础阅读。</p>
+<p>(a)系统调查各种 XSS 攻击类型及其发射机制。此外，我们还演示了发生 XSS 攻击的不同场景。</p>
+<p>(b)关于 XSS 检测方法的详细讨论，包括利弊。每种方法在技术，性能，数据集(如果使用)的评价和检测参数方面进行了详细讨论。</p>
+<p>(c)我们根据防御系统的部署地点提供探测方法的分类。部署可以同时在客户端、服务器端或客户机-服务器端进行。</p>
+<p>(d)我们还讨论了成功发动 XSS 攻击所需的各种先决条件</p>
+<p>(e)在与防御系统部署地点相对应的每个部分下，我们还根据系统所使用的分析机制组织方法。分析机制，如静态、动态和混合。</p>
+<p>(f)大部分现有的调查并不包括攻击载体，但我们包括。攻击者利用攻击向量编写恶意脚本并发动 XSS 攻击。</p>
+<p>(g)我们还总结了一组用于检测 XSS 攻击的工具</p>
+<p>。</p>
+<p>(h)最后，我们从实施的角度讨论了一系列研究问题和挑战。</p>
+<p>要使攻击者成功地发起 XSS 攻击，他&#x2F;她必须首先满足三个先决条件。发动 XSS 攻击之前的三个先决条件是: 可注入性、可执行性和渗透性。如果攻击者绕过这些前提条件，他&#x2F;她将能够发动 XSS 攻击。下面几节将详细讨论前提条件。</p>
+<p> <a target="_blank" rel="noopener" href="https://www.sciencedirect.com/topics/engineering/injectability">Injectability</a>, Executability and Exfiltration.</p>
+<p>Table 3. XSS attack vectors.</p>
+<p>本文对XSS攻击类型、成功发起XSS攻击的前提条件、检测方法以及支持检测这些攻击的工具列表进行了全面的调研。</p>
+<p>我们提出的分类法将检测方法分为三类：客户端、服务器端和客户端-服务器端检测方法。</p>
+<p>根据用于检测的分析技术，这些类别中的每一个都被再次广泛分类。它们分别是静态分析、动态分析和混合分析。</p>
+<p>调查使我们得出结论，XSS攻击的检测方法的类型可以分为四类。</p>
+<p>它们是HTML净化程序、浏览器扩展、内容安全策略和Web应用程序防火墙。</p>
+<p>在这些HTML消毒剂中，CSP是最健壮的。大多数检测机制关注HTML标记的脚本标记和事件处理程序属性。它们要么移除它们，要么停止它们的执行</p>
+<p>虽然csp是非常严格的在他们的处理方式和动态不可信的数据,仍然可以绕开它们的设备基础代码重用攻击(Lekies et al ., 2017)。</p>
+<p>大多数使用的策略的检测技术可以描述为请求过滤,响应卫生处理和代码过滤。对于每个类别,我们分析了检测方法的优缺点。</p>
+<p>尽管许多检测方法提出了许多成功在各自工作,XSS的危险仍然潜伏在网络上。安全上网的互联网应该是最重要的。我们通过引入一系列问题和研究挑战应对这些发展的攻击类型</p>
 
       
     </div>
@@ -573,8 +620,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/09/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF-%E7%AC%94%E8%AE%B0/" rel="prev" title="网络安全技术-笔记">
-                网络安全技术-笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/09/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" rel="prev" title="网络空间安全保障基础-笔记">
+                网络空间安全保障基础-笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +699,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -707,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0"><span class="nav-text">数据挖掘课程笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF"><span class="nav-text">第一部分 机器学习技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="nav-text">01人工智能概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#02%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BB%BA%E6%A8%A1"><span class="nav-text">02机器学习建模</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80-%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86-x2F-%E6%B8%85%E6%B4%97"><span class="nav-text">一 数据采集&#x2F;清洗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C-%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%92%8C%E6%8F%90%E5%8F%96"><span class="nav-text">二 特征分析和提取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89-%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95"><span class="nav-text">三 选择算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B-%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81"><span class="nav-text">四 测试验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#03%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95"><span class="nav-text">03机器学习常见算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#04%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B"><span class="nav-text">04入门案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%8A%80%E6%9C%AF"><span class="nav-text">第二部分 自然语言处理技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A6%82%E8%BF%B0"><span class="nav-text">01自然语言处理概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#02%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95"><span class="nav-text">02自然语言处理技术发展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#03%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">03自然语言处理常用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#04%E5%B8%B8%E8%A7%81%E5%BC%80%E6%BA%90%E5%BA%93%E4%BD%BF%E7%94%A8"><span class="nav-text">04常见开源库使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E4%B8%93%E9%A2%98"><span class="nav-text">各专题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E9%A2%98%E4%B8%80%E6%81%B6%E6%84%8F%E7%BD%91%E5%9D%80%E6%A3%80%E6%B5%8B"><span class="nav-text">专题一恶意网址检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E7%BD%91%E5%9D%80%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0"><span class="nav-text">01网址相关知识概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#02%E6%AD%A3%E5%B8%B8%E4%B8%8E%E6%81%B6%E6%84%8F%E7%BD%91%E5%9D%80%E5%B7%AE%E5%88%AB"><span class="nav-text">02正常与恶意网址差别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#03%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-text">03基于机器学习的检测方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#04%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%AE%9E%E8%B7%B5"><span class="nav-text">04代码实现讲解及实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB"><span class="nav-text">论文阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#introduction"><span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#method-x2F-framework"><span class="nav-text">method&#x2F;framework</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#experiment"><span class="nav-text">experiment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limitation-x2F-conclusion"><span class="nav-text">limitation&#x2F;conclusion</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0"><span class="nav-text">数据挖掘课程笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF"><span class="nav-text">第一部分 机器学习技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="nav-text">01人工智能概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#02%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BB%BA%E6%A8%A1"><span class="nav-text">02机器学习建模</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80-%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86-x2F-%E6%B8%85%E6%B4%97"><span class="nav-text">一 数据采集&#x2F;清洗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C-%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%92%8C%E6%8F%90%E5%8F%96"><span class="nav-text">二 特征分析和提取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89-%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95"><span class="nav-text">三 选择算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B-%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81"><span class="nav-text">四 测试验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#03%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95"><span class="nav-text">03机器学习常见算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#04%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B"><span class="nav-text">04入门案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%8A%80%E6%9C%AF"><span class="nav-text">第二部分 自然语言处理技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A6%82%E8%BF%B0"><span class="nav-text">01自然语言处理概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#02%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95"><span class="nav-text">02自然语言处理技术发展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#03%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">03自然语言处理常用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#04%E5%B8%B8%E8%A7%81%E5%BC%80%E6%BA%90%E5%BA%93%E4%BD%BF%E7%94%A8"><span class="nav-text">04常见开源库使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E4%B8%93%E9%A2%98"><span class="nav-text">各专题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E9%A2%98%E4%B8%80%E6%81%B6%E6%84%8F%E7%BD%91%E5%9D%80%E6%A3%80%E6%B5%8B"><span class="nav-text">专题一恶意网址检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E7%BD%91%E5%9D%80%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0"><span class="nav-text">01网址相关知识概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#02%E6%AD%A3%E5%B8%B8%E4%B8%8E%E6%81%B6%E6%84%8F%E7%BD%91%E5%9D%80%E5%B7%AE%E5%88%AB"><span class="nav-text">02正常与恶意网址差别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#03%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-text">03基于机器学习的检测方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#04%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%AE%9E%E8%B7%B5"><span class="nav-text">04代码实现讲解及实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB"><span class="nav-text">论文阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#introduction"><span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#method-x2F-framework"><span class="nav-text">method&#x2F;framework</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#experiment"><span class="nav-text">experiment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limitation-x2F-conclusion"><span class="nav-text">limitation&#x2F;conclusion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E9%A2%98%E4%BA%8C-XSS%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B"><span class="nav-text">专题二 XSS攻击检测</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

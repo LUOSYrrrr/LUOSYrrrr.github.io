@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Sentiment Analysis (NLP)情感分析（自然语言处理） Definition 情感分析的定义：     Opinion mining, analyzes the polarity of documents: + or - 针对文本数据的观点挖掘，文档的情感倾向分析：正 或 反 A popular task in sentiment analysis 情感分析的任务：The cla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工智能-第九周">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="Sentiment Analysis (NLP)情感分析（自然语言处理） Definition 情感分析的定义：     Opinion mining, analyzes the polarity of documents: + or - 针对文本数据的观点挖掘，文档的情感倾向分析：正 或 反 A popular task in sentiment analysis 情感分析的任务：The cla">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084352479.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084407613.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084500914.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085156268.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085216346.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085743314.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085826620.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085955345.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091357779.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091404427.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091450954.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091454117.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092309141.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092343449-1666661025980-1.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092423879.png">
+<meta property="article:published_time" content="2022-10-25T00:18:01.000Z">
+<meta property="article:modified_time" content="2022-10-25T01:58:26.312Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084352479.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/10/25/人工智能/人工智能-第九周/"/>
+
+
+
+
+
+  <title>人工智能-第九周 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">人工智能-第九周</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-25T08:18:01+08:00">
+                2022-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Sentiment-Analysis-NLP"><a href="#Sentiment-Analysis-NLP" class="headerlink" title="Sentiment Analysis (NLP)"></a>Sentiment Analysis (NLP)</h1><p>情感分析（自然语言处理）</p>
+<p><strong>Definition 情感分析的定义</strong>：     Opinion mining, analyzes the polarity of documents: + or -</p>
+<p>针对文本数据的观点挖掘，文档的情感倾向分析：正 或 反</p>
+<p><strong>A popular task in sentiment analysis 情感分析的任务</strong>：The classification of documents based on the expressed opinions or emotions of the authors with regard to a particular topic.<br>针对特定主题的文档，依据作者表达的观点或情感，进行文档分类</p>
+<h1 id="The-Bag-of-Words-Model-词袋模型"><a href="#The-Bag-of-Words-Model-词袋模型" class="headerlink" title="The Bag-of-Words Model 词袋模型"></a>The Bag-of-Words Model 词袋模型</h1><p>将文本数字向量化</p>
+<h3 id="Represent-text-as-numerical-feature-vectors-文本表达为特征向量"><a href="#Represent-text-as-numerical-feature-vectors-文本表达为特征向量" class="headerlink" title="Represent text as numerical feature vectors 文本表达为特征向量"></a>Represent text as numerical feature vectors 文本表达为特征向量</h3><p>情感原因分析</p>
+<blockquote>
+<p>create a vocabulary of unique tokens based on the entire set of documents 基于整个文档集的每个词汇，创建词汇表（索引）</p>
+<p>construct a feature vector for each document that contains the counts of how often each unique token occurs in the document 对每一个文档，依据词汇出现频率，构建文档的特征向量</p>
+</blockquote>
+<p>文档的特征向量是稀疏的？一个文档的词汇相对所有文档的词汇表中的词汇量来说是微不足道的</p>
+<blockquote>
+<p>Document文档集:<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084352479.png" alt="image-20221025084352479"></p>
+<p>Vocabulary of unique tokens 词汇表（索引）,一共九个词</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084407613.png" alt="image-20221025084407613"></p>
+<p>Feature vector for each document 文档的特征向量 tf(t, d)</p>
+<p>文档的特征向量是词频向量 tf(t, d)，词汇 t 在文档 d 中出现的频率 f</p>
+<p>term：词 frequency:p频</p>
+<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084500914.png" alt="image-20221025084500914" style="zoom: 33%;">
+</blockquote>
+<blockquote>
+<p>n-gram: The contiguous sequences of items 项序列:  n-元组<br>e.g. The sun is shining.<br>1-gram: “the”, “sun”, “is”, “shining” 1-元组、单元组<br>2-gram: “the sun”, “sun is”, “is shining” 2-元组<br>3-gram and 4-gram yield good performances in anti-spam filtering of e-mail messages<br>  3-元组、4-元组对“反垃圾邮件过滤”可获得好的效果</p>
+</blockquote>
+<blockquote>
+<p>When words occur across multiple documents? 词会在多个文档中出现<br>  Assessing word relevancy 评估“词与文档类别的关联度”</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085156268.png" alt="image-20221025085156268"></p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085216346.png" alt="image-20221025085216346"></p>
+<p>在多个文档频繁出现的词不具备辨识度</p>
+<p>Inverse document frequency? 逆文档频率 idfInternet Movie Database 互联网影评数据集 IMDb</p>
+</blockquote>
+<blockquote>
+<p>Assessing word relevancy 评估“词与文档类别的关联度”</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085743314.png" alt="image-20221025085743314"></p>
+<p>直观上看，tf描述的是文档中词出现的频率；而idf是和词出现文档数相关的权重。</p>
+<blockquote>
+<p>z在sklearn中：</p>
+<p>词频-逆文档频率 tf-idf in scikit-learn:  采用L2-normalization</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085826620.png" alt="image-20221025085826620"></p>
+</blockquote>
+</blockquote>
+<p>降低了在所有文档中出现的词的权重</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085955345.png" alt="image-20221025085955345"></p>
+<h3 id="Document-pre-processing-文档的预处理"><a href="#Document-pre-processing-文档的预处理" class="headerlink" title="Document pre-processing 文档的预处理"></a>Document pre-processing 文档的预处理</h3><p>Processing documents into tokens 文本拆分为词<br>Word stemming: transform a word into its root 词干提取</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091357779.png" alt="image-20221025091357779"></p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091404427.png" alt="image-20221025091404427"></p>
+<p>Stop-word Removal 移除停用词</p>
+<blockquote>
+<p>extremely common in all sorts of texts 最常见词 such as: is, and, a, the<br>no (or only little) useful information that can be used to distinguish between different classes of documents 无用信息</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091450954.png" alt="image-20221025091450954"></p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091454117.png" alt="image-20221025091454117"></p>
+</blockquote>
+<h1 id="Internet-Movie-Database-IMDb"><a href="#Internet-Movie-Database-IMDb" class="headerlink" title="Internet Movie Database IMDb"></a>Internet Movie Database IMDb</h1><p>互联网影评数据集 IMDb</p>
+<blockquote>
+<p>50,000 polar movie reviews: labeled + or -<br>positive: a movie was rated with more than six stars 多于六星<br>negative: movie was rated with fewer than five stars 少于五星<br>Integer class label: 1 &#x3D; positive and 0 &#x3D; negative</p>
+</blockquote>
+<blockquote>
+<p>Download IMDB: aclImdb_v1.tar.gz<br>   <a target="_blank" rel="noopener" href="http://ai.stanford.edu/~amaas/data/sentiment">http://ai.stanford.edu/~amaas/data/sentiment</a><br>IMDb preprocessing: imdb_prepro.py</p>
+<blockquote>
+<p>Save as a CSV file: movie_data.csv 保存为CSV文件</p>
+<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092309141.png" alt="image-20221025092309141" style="zoom: 33%;">
+</blockquote>
+<blockquote>
+<p>Cleaning: unwanted characters 对无用字符做“文本数据清洗”</p>
+<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092343449-1666661025980-1.png" alt="image-20221025092343449" style="zoom:50%;">
+
+<p>Cleaning: Python’s regular expression (regex) library</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092423879.png" alt="image-20221025092423879"></p>
+</blockquote>
+</blockquote>
+<h1 id="Logistic-Regression-Model-based-on-IMDB"><a href="#Logistic-Regression-Model-based-on-IMDB" class="headerlink" title="Logistic Regression Model based on IMDB"></a>Logistic Regression Model based on IMDB</h1><p>基于IMDb的逻辑斯蒂影评文档分类模型</p>
+<p>1、当verbose&#x3D;0时，不输出日志信息 ，诸如进度条、loss、acc这些都不输出；<br>2、当verbose&#x3D;1时，输出日志信息，包含诸如进度条、时间、训练集和测试集上的loss、acc；<br>3、当verbose&#x3D;2时，为每个epoch输出一行日志记录，与1的区别是没有进度条。</p>
+<h1 id="Working-with-bigger-data-–-online-algorithms-and-out-of-core-learning-大数据集的在线学习算法"><a href="#Working-with-bigger-data-–-online-algorithms-and-out-of-core-learning-大数据集的在线学习算法" class="headerlink" title="Working with bigger data – online algorithms and out-of-core learning 大数据集的在线学习算法"></a>Working with bigger data – online algorithms and out-of-core learning 大数据集的在线学习算法</h1><blockquote>
+<p>Not uncommon to work with larger datasets 大数据集是常情<br>Out-of-core learning: fitting the classifier incrementally 增量学习<br>    fitting on smaller batches of a dataset</p>
+<p>HashingVectorizer: a vectorizer for text processing in scikit-learn<br>partial_fit(): a training function of SGDClassifier in scikit-learn</p>
+</blockquote>
+<h1 id="Topic-modeling-with-LDA-LDA主题建模"><a href="#Topic-modeling-with-LDA-LDA主题建模" class="headerlink" title="Topic modeling with LDA    LDA主题建模"></a>Topic modeling with LDA    LDA主题建模</h1><p>Latent Dirichlet Allocation（LDA）隐含狄利克雷分布，主题模型</p>
+<p>Assigning topics to unlabelled text documents<br>    分配主题（类别标签）给未标记的文本文档，无监督学习 —— <strong>聚类</strong></p>
+<p>Generative probabilistic model&#x2F;Bayesian inference<br>    生成概率模型，三层贝叶斯主题推理模型（每个词以一定概率选择主题，反之亦然）</p>
+<p>Frequently appearing words represent topics<br>    文档由常现词组成，常现词代表主题</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/" rel="next" title="恶意代码第4章">
+                <i class="fa fa-chevron-left"></i> 恶意代码第4章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentiment-Analysis-NLP"><span class="nav-text">Sentiment Analysis (NLP)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Bag-of-Words-Model-%E8%AF%8D%E8%A2%8B%E6%A8%A1%E5%9E%8B"><span class="nav-text">The Bag-of-Words Model 词袋模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Represent-text-as-numerical-feature-vectors-%E6%96%87%E6%9C%AC%E8%A1%A8%E8%BE%BE%E4%B8%BA%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-text">Represent text as numerical feature vectors 文本表达为特征向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Document-pre-processing-%E6%96%87%E6%A1%A3%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-text">Document pre-processing 文档的预处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Internet-Movie-Database-IMDb"><span class="nav-text">Internet Movie Database IMDb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression-Model-based-on-IMDB"><span class="nav-text">Logistic Regression Model based on IMDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Working-with-bigger-data-%E2%80%93-online-algorithms-and-out-of-core-learning-%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95"><span class="nav-text">Working with bigger data – online algorithms and out-of-core learning 大数据集的在线学习算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-modeling-with-LDA-LDA%E4%B8%BB%E9%A2%98%E5%BB%BA%E6%A8%A1"><span class="nav-text">Topic modeling with LDA    LDA主题建模</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

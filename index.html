@@ -261,6 +261,562 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/" itemprop="url">人工智能-第九周</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-25T08:18:01+08:00">
+                2022-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sentiment-Analysis-NLP"><a href="#Sentiment-Analysis-NLP" class="headerlink" title="Sentiment Analysis (NLP)"></a>Sentiment Analysis (NLP)</h1><p>情感分析（自然语言处理）</p>
+<p><strong>Definition 情感分析的定义</strong>：     Opinion mining, analyzes the polarity of documents: + or -</p>
+<p>针对文本数据的观点挖掘，文档的情感倾向分析：正 或 反</p>
+<p><strong>A popular task in sentiment analysis 情感分析的任务</strong>：The classification of documents based on the expressed opinions or emotions of the authors with regard to a particular topic.<br>针对特定主题的文档，依据作者表达的观点或情感，进行文档分类</p>
+<h1 id="The-Bag-of-Words-Model-词袋模型"><a href="#The-Bag-of-Words-Model-词袋模型" class="headerlink" title="The Bag-of-Words Model 词袋模型"></a>The Bag-of-Words Model 词袋模型</h1><p>将文本数字向量化</p>
+<h3 id="Represent-text-as-numerical-feature-vectors-文本表达为特征向量"><a href="#Represent-text-as-numerical-feature-vectors-文本表达为特征向量" class="headerlink" title="Represent text as numerical feature vectors 文本表达为特征向量"></a>Represent text as numerical feature vectors 文本表达为特征向量</h3><p>情感原因分析</p>
+<blockquote>
+<p>create a vocabulary of unique tokens based on the entire set of documents 基于整个文档集的每个词汇，创建词汇表（索引）</p>
+<p>construct a feature vector for each document that contains the counts of how often each unique token occurs in the document 对每一个文档，依据词汇出现频率，构建文档的特征向量</p>
+</blockquote>
+<p>文档的特征向量是稀疏的？一个文档的词汇相对所有文档的词汇表中的词汇量来说是微不足道的</p>
+<blockquote>
+<p>Document文档集:<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084352479.png" alt="image-20221025084352479"></p>
+<p>Vocabulary of unique tokens 词汇表（索引）,一共九个词</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084407613.png" alt="image-20221025084407613"></p>
+<p>Feature vector for each document 文档的特征向量 tf(t, d)</p>
+<p>文档的特征向量是词频向量 tf(t, d)，词汇 t 在文档 d 中出现的频率 f</p>
+<p>term：词 frequency:p频</p>
+<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025084500914.png" alt="image-20221025084500914" style="zoom: 33%;">
+</blockquote>
+<blockquote>
+<p>n-gram: The contiguous sequences of items 项序列:  n-元组<br>e.g. The sun is shining.<br>1-gram: “the”, “sun”, “is”, “shining” 1-元组、单元组<br>2-gram: “the sun”, “sun is”, “is shining” 2-元组<br>3-gram and 4-gram yield good performances in anti-spam filtering of e-mail messages<br>  3-元组、4-元组对“反垃圾邮件过滤”可获得好的效果</p>
+</blockquote>
+<blockquote>
+<p>When words occur across multiple documents? 词会在多个文档中出现<br>  Assessing word relevancy 评估“词与文档类别的关联度”</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085156268.png" alt="image-20221025085156268"></p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085216346.png" alt="image-20221025085216346"></p>
+<p>在多个文档频繁出现的词不具备辨识度</p>
+<p>Inverse document frequency? 逆文档频率 idfInternet Movie Database 互联网影评数据集 IMDb</p>
+</blockquote>
+<blockquote>
+<p>Assessing word relevancy 评估“词与文档类别的关联度”</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085743314.png" alt="image-20221025085743314"></p>
+<p>直观上看，tf描述的是文档中词出现的频率；而idf是和词出现文档数相关的权重。</p>
+<blockquote>
+<p>z在sklearn中：</p>
+<p>词频-逆文档频率 tf-idf in scikit-learn:  采用L2-normalization</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085826620.png" alt="image-20221025085826620"></p>
+</blockquote>
+</blockquote>
+<p>降低了在所有文档中出现的词的权重</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025085955345.png" alt="image-20221025085955345"></p>
+<h3 id="Document-pre-processing-文档的预处理"><a href="#Document-pre-processing-文档的预处理" class="headerlink" title="Document pre-processing 文档的预处理"></a>Document pre-processing 文档的预处理</h3><p>Processing documents into tokens 文本拆分为词<br>Word stemming: transform a word into its root 词干提取</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091357779.png" alt="image-20221025091357779"></p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091404427.png" alt="image-20221025091404427"></p>
+<p>Stop-word Removal 移除停用词</p>
+<blockquote>
+<p>extremely common in all sorts of texts 最常见词 such as: is, and, a, the<br>no (or only little) useful information that can be used to distinguish between different classes of documents 无用信息</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091450954.png" alt="image-20221025091450954"></p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025091454117.png" alt="image-20221025091454117"></p>
+</blockquote>
+<h1 id="Internet-Movie-Database-IMDb"><a href="#Internet-Movie-Database-IMDb" class="headerlink" title="Internet Movie Database IMDb"></a>Internet Movie Database IMDb</h1><p>互联网影评数据集 IMDb</p>
+<blockquote>
+<p>50,000 polar movie reviews: labeled + or -<br>positive: a movie was rated with more than six stars 多于六星<br>negative: movie was rated with fewer than five stars 少于五星<br>Integer class label: 1 &#x3D; positive and 0 &#x3D; negative</p>
+</blockquote>
+<blockquote>
+<p>Download IMDB: aclImdb_v1.tar.gz<br>   <a target="_blank" rel="noopener" href="http://ai.stanford.edu/~amaas/data/sentiment">http://ai.stanford.edu/~amaas/data/sentiment</a><br>IMDb preprocessing: imdb_prepro.py</p>
+<blockquote>
+<p>Save as a CSV file: movie_data.csv 保存为CSV文件</p>
+<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092309141.png" alt="image-20221025092309141" style="zoom: 33%;">
+</blockquote>
+<blockquote>
+<p>Cleaning: unwanted characters 对无用字符做“文本数据清洗”</p>
+<img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092343449-1666661025980-1.png" alt="image-20221025092343449" style="zoom:50%;">
+
+<p>Cleaning: Python’s regular expression (regex) library</p>
+<p><img src="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/image-20221025092423879.png" alt="image-20221025092423879"></p>
+</blockquote>
+</blockquote>
+<h1 id="Logistic-Regression-Model-based-on-IMDB"><a href="#Logistic-Regression-Model-based-on-IMDB" class="headerlink" title="Logistic Regression Model based on IMDB"></a>Logistic Regression Model based on IMDB</h1><p>基于IMDb的逻辑斯蒂影评文档分类模型</p>
+<p>1、当verbose&#x3D;0时，不输出日志信息 ，诸如进度条、loss、acc这些都不输出；<br>2、当verbose&#x3D;1时，输出日志信息，包含诸如进度条、时间、训练集和测试集上的loss、acc；<br>3、当verbose&#x3D;2时，为每个epoch输出一行日志记录，与1的区别是没有进度条。</p>
+<h1 id="Working-with-bigger-data-–-online-algorithms-and-out-of-core-learning-大数据集的在线学习算法"><a href="#Working-with-bigger-data-–-online-algorithms-and-out-of-core-learning-大数据集的在线学习算法" class="headerlink" title="Working with bigger data – online algorithms and out-of-core learning 大数据集的在线学习算法"></a>Working with bigger data – online algorithms and out-of-core learning 大数据集的在线学习算法</h1><blockquote>
+<p>Not uncommon to work with larger datasets 大数据集是常情<br>Out-of-core learning: fitting the classifier incrementally 增量学习<br>    fitting on smaller batches of a dataset</p>
+<p>HashingVectorizer: a vectorizer for text processing in scikit-learn<br>partial_fit(): a training function of SGDClassifier in scikit-learn</p>
+</blockquote>
+<h1 id="Topic-modeling-with-LDA-LDA主题建模"><a href="#Topic-modeling-with-LDA-LDA主题建模" class="headerlink" title="Topic modeling with LDA    LDA主题建模"></a>Topic modeling with LDA    LDA主题建模</h1><p>Latent Dirichlet Allocation（LDA）隐含狄利克雷分布，主题模型</p>
+<p>Assigning topics to unlabelled text documents<br>    分配主题（类别标签）给未标记的文本文档，无监督学习 —— <strong>聚类</strong></p>
+<p>Generative probabilistic model&#x2F;Bayesian inference<br>    生成概率模型，三层贝叶斯主题推理模型（每个词以一定概率选择主题，反之亦然）</p>
+<p>Frequently appearing words represent topics<br>    文档由常现词组成，常现词代表主题</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/" itemprop="url">恶意代码第4章</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-20T10:16:27+08:00">
+                2022-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="分析恶意windows程序"><a href="#分析恶意windows程序" class="headerlink" title="分析恶意windows程序"></a>分析恶意windows程序</h1><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png" alt="image-20221020102000192"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102425080.png" alt="image-20221020102425080"></p>
+<p>注册表：保存用户配置的地方</p>
+<h2 id="4-1-WINDOWS-API"><a href="#4-1-WINDOWS-API" class="headerlink" title="4.1 WINDOWS API"></a>4.1 WINDOWS API</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102909625.png" alt="image-20221020102909625"></p>
+<p>WINDOWS API</p>
+<blockquote>
+<p>功能很广</p>
+<p>管理代码与微软程序库之间的交互方式</p>
+</blockquote>
+<p>类型与匈牙利表示法</p>
+<blockquote>
+<p>多数WIN API 使用自己的名字来表示C语言类型</p>
+<p>Dword 32位无符号整型</p>
+</blockquote>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103155488.png" alt="image-20221020103155488"></p>
+<p>Handles 句柄类型，指向一个文件（其他变量）的指针</p>
+<p>Long Pointer 可以指向字节或字符串</p>
+<p>CallBacl 回调函数，</p>
+<h3 id="4-1-1-句柄"><a href="#4-1-1-句柄" class="headerlink" title="4.1.1 句柄"></a>4.1.1 句柄</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103407766.png" alt="image-20221020103407766"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103505490.png" alt="image-20221020103505490"></p>
+<p>例子：</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103619388.png" alt="image-20221020103619388"></p>
+<p>HANDLE 是句柄的返回类型</p>
+<p>标准c语言</p>
+<p>使用实例</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104003411.png" alt="image-20221020104003411"></p>
+<h3 id="4-1-2-文件系统"><a href="#4-1-2-文件系统" class="headerlink" title="4.1.2 文件系统"></a>4.1.2 文件系统</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104355312.png" alt="image-20221020104355312"></p>
+<p>恶意代码把自己要执行的代码生成svhost.exe， 用于访问网路</p>
+<p>正常的为svhost.exe,恶意代码可能生成zvhost.exe</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104731173.png" alt="image-20221020104731173"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104920721.png" alt="image-20221020104920721"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104928702.png" alt="image-20221020104928702"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104937128.png" alt="image-20221020104937128"></p>
+<h3 id="4-1-3特殊文件"><a href="#4-1-3特殊文件" class="headerlink" title="4.1.3特殊文件"></a>4.1.3特殊文件</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105029140.png" alt="image-20221020105029140"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105051363.png" alt="image-20221020105051363"></p>
+<p>共享文件</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105344261.png" alt="image-20221020105344261"></p>
+<p>通过名字空间访问的文件</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105633566.png" alt="image-20221020105633566"></p>
+<p>备用数据流（ADS）</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020111300581.png" alt="image-20221020111300581"></p>
+<h2 id="4-2-WINDOWS-注册表"><a href="#4-2-WINDOWS-注册表" class="headerlink" title="4.2 WINDOWS 注册表"></a>4.2 WINDOWS 注册表</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020111500887.png" alt="image-20221020111500887"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112233207.png" alt="image-20221020112233207"></p>
+<h3 id="4-2-1-注册表根键"><a href="#4-2-1-注册表根键" class="headerlink" title="4.2.1 注册表根键"></a>4.2.1 注册表根键</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112153440.png" alt="image-20221020112153440"></p>
+<h3 id="4-2-2-Regedit"><a href="#4-2-2-Regedit" class="headerlink" title="4.2.2 Regedit"></a>4.2.2 Regedit</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112426707.png" alt="image-20221020112426707"></p>
+<h3 id="4-2-3-自启动程序"><a href="#4-2-3-自启动程序" class="headerlink" title="4.2.3 自启动程序"></a>4.2.3 自启动程序</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112654427.png" alt="image-20221020112654427"></p>
+<p>工具可以查看有哪些程序添加到了自启动项中</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112820377.png" alt="image-20221020112820377"></p>
+<p>常用注册表函数</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113152496.png" alt="image-20221020113152496"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113245541.png" alt="image-20221020113245541"></p>
+<p>把配置写入注册表</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113340238.png" alt="image-20221020113340238"></p>
+<h2 id="4-3网络API"><a href="#4-3网络API" class="headerlink" title="4.3网络API"></a>4.3网络API</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113510087.png" alt="image-20221020113510087"></p>
+<h3 id="4-3-1伯克利兼容套接字"><a href="#4-3-1伯克利兼容套接字" class="headerlink" title="4.3.1伯克利兼容套接字"></a>4.3.1伯克利兼容套接字</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113806434.png" alt="image-20221020113806434"></p>
+<h3 id="4-3-2网络的服务器和客户端"><a href="#4-3-2网络的服务器和客户端" class="headerlink" title="4.3.2网络的服务器和客户端"></a>4.3.2网络的服务器和客户端</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113927000.png" alt="image-20221020113927000"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" itemprop="url">网络安全技术</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-19T15:04:46+08:00">
+                2022-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221019150614229.png" alt="image-20221019150614229"></p>
+<h2 id="4-1网络空间安全的目的"><a href="#4-1网络空间安全的目的" class="headerlink" title="4.1网络空间安全的目的"></a>4.1网络空间安全的目的</h2><p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221019150736276.png" alt="image-20221019150736276"></p>
+<h2 id="4-2网络空间安全的保护机制"><a href="#4-2网络空间安全的保护机制" class="headerlink" title="4.2网络空间安全的保护机制"></a>4.2网络空间安全的保护机制</h2><p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221019150917397.png" alt="image-20221019150917397"></p>
+<p>五重保护机制</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221019151036665.png" alt="image-20221019151036665"></p>
+<h2 id="4-3开放系统互连安全体系结构"><a href="#4-3开放系统互连安全体系结构" class="headerlink" title="4.3开放系统互连安全体系结构"></a>4.3开放系统互连安全体系结构</h2><p>1.安全服务</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221019151315555.png" alt="image-20221019151315555"></p>
+<p>2.安全机制</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221019152345798.png" alt="image-20221019152345798"></p>
+<p>1）加密 为数据提供机密性</p>
+<p>2）数字签名机制：可以完成对数据单元的签名工作，必须不可伪造和不可抵赖</p>
+<p>3）访问控制</p>
+<p>4）数据完整性</p>
+<p>5）鉴别交换</p>
+<p>6）通信业务填充机制</p>
+<p>7）路由选择控制机制</p>
+<p>8）公证机制</p>
+<p>安全服务，安全机制的关系？</p>
+<p>安全服务根据各种机制，达成服务</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024101724618.png" alt="image-20221024101724618"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024101844718.png" alt="image-20221024101844718"></p>
+<p>安全服务与TCP&#x2F;IP</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024102037926.png" alt="image-20221024102037926"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024102425443.png" alt="image-20221024102425443"><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024102425595.png" alt="image-20221024102425595"></p>
+<p>映射实例</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024102520664.png" alt="image-20221024102520664"></p>
+<h2 id="4-4网络空间安全体系架构"><a href="#4-4网络空间安全体系架构" class="headerlink" title="4.4网络空间安全体系架构"></a>4.4网络空间安全体系架构</h2><p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024102900436.png" alt="image-20221024102900436"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024103024114.png" alt="image-20221024103024114"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024103221757.png" alt="image-20221024103221757"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024103331323.png" alt="image-20221024103331323"></p>
+<h2 id="4-5"><a href="#4-5" class="headerlink" title="4.5"></a>4.5</h2><p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024103536761.png" alt="image-20221024103536761"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024103759929.png" alt="image-20221024103759929"></p>
+<p>侧信道攻击？</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024103907269.png" alt="image-20221024103907269"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024104147685.png" alt="image-20221024104147685"></p>
+<h2 id="4-6网络空间安全技术机制"><a href="#4-6网络空间安全技术机制" class="headerlink" title="4.6网络空间安全技术机制"></a>4.6网络空间安全技术机制</h2><h3 id="4-6-1加密机制"><a href="#4-6-1加密机制" class="headerlink" title="4.6.1加密机制"></a>4.6.1加密机制</h3><p>（1）对称加密通信模型</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024104422671.png" alt="image-20221024104422671"></p>
+<p>（2）分组密码体系</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024104554747.png" alt="image-20221024104554747"></p>
+<p>（3）序列密码（流密码）</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024104829665.png" alt="image-20221024104829665"></p>
+<p>做的好，可以达成一次一密，但其实做不到</p>
+<p>同步序列密码</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024105007276.png" alt="image-20221024105007276"></p>
+<p>自同步序列密码</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024105504973.png" alt="image-20221024105504973"></p>
+<p>（4）公钥加密模型</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024105727318.png" alt="image-20221024105727318"></p>
+<p>可以解决密钥分发问题</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024111056805.png" alt="image-20221024111056805"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024111420769.png" alt="image-20221024111420769"></p>
+<p>机密性无法保证</p>
+<p>（5）消息鉴别码</p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024112107249.png" alt="image-20221024112107249"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024112246038.png" alt="image-20221024112246038"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024112934353.png" alt="image-20221024112934353"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024113122221.png" alt="image-20221024113122221"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024113342665.png" alt="image-20221024113342665"></p>
+<p>第三种的优势是：在一些场景下，通信依赖于第三方，可能不想让第三方知道通信内容</p>
+<h3 id="4-6-2数字签名机制"><a href="#4-6-2数字签名机制" class="headerlink" title="4.6.2数字签名机制"></a>4.6.2数字签名机制</h3><p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024113946493.png" alt="image-20221024113946493"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024114016246.png" alt="image-20221024114016246"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024115040024.png" alt="image-20221024115040024"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024115120493.png" alt="image-20221024115120493"></p>
+<p><img src="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/image-20221024115407552.png" alt="image-20221024115407552"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/11/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E5%85%AD%E5%91%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -562,7 +1118,26 @@
 <img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221008115145036.png" alt="image-20221008115145036" style="zoom: 33%;">
 
 <h2 id="3-6模拟网络"><a href="#3-6模拟网络" class="headerlink" title="3.6模拟网络"></a>3.6模拟网络</h2><p>目的：避免连接恶意代码的真实服务器（控制服务器）</p>
-<p>工具：ApateDns（FireEye收购）、nc（Netcat）、INetSim</p>
+<p>工具：ApateDns（FireEye收购，用于模仿dns服务器）、nc（Netcat，模仿客户端和服务器）、INetSim（用于模仿各种通信协议）</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013102443519.png" alt="image-20221013102443519"></p>
+<p>使用ApateDNS:用来查看恶意代码发出的dns请求</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013102547340.png" alt="image-20221013102547340"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013102726714.png" alt="image-20221013102726714"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013102922994.png" alt="image-20221013102922994"></p>
+<p>使用NetCat</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013103243094.png" alt="image-20221013103243094"></p>
+<p>80，443端口，隐藏自己，绕过防火墙</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013103438451.png" alt="image-20221013103438451"></p>
+<p>使用INetSim</p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013103644279.png" alt="image-20221013103644279"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013103843897.png" alt="image-20221013103843897"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013104005065.png" alt="image-20221013104005065"></p>
+<h2 id="3-7网络监控"><a href="#3-7网络监控" class="headerlink" title="3.7网络监控"></a>3.7网络监控</h2><p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013104026690.png" alt="image-20221013104026690"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013104653663.png" alt="image-20221013104653663"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013104932192.png" alt="image-20221013104932192"></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013105620541.png" alt="image-20221013105620541"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013105850035.png" alt="image-20221013105850035"></p>
+<p><img src="/2022/10/08/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC3%E7%AB%A0/image-20221013105925588.png" alt="image-20221013105925588"></p>
 
           
         
@@ -1406,444 +1981,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/15/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LUOSY'S BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/09/15/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url">数据挖掘课程笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-15T13:52:40+08:00">
-                2022-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%8A%E8%AF%BE%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
-                    <span itemprop="name">上课记录</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          数据挖掘课程笔记
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/09/15/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC1%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LUOSY'S BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC1%E7%AB%A0/" itemprop="url">恶意代码第1章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-15T11:00:07+08:00">
-                2022-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index">
-                    <span itemprop="name">恶意代码</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          恶意代码第1章
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC1%E7%AB%A0/">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LUOSY'S BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/" itemprop="url">恶意代码 第0章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-09-15T10:22:54+08:00">
-                2022-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index">
-                    <span itemprop="name">恶意代码</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          第0章 恶意代码分析技术简介与入门
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/09/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC0%E7%AB%A0/">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1894,7 +2031,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

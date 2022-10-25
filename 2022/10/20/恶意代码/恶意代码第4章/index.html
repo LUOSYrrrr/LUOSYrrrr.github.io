@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="分析恶意windows程序  注册表：保存用户配置的地方 4.1 WINDOWS API WINDOWS API  功能很广 管理代码与微软程序库之间的交互方式  类型与匈牙利表示法  多数WIN API 使用自己的名字来表示C语言类型 Dword 32位无符号整型   Handles 句柄类型，指向一个文件（其他变量）的指针 Long Pointer 可以指向字节或字符串 CallBacl 回调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恶意代码第4章">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="分析恶意windows程序  注册表：保存用户配置的地方 4.1 WINDOWS API WINDOWS API  功能很广 管理代码与微软程序库之间的交互方式  类型与匈牙利表示法  多数WIN API 使用自己的名字来表示C语言类型 Dword 32位无符号整型   Handles 句柄类型，指向一个文件（其他变量）的指针 Long Pointer 可以指向字节或字符串 CallBacl 回调">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102425080.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102909625.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103155488.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103407766.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103505490.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103619388.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104003411.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104355312.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104731173.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104920721.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104928702.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104937128.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105029140.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105051363.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105344261.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105633566.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020111300581.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020111500887.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112233207.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112153440.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112426707.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112654427.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112820377.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113152496.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113245541.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113340238.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113510087.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113806434.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113927000.png">
+<meta property="article:published_time" content="2022-10-20T02:16:27.000Z">
+<meta property="article:modified_time" content="2022-10-20T03:50:59.069Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/10/20/恶意代码/恶意代码第4章/"/>
+
+
+
+
+
+  <title>恶意代码第4章 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">恶意代码第4章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-20T10:16:27+08:00">
+                2022-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="分析恶意windows程序"><a href="#分析恶意windows程序" class="headerlink" title="分析恶意windows程序"></a>分析恶意windows程序</h1><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png" alt="image-20221020102000192"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102425080.png" alt="image-20221020102425080"></p>
+<p>注册表：保存用户配置的地方</p>
+<h2 id="4-1-WINDOWS-API"><a href="#4-1-WINDOWS-API" class="headerlink" title="4.1 WINDOWS API"></a>4.1 WINDOWS API</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102909625.png" alt="image-20221020102909625"></p>
+<p>WINDOWS API</p>
+<blockquote>
+<p>功能很广</p>
+<p>管理代码与微软程序库之间的交互方式</p>
+</blockquote>
+<p>类型与匈牙利表示法</p>
+<blockquote>
+<p>多数WIN API 使用自己的名字来表示C语言类型</p>
+<p>Dword 32位无符号整型</p>
+</blockquote>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103155488.png" alt="image-20221020103155488"></p>
+<p>Handles 句柄类型，指向一个文件（其他变量）的指针</p>
+<p>Long Pointer 可以指向字节或字符串</p>
+<p>CallBacl 回调函数，</p>
+<h3 id="4-1-1-句柄"><a href="#4-1-1-句柄" class="headerlink" title="4.1.1 句柄"></a>4.1.1 句柄</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103407766.png" alt="image-20221020103407766"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103505490.png" alt="image-20221020103505490"></p>
+<p>例子：</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020103619388.png" alt="image-20221020103619388"></p>
+<p>HANDLE 是句柄的返回类型</p>
+<p>标准c语言</p>
+<p>使用实例</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104003411.png" alt="image-20221020104003411"></p>
+<h3 id="4-1-2-文件系统"><a href="#4-1-2-文件系统" class="headerlink" title="4.1.2 文件系统"></a>4.1.2 文件系统</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104355312.png" alt="image-20221020104355312"></p>
+<p>恶意代码把自己要执行的代码生成svhost.exe， 用于访问网路</p>
+<p>正常的为svhost.exe,恶意代码可能生成zvhost.exe</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104731173.png" alt="image-20221020104731173"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104920721.png" alt="image-20221020104920721"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104928702.png" alt="image-20221020104928702"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020104937128.png" alt="image-20221020104937128"></p>
+<h3 id="4-1-3特殊文件"><a href="#4-1-3特殊文件" class="headerlink" title="4.1.3特殊文件"></a>4.1.3特殊文件</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105029140.png" alt="image-20221020105029140"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105051363.png" alt="image-20221020105051363"></p>
+<p>共享文件</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105344261.png" alt="image-20221020105344261"></p>
+<p>通过名字空间访问的文件</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020105633566.png" alt="image-20221020105633566"></p>
+<p>备用数据流（ADS）</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020111300581.png" alt="image-20221020111300581"></p>
+<h2 id="4-2-WINDOWS-注册表"><a href="#4-2-WINDOWS-注册表" class="headerlink" title="4.2 WINDOWS 注册表"></a>4.2 WINDOWS 注册表</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020111500887.png" alt="image-20221020111500887"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112233207.png" alt="image-20221020112233207"></p>
+<h3 id="4-2-1-注册表根键"><a href="#4-2-1-注册表根键" class="headerlink" title="4.2.1 注册表根键"></a>4.2.1 注册表根键</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112153440.png" alt="image-20221020112153440"></p>
+<h3 id="4-2-2-Regedit"><a href="#4-2-2-Regedit" class="headerlink" title="4.2.2 Regedit"></a>4.2.2 Regedit</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112426707.png" alt="image-20221020112426707"></p>
+<h3 id="4-2-3-自启动程序"><a href="#4-2-3-自启动程序" class="headerlink" title="4.2.3 自启动程序"></a>4.2.3 自启动程序</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112654427.png" alt="image-20221020112654427"></p>
+<p>工具可以查看有哪些程序添加到了自启动项中</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020112820377.png" alt="image-20221020112820377"></p>
+<p>常用注册表函数</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113152496.png" alt="image-20221020113152496"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113245541.png" alt="image-20221020113245541"></p>
+<p>把配置写入注册表</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113340238.png" alt="image-20221020113340238"></p>
+<h2 id="4-3网络API"><a href="#4-3网络API" class="headerlink" title="4.3网络API"></a>4.3网络API</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113510087.png" alt="image-20221020113510087"></p>
+<h3 id="4-3-1伯克利兼容套接字"><a href="#4-3-1伯克利兼容套接字" class="headerlink" title="4.3.1伯克利兼容套接字"></a>4.3.1伯克利兼容套接字</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113806434.png" alt="image-20221020113806434"></p>
+<h3 id="4-3-2网络的服务器和客户端"><a href="#4-3-2网络的服务器和客户端" class="headerlink" title="4.3.2网络的服务器和客户端"></a>4.3.2网络的服务器和客户端</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113927000.png" alt="image-20221020113927000"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" rel="next" title="网络安全技术">
+                <i class="fa fa-chevron-left"></i> 网络安全技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/25/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E4%B9%9D%E5%91%A8/" rel="prev" title="人工智能-第九周">
+                人工智能-第九周 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%81%B6%E6%84%8Fwindows%E7%A8%8B%E5%BA%8F"><span class="nav-text">分析恶意windows程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-WINDOWS-API"><span class="nav-text">4.1 WINDOWS API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E5%8F%A5%E6%9F%84"><span class="nav-text">4.1.1 句柄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">4.1.2 文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6"><span class="nav-text">4.1.3特殊文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-WINDOWS-%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="nav-text">4.2 WINDOWS 注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%A0%B9%E9%94%AE"><span class="nav-text">4.2.1 注册表根键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Regedit"><span class="nav-text">4.2.2 Regedit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-text">4.2.3 自启动程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3%E7%BD%91%E7%BB%9CAPI"><span class="nav-text">4.3网络API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1%E4%BC%AF%E5%85%8B%E5%88%A9%E5%85%BC%E5%AE%B9%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="nav-text">4.3.1伯克利兼容套接字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-text">4.3.2网络的服务器和客户端</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
