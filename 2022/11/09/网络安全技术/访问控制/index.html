@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="网络空间安全技术-访问控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="访问控制">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="网络空间安全技术-访问控制">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152135266.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152219869.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152236787.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152753184.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152954037.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114101825437.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102152913.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102218440.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102423094.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102452277.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102542073.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102651481.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102830666.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103054493.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103228950.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103248332.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103355326.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103653318.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103752676.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103903021.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103916662.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104011239.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104204206.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104413912.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104545209.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104700705.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104952530.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105135601.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105702780.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105744250.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105836992.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105954097.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114110130439.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111232719.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111324613.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111343468.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111434221.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111517706.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111556005.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111952509.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112003504.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112054639.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112322493.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112353146.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112726647.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112829132.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113108109.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113149270.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113248165.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113443285.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113653322.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113721096.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113825078.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114122522.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114350764.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114509687.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114616502.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114701126.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115015724.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115053972.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115229822.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115414544.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115446654.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135233294.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135625643.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135725322.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135926153.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140257605.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140456372.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140545734.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140601800.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116142345740.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116150643493.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116152208170.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116152251326.png">
+<meta property="article:published_time" content="2022-11-09T07:21:13.000Z">
+<meta property="article:modified_time" content="2022-11-23T06:53:02.277Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152135266.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/11/09/网络安全技术/访问控制/"/>
+
+
+
+
+
+  <title>访问控制 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">访问控制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-11-09T15:21:13+08:00">
+                2022-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  网络空间安全技术-访问控制
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152135266.png" alt="image-20221109152135266"></p>
+<h1 id="访问控制模型"><a href="#访问控制模型" class="headerlink" title="访问控制模型"></a>访问控制模型</h1><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152219869.png" alt="image-20221109152219869"></p>
+<h2 id="访问控制基本概念"><a href="#访问控制基本概念" class="headerlink" title="访问控制基本概念"></a>访问控制基本概念</h2><h3 id="访问控制的概念和目标"><a href="#访问控制的概念和目标" class="headerlink" title="访问控制的概念和目标"></a>访问控制的概念和目标</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152236787.png" alt="image-20221109152236787"></p>
+<p>windows权限，可读可写</p>
+<p>管理员</p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152753184.png" alt="image-20221109152753184" style="zoom:80%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221109152954037.png" alt="image-20221109152954037" style="zoom:80%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114101825437.png" alt="image-20221114101825437" style="zoom:80%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102152913.png" alt="image-20221114102152913" style="zoom:80%;">
+
+<p>授权</p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102218440.png" alt="image-20221114102218440" style="zoom:50%;">
+
+<p>标识</p>
+<p>标识是实体身份的一种计算机表达</p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102423094.png" alt="image-20221114102423094" style="zoom:67%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102452277.png" alt="image-20221114102452277" style="zoom: 67%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102542073.png" alt="image-20221114102542073" style="zoom: 80%;">
+
+<p>inode对文件进行唯一标识的标识符（unix中）</p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102651481.png" alt="image-20221114102651481" style="zoom:80%;">
+
+<h3 id="访问控制模型-1"><a href="#访问控制模型-1" class="headerlink" title="访问控制模型"></a>访问控制模型</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114102830666.png" alt="image-20221114102830666"></p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103054493.png" alt="image-20221114103054493" style="zoom:80%;">
+
+
+
+<h3 id="访问控制的一般实现机制和方法"><a href="#访问控制的一般实现机制和方法" class="headerlink" title="访问控制的一般实现机制和方法"></a>访问控制的一般实现机制和方法<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103228950.png" alt="image-20221114103228950" style="zoom:80%;"></h3><h4 id="ACL访问控制表"><a href="#ACL访问控制表" class="headerlink" title="ACL访问控制表"></a>ACL访问控制表</h4><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103248332.png" alt="image-20221114103248332"></p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103355326.png" alt="image-20221114103355326" style="zoom:80%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103653318.png" alt="image-20221114103653318" style="zoom: 67%;">
+
+<h4 id="能力表CL"><a href="#能力表CL" class="headerlink" title="能力表CL"></a>能力表CL</h4><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103752676.png" alt="image-20221114103752676"></p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103903021.png" alt="image-20221114103903021" style="zoom:80%;">
+
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114103916662.png" alt="image-20221114103916662" style="zoom:80%;">
+
+<h4 id="访问控制矩阵"><a href="#访问控制矩阵" class="headerlink" title="访问控制矩阵"></a>访问控制矩阵</h4><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104011239.png" alt="image-20221114104011239"></p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104204206.png" alt="image-20221114104204206" style="zoom:80%;">
+
+<h4 id="授权关系表"><a href="#授权关系表" class="headerlink" title="授权关系表"></a>授权关系表</h4><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104413912.png" alt="image-20221114104413912"></p>
+<h4 id="访问控制安全标签"><a href="#访问控制安全标签" class="headerlink" title="访问控制安全标签"></a>访问控制安全标签</h4><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104545209.png" alt="image-20221114104545209"></p>
+<h4 id="锁与钥匙"><a href="#锁与钥匙" class="headerlink" title="锁与钥匙"></a>锁与钥匙</h4><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104700705.png" alt="image-20221114104700705"></p>
+<h3 id="访问控制与其他安全机制的关系"><a href="#访问控制与其他安全机制的关系" class="headerlink" title="访问控制与其他安全机制的关系"></a>访问控制与其他安全机制的关系</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114104952530.png" alt="image-20221114104952530"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105135601.png" alt="image-20221114105135601"></p>
+<h3 id="访问控制的一般策略"><a href="#访问控制的一般策略" class="headerlink" title="访问控制的一般策略"></a>访问控制的一般策略</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105702780.png" alt="image-20221114105702780"></p>
+<h3 id="访问控制模型的分类"><a href="#访问控制模型的分类" class="headerlink" title="访问控制模型的分类"></a>访问控制模型的分类</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105744250.png" alt="image-20221114105744250"></p>
+<h2 id="自主访问控制模型（DAC"><a href="#自主访问控制模型（DAC" class="headerlink" title="自主访问控制模型（DAC)"></a>自主访问控制模型（DAC)</h2><p>自主访问控制的含义</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105836992.png" alt="image-20221114105836992"></p>
+<h3 id="自主访问控制策略"><a href="#自主访问控制策略" class="headerlink" title="自主访问控制策略"></a>自主访问控制策略</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114105954097.png" alt="image-20221114105954097"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114110130439.png" alt="image-20221114110130439"></p>
+<p>因为控制权限有一定流动性，所以无法控制信息流动</p>
+<h3 id="自主访问控制的实现机制和方法"><a href="#自主访问控制的实现机制和方法" class="headerlink" title="自主访问控制的实现机制和方法"></a>自主访问控制的实现机制和方法</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111232719.png" alt="image-20221114111232719"></p>
+<h3 id="访问许可与访问模式"><a href="#访问许可与访问模式" class="headerlink" title="访问许可与访问模式"></a>访问许可与访问模式</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111324613.png" alt="image-20221114111324613"></p>
+<p>访问许可类型</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111343468.png" alt="image-20221114111343468"></p>
+<p>访问模式的类型</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111434221.png" alt="image-20221114111434221"></p>
+<p>访问控制矩阵</p>
+<p>访问控制表：表示方式：</p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111517706.png" alt="image-20221114111517706" style="zoom:67%;">
+
+<p>访问能力表</p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111556005.png" alt="image-20221114111556005" style="zoom:80%;">
+
+<p>回收一个客体对主体访问权限</p>
+<h3 id="自主访问控制的特点"><a href="#自主访问控制的特点" class="headerlink" title="自主访问控制的特点"></a>自主访问控制的特点</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114111952509.png" alt="image-20221114111952509"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112003504.png" alt="image-20221114112003504"></p>
+<h2 id="强制访问控制（MAC）"><a href="#强制访问控制（MAC）" class="headerlink" title="强制访问控制（MAC）"></a>强制访问控制（MAC）</h2><p>MAC含义</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112054639.png" alt="image-20221114112054639"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112322493.png" alt="image-20221114112322493"></p>
+<h3 id="四种强制访问控制策略（上读-x2F-下写，下读-x2F-上写）"><a href="#四种强制访问控制策略（上读-x2F-下写，下读-x2F-上写）" class="headerlink" title="四种强制访问控制策略（上读&#x2F;下写，下读&#x2F;上写）"></a>四种强制访问控制策略（上读&#x2F;下写，下读&#x2F;上写）</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112353146.png" alt="image-20221114112353146"></p>
+<p>下读&#x2F;上写：保证机密性，（级别低）无法读（级别高）文件</p>
+<p>上读&#x2F;下写：保证完整性，（级别低）无法更改（级别高）文件，下写说明不下写</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112726647.png" alt="image-20221114112726647"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114112829132.png" alt="image-20221114112829132"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113108109.png" alt="image-20221114113108109"></p>
+<h3 id="常见强制访问控制模型"><a href="#常见强制访问控制模型" class="headerlink" title="常见强制访问控制模型"></a>常见强制访问控制模型</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113149270.png"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113248165.png" alt="image-20221114113248165"></p>
+<h4 id="BLP"><a href="#BLP" class="headerlink" title="BLP"></a>BLP</h4><p>机密性</p>
+<p>下读，上写</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113443285.png" alt="image-20221114113443285"></p>
+<h4 id="Biba"><a href="#Biba" class="headerlink" title="Biba"></a>Biba</h4><p>完整性</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113653322.png" alt="image-20221114113653322"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113721096.png" alt="image-20221114113721096"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114113825078.png" alt="image-20221114113825078"></p>
+<h2 id="基于角色的访问控制（RBAC）"><a href="#基于角色的访问控制（RBAC）" class="headerlink" title="基于角色的访问控制（RBAC）"></a>基于角色的访问控制（RBAC）</h2><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114122522.png" alt="image-20221114114122522"></p>
+<h3 id="RBAC模型的基本思想"><a href="#RBAC模型的基本思想" class="headerlink" title="RBAC模型的基本思想"></a>RBAC模型的基本思想</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114350764.png" alt="image-20221114114350764"></p>
+<h3 id="基于组的策略"><a href="#基于组的策略" class="headerlink" title="基于组的策略"></a>基于组的策略</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114509687.png" alt="image-20221114114509687"></p>
+<h3 id="RBAC模型的组成"><a href="#RBAC模型的组成" class="headerlink" title="RBAC模型的组成"></a>RBAC模型的组成</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114616502.png" alt="image-20221114114616502"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114114701126.png" alt="image-20221114114701126"></p>
+<p>登录的过程就是激活角色的过程</p>
+<h3 id="RBAC模型基本机制"><a href="#RBAC模型基本机制" class="headerlink" title="RBAC模型基本机制"></a>RBAC模型基本机制</h3><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115015724.png" alt="image-20221114115015724"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115053972.png" alt="image-20221114115053972"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115229822.png" alt="image-20221114115229822"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115414544.png" alt="image-20221114115414544"></p>
+<p>实例</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221114115446654.png" alt="image-20221114115446654"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135233294.png" alt="image-20221116135233294"></p>
+<img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135625643.png" alt="image-20221116135625643" style="zoom:67%;">
+
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135725322.png" alt="image-20221116135725322"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116135926153.png" alt="image-20221116135926153"></p>
+<p>RBAC系统运行步骤</p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140257605.png" alt="image-20221116140257605"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140456372.png" alt="image-20221116140456372"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140545734.png" alt="image-20221116140545734"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116140601800.png" alt="image-20221116140601800"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116142345740.png" alt="image-20221116142345740"></p>
+<h2 id="零信任"><a href="#零信任" class="headerlink" title="零信任"></a>零信任</h2><p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116150643493.png" alt="image-20221116150643493"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116152208170.png" alt="image-20221116152208170"></p>
+<p><img src="/2022/11/09/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/image-20221116152251326.png" alt="image-20221116152251326"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/11/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E5%8D%81%E5%91%A8/" rel="next" title="人工智能-第十周">
+                <i class="fa fa-chevron-left"></i> 人工智能-第十周
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/11/10/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E8%A1%8C%E4%B8%BA%EF%BC%88%E5%8A%9F%E8%83%BD%EF%BC%89/" rel="prev" title="恶意代码行为（功能）">
+                恶意代码行为（功能） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B"><span class="nav-text">访问控制模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">访问控制基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-text">访问控制的概念和目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B-1"><span class="nav-text">访问控制模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E4%B8%80%E8%88%AC%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-text">访问控制的一般实现机制和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ACL%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E8%A1%A8"><span class="nav-text">ACL访问控制表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E5%8A%9B%E8%A1%A8CL"><span class="nav-text">能力表CL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9F%A9%E9%98%B5"><span class="nav-text">访问控制矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%88%E6%9D%83%E5%85%B3%E7%B3%BB%E8%A1%A8"><span class="nav-text">授权关系表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%AE%89%E5%85%A8%E6%A0%87%E7%AD%BE"><span class="nav-text">访问控制安全标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%81%E4%B8%8E%E9%92%A5%E5%8C%99"><span class="nav-text">锁与钥匙</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%85%B6%E4%BB%96%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">访问控制与其他安全机制的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E4%B8%80%E8%88%AC%E7%AD%96%E7%95%A5"><span class="nav-text">访问控制的一般策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">访问控制模型的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E4%B8%BB%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%EF%BC%88DAC"><span class="nav-text">自主访问控制模型（DAC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E4%B8%BB%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AD%96%E7%95%A5"><span class="nav-text">自主访问控制策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E4%B8%BB%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-text">自主访问控制的实现机制和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E8%AE%B8%E5%8F%AF%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%A8%A1%E5%BC%8F"><span class="nav-text">访问许可与访问模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E4%B8%BB%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">自主访问控制的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%EF%BC%88MAC%EF%BC%89"><span class="nav-text">强制访问控制（MAC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AD%96%E7%95%A5%EF%BC%88%E4%B8%8A%E8%AF%BB-x2F-%E4%B8%8B%E5%86%99%EF%BC%8C%E4%B8%8B%E8%AF%BB-x2F-%E4%B8%8A%E5%86%99%EF%BC%89"><span class="nav-text">四种强制访问控制策略（上读&#x2F;下写，下读&#x2F;上写）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B"><span class="nav-text">常见强制访问控制模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BLP"><span class="nav-text">BLP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Biba"><span class="nav-text">Biba</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%A7%92%E8%89%B2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%EF%BC%88RBAC%EF%BC%89"><span class="nav-text">基于角色的访问控制（RBAC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RBAC%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-text">RBAC模型的基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%84%E7%9A%84%E7%AD%96%E7%95%A5"><span class="nav-text">基于组的策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RBAC%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">RBAC模型的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RBAC%E6%A8%A1%E5%9E%8B%E5%9F%BA%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="nav-text">RBAC模型基本机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E4%BF%A1%E4%BB%BB"><span class="nav-text">零信任</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

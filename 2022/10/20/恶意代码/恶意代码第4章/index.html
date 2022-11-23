@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="分析恶意windows程序  注册表：保存用户配置的地方 4.1 WINDOWS API WINDOWS API  功能很广 管理代码与微软程序库之间的交互方式  类型与匈牙利表示法  多数WIN API 使用自己的名字来表示C语言类型 Dword 32位无符号整型   Handles 句柄类型，指向一个文件（其他变量）的指针 Long Pointer 可以指向字节或字符串 CallBacl 回调">
+<meta name="description" content="分析恶意Windows程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="恶意代码第4章">
 <meta property="og:url" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/index.html">
 <meta property="og:site_name" content="LUOSY&#39;S BLOG">
-<meta property="og:description" content="分析恶意windows程序  注册表：保存用户配置的地方 4.1 WINDOWS API WINDOWS API  功能很广 管理代码与微软程序库之间的交互方式  类型与匈牙利表示法  多数WIN API 使用自己的名字来表示C语言类型 Dword 32位无符号整型   Handles 句柄类型，指向一个文件（其他变量）的指针 Long Pointer 可以指向字节或字符串 CallBacl 回调">
+<meta property="og:description" content="分析恶意Windows程序">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png">
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102425080.png">
@@ -116,8 +116,38 @@
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113510087.png">
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113806434.png">
 <meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113927000.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221027102457647.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221027112927606.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101607172.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101711164.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101817654.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101828208.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101949803.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101930805.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101941232.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102009063.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102022851.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102104852.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102857159.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102953789.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103103832533.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103104000357.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103105018038.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103105435374.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103105719105.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103111040226.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103111718077.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103112552012.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103112904708.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113149735.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113410702.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113550297.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113814871.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113824383.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103114119690.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103114521737.png">
 <meta property="article:published_time" content="2022-10-20T02:16:27.000Z">
-<meta property="article:modified_time" content="2022-10-20T03:50:59.069Z">
+<meta property="article:modified_time" content="2022-11-23T06:57:44.191Z">
 <meta property="article:author" content="LUOSY">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://luosyrrrr.github.io/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png">
@@ -333,6 +363,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index">
+                    <span itemprop="name">恶意代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -345,6 +397,10 @@
 
           
 
+          
+              <div class="post-description">
+                  分析恶意Windows程序
+              </div>
           
 
         </div>
@@ -360,7 +416,8 @@
       
 
       
-        <h1 id="分析恶意windows程序"><a href="#分析恶意windows程序" class="headerlink" title="分析恶意windows程序"></a>分析恶意windows程序</h1><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png" alt="image-20221020102000192"></p>
+        <p>[TOC]</p>
+<h1 id="分析恶意windows程序"><a href="#分析恶意windows程序" class="headerlink" title="分析恶意windows程序"></a>分析恶意windows程序</h1><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102000192.png" alt="image-20221020102000192"></p>
 <p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102425080.png" alt="image-20221020102425080"></p>
 <p>注册表：保存用户配置的地方</p>
 <h2 id="4-1-WINDOWS-API"><a href="#4-1-WINDOWS-API" class="headerlink" title="4.1 WINDOWS API"></a>4.1 WINDOWS API</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020102909625.png" alt="image-20221020102909625"></p>
@@ -416,6 +473,43 @@
 <h2 id="4-3网络API"><a href="#4-3网络API" class="headerlink" title="4.3网络API"></a>4.3网络API</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113510087.png" alt="image-20221020113510087"></p>
 <h3 id="4-3-1伯克利兼容套接字"><a href="#4-3-1伯克利兼容套接字" class="headerlink" title="4.3.1伯克利兼容套接字"></a>4.3.1伯克利兼容套接字</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113806434.png" alt="image-20221020113806434"></p>
 <h3 id="4-3-2网络的服务器和客户端"><a href="#4-3-2网络的服务器和客户端" class="headerlink" title="4.3.2网络的服务器和客户端"></a>4.3.2网络的服务器和客户端</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221020113927000.png" alt="image-20221020113927000"></p>
+<p>以客户端，主动往外连，ccs服务器</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221027102457647.png" alt="image-20221027102457647"></p>
+<h3 id="4-3-3WinINet-API"><a href="#4-3-3WinINet-API" class="headerlink" title="4.3.3WinINet API"></a>4.3.3WinINet API</h3><p>保存在wininet.dll中</p>
+<p>比WIN API更高一级，实现应用层协议，如HTTP和FTP</p>
+<p>可以用来连接远程服务器，并获取指令</p>
+<h2 id="4-4跟踪恶意代码的运行"><a href="#4-4跟踪恶意代码的运行" class="headerlink" title="4.4跟踪恶意代码的运行"></a>4.4跟踪恶意代码的运行</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221027112927606.png" alt="image-20221027112927606"></p>
+<h3 id="4-4-2进程"><a href="#4-4-2进程" class="headerlink" title="4.4.2进程"></a>4.4.2进程</h3><p>进程间通信方式</p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101607172.png" alt="image-20221103101607172"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101711164.png" alt="image-20221103101711164"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101817654.png" alt="image-20221103101817654"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101828208.png" alt="image-20221103101828208"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101949803.png" alt="image-20221103101949803"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101930805.png" alt="image-20221103101930805"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103101941232.png" alt="image-20221103101941232"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102009063.png" alt="image-20221103102009063"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102022851.png" alt="image-20221103102022851"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102104852.png" alt="image-20221103102104852"></p>
+<h3 id="4-4-3线程"><a href="#4-4-3线程" class="headerlink" title="4.4.3线程"></a>4.4.3线程</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102857159.png" alt="image-20221103102857159"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103102953789.png" alt="image-20221103102953789"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103103832533.png" alt="image-20221103103832533"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103104000357.png" alt="image-20221103104000357"></p>
+<h3 id="4-4-4使用互斥量的进程间协作"><a href="#4-4-4使用互斥量的进程间协作" class="headerlink" title="4.4.4使用互斥量的进程间协作"></a>4.4.4使用互斥量的进程间协作</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103105018038.png" alt="image-20221103105018038"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103105435374.png" alt="image-20221103105435374"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103105719105.png" alt="image-20221103105719105"></p>
+<img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103111040226.png" alt="image-20221103111040226" style="zoom:50%;">
+
+<img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103111718077.png" alt="image-20221103111718077" style="zoom:50%;">
+
+<h3 id="4-4-5服务"><a href="#4-4-5服务" class="headerlink" title="4.4.5服务"></a>4.4.5服务</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103112552012.png" alt="image-20221103112552012"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103112904708.png" alt="image-20221103112904708"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113149735.png" alt="image-20221103113149735"></p>
+<h3 id="4-4-6组件对象模型"><a href="#4-4-6组件对象模型" class="headerlink" title="4.4.6组件对象模型"></a>4.4.6组件对象模型</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113410702.png" alt="image-20221103113410702"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113550297.png" alt="image-20221103113550297"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113814871.png" alt="image-20221103113814871"></p>
+<p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103113824383.png" alt="image-20221103113824383"></p>
+<h3 id="4-4-7异常：当事情出错时"><a href="#4-4-7异常：当事情出错时" class="headerlink" title="4.4.7异常：当事情出错时"></a>4.4.7异常：当事情出错时</h3><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103114119690.png" alt="image-20221103114119690"></p>
+<h2 id="4-5内核"><a href="#4-5内核" class="headerlink" title="4.5内核"></a>4.5内核</h2><p><img src="/2022/10/20/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%AC%AC4%E7%AB%A0/image-20221103114521737.png" alt="image-20221103114521737"></p>
 
       
     </div>
@@ -440,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" rel="next" title="网络安全技术">
-                <i class="fa fa-chevron-left"></i> 网络安全技术
+              <a href="/2022/10/19/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" rel="next" title="网络安全技术信息安全技术">
+                <i class="fa fa-chevron-left"></i> 网络安全技术信息安全技术
               </a>
             
           </div>
@@ -529,7 +623,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -540,7 +634,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -584,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%81%B6%E6%84%8Fwindows%E7%A8%8B%E5%BA%8F"><span class="nav-text">分析恶意windows程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-WINDOWS-API"><span class="nav-text">4.1 WINDOWS API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E5%8F%A5%E6%9F%84"><span class="nav-text">4.1.1 句柄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">4.1.2 文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6"><span class="nav-text">4.1.3特殊文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-WINDOWS-%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="nav-text">4.2 WINDOWS 注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%A0%B9%E9%94%AE"><span class="nav-text">4.2.1 注册表根键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Regedit"><span class="nav-text">4.2.2 Regedit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-text">4.2.3 自启动程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3%E7%BD%91%E7%BB%9CAPI"><span class="nav-text">4.3网络API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1%E4%BC%AF%E5%85%8B%E5%88%A9%E5%85%BC%E5%AE%B9%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="nav-text">4.3.1伯克利兼容套接字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-text">4.3.2网络的服务器和客户端</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%81%B6%E6%84%8Fwindows%E7%A8%8B%E5%BA%8F"><span class="nav-text">分析恶意windows程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-WINDOWS-API"><span class="nav-text">4.1 WINDOWS API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E5%8F%A5%E6%9F%84"><span class="nav-text">4.1.1 句柄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">4.1.2 文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6"><span class="nav-text">4.1.3特殊文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-WINDOWS-%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="nav-text">4.2 WINDOWS 注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%A0%B9%E9%94%AE"><span class="nav-text">4.2.1 注册表根键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Regedit"><span class="nav-text">4.2.2 Regedit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-%E8%87%AA%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-text">4.2.3 自启动程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3%E7%BD%91%E7%BB%9CAPI"><span class="nav-text">4.3网络API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1%E4%BC%AF%E5%85%8B%E5%88%A9%E5%85%BC%E5%AE%B9%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="nav-text">4.3.1伯克利兼容套接字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-text">4.3.2网络的服务器和客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3WinINet-API"><span class="nav-text">4.3.3WinINet API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4%E8%B7%9F%E8%B8%AA%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E8%BF%90%E8%A1%8C"><span class="nav-text">4.4跟踪恶意代码的运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2%E8%BF%9B%E7%A8%8B"><span class="nav-text">4.4.2进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3%E7%BA%BF%E7%A8%8B"><span class="nav-text">4.4.3线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-4%E4%BD%BF%E7%94%A8%E4%BA%92%E6%96%A5%E9%87%8F%E7%9A%84%E8%BF%9B%E7%A8%8B%E9%97%B4%E5%8D%8F%E4%BD%9C"><span class="nav-text">4.4.4使用互斥量的进程间协作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-5%E6%9C%8D%E5%8A%A1"><span class="nav-text">4.4.5服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-6%E7%BB%84%E4%BB%B6%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="nav-text">4.4.6组件对象模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-7%E5%BC%82%E5%B8%B8%EF%BC%9A%E5%BD%93%E4%BA%8B%E6%83%85%E5%87%BA%E9%94%99%E6%97%B6"><span class="nav-text">4.4.7异常：当事情出错时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5%E5%86%85%E6%A0%B8"><span class="nav-text">4.5内核</span></a></li></ol></li></ol></div>
             
 
           </div>

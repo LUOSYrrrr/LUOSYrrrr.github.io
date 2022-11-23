@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="鉴别机制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="鉴别机制">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="鉴别机制">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135119908.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115114382.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115135862.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115325473.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115438611.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115506780.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135550954.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135927153.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102140946702.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102140959869.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141118392.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141311816.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141613329.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141755123.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102142518081.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102143024946.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102143116097.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102143316183.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102144547257.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102144639662.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145231682.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145258103.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145354322.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145636819.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145717378.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145930703.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150050459.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150216828.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150414474.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150641546.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150816562.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151530880.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151544377.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151614660.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151808028.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152025913.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152109054.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152123741.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152932021.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102314203.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102508336.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102632509.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102819879.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107103850978.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107104528582.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107105639037.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107105823727.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107110104365.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107111558061.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107112113645.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107112353237.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107113433573.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107113828944.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107114340115.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107115446539.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109135533057.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109135715178.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140012507.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140256397.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140506532.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140548914.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140630696.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140847640.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141005966.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141041572.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141322518.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141613218.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141822016.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109142045368.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109142304585.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109142453657.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109143108581.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145032092.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145251771.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145446077.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145832045.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145933752.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150448817.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150454862.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150647296.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150727099.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150756923.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150802943.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109151005524.png">
+<meta property="article:published_time" content="2022-10-31T03:49:53.000Z">
+<meta property="article:modified_time" content="2022-11-23T06:53:35.046Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135119908.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/10/31/网络安全技术/鉴别机制/"/>
+
+
+
+
+
+  <title>鉴别机制 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">鉴别机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-31T11:49:53+08:00">
+                2022-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  鉴别机制
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135119908.png" alt="image-20221102135119908" style="zoom:50%;">
+
+<h1 id="5-1鉴别的需求和目的"><a href="#5-1鉴别的需求和目的" class="headerlink" title="5.1鉴别的需求和目的"></a>5.1鉴别的需求和目的</h1><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115114382.png" alt="image-20221031115114382" style="zoom:80%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115135862.png" alt="image-20221031115135862" style="zoom: 67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115325473.png" alt="image-20221031115325473" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115438611.png" alt="image-20221031115438611" style="zoom:67%;">
+
+<h1 id="5-2实体鉴别系统的组成"><a href="#5-2实体鉴别系统的组成" class="headerlink" title="5.2实体鉴别系统的组成"></a>5.2实体鉴别系统的组成</h1><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221031115506780.png" alt="image-20221031115506780" style="zoom:67%;">
+
+<p>对身份鉴别系统的要求</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135550954.png" alt="image-20221102135550954" style="zoom:67%;">
+
+<p>网络环境下对身份鉴别的需求</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102135927153.png" alt="image-20221102135927153" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102140946702.png" alt="image-20221102140946702" style="zoom:50%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102140959869.png" alt="image-20221102140959869" style="zoom:50%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141118392.png" alt="image-20221102141118392" style="zoom:50%;">
+
+<p>蓝色：被动攻击</p>
+<p>绿色：主动攻击</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141311816.png" alt="image-20221102141311816" style="zoom:67%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141613329.png" alt="image-20221102141613329"></p>
+<h1 id="5-3鉴别技术分类：按保护等级分类"><a href="#5-3鉴别技术分类：按保护等级分类" class="headerlink" title="5.3鉴别技术分类：按保护等级分类"></a>5.3鉴别技术分类：按保护等级分类</h1><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102141755123.png" alt="image-20221102141755123"></p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102142518081.png" alt="image-20221102142518081" style="zoom:67%;">
+
+<p>可辨别标识符：实体用可辨别标识符来表示，要求可辨别标识符唯一</p>
+<p>申请AI：一些信息，比如口令、password</p>
+<p>数字指纹：把前三个加起来做hash，一般不会重复</p>
+<p>所有信息明文发送</p>
+<p>数据源鉴别：鉴别数据来自于某个申请者，靠数字指纹实现</p>
+<p>实体鉴别：确认身份</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102143024946.png" alt="image-20221102143024946"></p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102143116097.png" alt="image-20221102143116097" style="zoom: 67%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102143316183.png" alt="image-20221102143316183"></p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102144547257.png" alt="image-20221102144547257" style="zoom:80%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102144639662.png" alt="image-20221102144639662"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145231682.png" alt="image-20221102145231682"></p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145258103.png" alt="image-20221102145258103" style="zoom: 67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145354322.png" alt="image-20221102145354322" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145636819.png" alt="image-20221102145636819" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145717378.png" alt="image-20221102145717378" style="zoom:67%;">
+
+<h1 id="5-4鉴别技术分类：按机制的配置分类"><a href="#5-4鉴别技术分类：按机制的配置分类" class="headerlink" title="5.4鉴别技术分类：按机制的配置分类"></a>5.4鉴别技术分类：按机制的配置分类</h1><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102145930703.png" alt="image-20221102145930703" style="zoom:80%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150050459.png" alt="image-20221102150050459" style="zoom:80%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150216828.png" alt="image-20221102150216828" style="zoom:80%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150414474.png" alt="image-20221102150414474" style="zoom:80%;">
+
+
+
+<p>多种方案，区别在于</p>
+<p>鉴别方案设计理念：以较少的交互来完成鉴别，鉴别到底放在第三方还是本地</p>
+<h1 id="5-5鉴别协议攻防"><a href="#5-5鉴别协议攻防" class="headerlink" title="5.5鉴别协议攻防"></a>5.5鉴别协议攻防</h1><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150641546.png" alt="image-20221102150641546" style="zoom:80%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102150816562.png" alt="image-20221102150816562" style="zoom:80%;">
+
+<p>基于时间戳时，会给一定的时间窗口，因为有时延，窗口多大合适？</p>
+<p>网络不稳定确实有很大时延</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151530880.png" alt="image-20221102151530880" style="zoom:80%;">
+
+<p>时间戳</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151544377.png" alt="image-20221102151544377" style="zoom:80%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151614660.png" alt="image-20221102151614660" style="zoom:80%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102151808028.png" alt="image-20221102151808028"></p>
+<h1 id="5-6鉴别机制"><a href="#5-6鉴别机制" class="headerlink" title="5.6鉴别机制"></a>5.6鉴别机制</h1><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152025913.png" alt="image-20221102152025913" style="zoom:80%;">
+
+<h2 id="5-6-1非密码的鉴别机制"><a href="#5-6-1非密码的鉴别机制" class="headerlink" title="5.6.1非密码的鉴别机制"></a>5.6.1非密码的鉴别机制</h2><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152109054.png" alt="image-20221102152109054" style="zoom:80%;">
+
+<p>1.口令机制</p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152123741.png" alt="image-20221102152123741" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221102152932021.png" alt="image-20221102152932021" style="zoom:80%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102314203.png" alt="image-20221107102314203"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102508336.png" alt="image-20221107102508336"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102632509.png" alt="image-20221107102632509"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107102819879.png" alt="image-20221107102819879"></p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107103850978.png" alt="image-20221107103850978" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107104528582.png" alt="image-20221107104528582" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107105639037.png" alt="image-20221107105639037" style="zoom:67%;">
+
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107105823727.png" alt="image-20221107105823727" style="zoom:67%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107110104365.png" alt="image-20221107110104365"></p>
+<img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107111558061.png" alt="image-20221107111558061" style="zoom:67%;">
+
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107112113645.png" alt="image-20221107112113645"></p>
+<p>拿到q’可以重放</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107112353237.png" alt="image-20221107112353237"></p>
+<p>nrv：随机数</p>
+<p>加入随机数就随机不了了</p>
+<h3 id="2-一次性口令机制"><a href="#2-一次性口令机制" class="headerlink" title="2.一次性口令机制"></a>2.一次性口令机制</h3><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107113433573.png" alt="image-20221107113433573"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107113828944.png" alt="image-20221107113828944"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107114340115.png" alt="image-20221107114340115"></p>
+<h3 id="3-基于质询-应答的身份鉴别技术"><a href="#3-基于质询-应答的身份鉴别技术" class="headerlink" title="3.基于质询-应答的身份鉴别技术"></a>3.基于质询-应答的身份鉴别技术</h3><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221107115446539.png" alt="image-20221107115446539"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109135533057.png" alt="image-20221109135533057"></p>
+<p>可防止重放、窃听、危及验证者攻击</p>
+<h3 id="4-基于地址的机制"><a href="#4-基于地址的机制" class="headerlink" title="4.基于地址的机制"></a>4.基于地址的机制</h3><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109135715178.png" alt="image-20221109135715178"></p>
+<p>弱鉴别</p>
+<h3 id="5-基于个人生理特征的机制"><a href="#5-基于个人生理特征的机制" class="headerlink" title="5.基于个人生理特征的机制"></a>5.基于个人生理特征的机制</h3><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140012507.png" alt="image-20221109140012507"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140256397.png" alt="image-20221109140256397"></p>
+<h3 id="6-个人鉴别令牌"><a href="#6-个人鉴别令牌" class="headerlink" title="6.个人鉴别令牌"></a>6.个人鉴别令牌</h3><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140506532.png" alt="image-20221109140506532"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140548914.png" alt="image-20221109140548914"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140630696.png" alt="image-20221109140630696"></p>
+<h2 id="5-6-2零知识证明与身份鉴别技术"><a href="#5-6-2零知识证明与身份鉴别技术" class="headerlink" title="5.6.2零知识证明与身份鉴别技术"></a>5.6.2零知识证明与身份鉴别技术</h2><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109140847640.png" alt="image-20221109140847640"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141005966.png" alt="image-20221109141005966"></p>
+<p>间接证明</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141041572.png" alt="image-20221109141041572"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141322518.png" alt="image-20221109141322518"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141613218.png" alt="image-20221109141613218"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109141822016.png" alt="image-20221109141822016"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109142045368.png" alt="image-20221109142045368"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109142304585.png" alt="image-20221109142304585"></p>
+<p>类似两个单向鉴别拼接起来</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109142453657.png" alt="image-20221109142453657"></p>
+<p>可信第三方：解决了密钥分发问题</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109143108581.png" alt="image-20221109143108581"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145032092.png" alt="image-20221109145032092"></p>
+<p>公开密码不用分发密钥，没有这个问题</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145251771.png" alt="image-20221109145251771"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145446077.png" alt="image-20221109145446077"></p>
+<h2 id="5-6-5采用密码校验函数的机制"><a href="#5-6-5采用密码校验函数的机制" class="headerlink" title="5.6.5采用密码校验函数的机制"></a>5.6.5采用密码校验函数的机制</h2><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145832045.png" alt="image-20221109145832045"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109145933752.png" alt="image-20221109145933752"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150448817.png" alt="image-20221109150448817"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150454862.png" alt="image-20221109150454862"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150647296.png" alt="image-20221109150647296"></p>
+<h1 id="5-7Kerberos鉴别协议"><a href="#5-7Kerberos鉴别协议" class="headerlink" title="5.7Kerberos鉴别协议"></a>5.7Kerberos鉴别协议</h1><p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150727099.png" alt="image-20221109150727099"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150756923.png" alt="image-20221109150756923"></p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109150802943.png" alt="image-20221109150802943"></p>
+<p>有可信第三方参与</p>
+<p><img src="/2022/10/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6/image-20221109151005524.png" alt="image-20221109151005524"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/28/The%20Missing%20Semester%20of%20Your%20CS%20Education/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/11/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E7%AC%AC%E5%8D%81%E5%91%A8/" rel="prev" title="人工智能-第十周">
+                人工智能-第十周 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-1%E9%89%B4%E5%88%AB%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E7%9B%AE%E7%9A%84"><span class="nav-text">5.1鉴别的需求和目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-2%E5%AE%9E%E4%BD%93%E9%89%B4%E5%88%AB%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">5.2实体鉴别系统的组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-3%E9%89%B4%E5%88%AB%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB%EF%BC%9A%E6%8C%89%E4%BF%9D%E6%8A%A4%E7%AD%89%E7%BA%A7%E5%88%86%E7%B1%BB"><span class="nav-text">5.3鉴别技术分类：按保护等级分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-4%E9%89%B4%E5%88%AB%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB%EF%BC%9A%E6%8C%89%E6%9C%BA%E5%88%B6%E7%9A%84%E9%85%8D%E7%BD%AE%E5%88%86%E7%B1%BB"><span class="nav-text">5.4鉴别技术分类：按机制的配置分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-5%E9%89%B4%E5%88%AB%E5%8D%8F%E8%AE%AE%E6%94%BB%E9%98%B2"><span class="nav-text">5.5鉴别协议攻防</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-6%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6"><span class="nav-text">5.6鉴别机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-1%E9%9D%9E%E5%AF%86%E7%A0%81%E7%9A%84%E9%89%B4%E5%88%AB%E6%9C%BA%E5%88%B6"><span class="nav-text">5.6.1非密码的鉴别机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%80%E6%AC%A1%E6%80%A7%E5%8F%A3%E4%BB%A4%E6%9C%BA%E5%88%B6"><span class="nav-text">2.一次性口令机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9F%BA%E4%BA%8E%E8%B4%A8%E8%AF%A2-%E5%BA%94%E7%AD%94%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB%E6%8A%80%E6%9C%AF"><span class="nav-text">3.基于质询-应答的身份鉴别技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%9F%BA%E4%BA%8E%E5%9C%B0%E5%9D%80%E7%9A%84%E6%9C%BA%E5%88%B6"><span class="nav-text">4.基于地址的机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%9F%BA%E4%BA%8E%E4%B8%AA%E4%BA%BA%E7%94%9F%E7%90%86%E7%89%B9%E5%BE%81%E7%9A%84%E6%9C%BA%E5%88%B6"><span class="nav-text">5.基于个人生理特征的机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%B8%AA%E4%BA%BA%E9%89%B4%E5%88%AB%E4%BB%A4%E7%89%8C"><span class="nav-text">6.个人鉴别令牌</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-2%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E%E4%B8%8E%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB%E6%8A%80%E6%9C%AF"><span class="nav-text">5.6.2零知识证明与身份鉴别技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-5%E9%87%87%E7%94%A8%E5%AF%86%E7%A0%81%E6%A0%A1%E9%AA%8C%E5%87%BD%E6%95%B0%E7%9A%84%E6%9C%BA%E5%88%B6"><span class="nav-text">5.6.5采用密码校验函数的机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-7Kerberos%E9%89%B4%E5%88%AB%E5%8D%8F%E8%AE%AE"><span class="nav-text">5.7Kerberos鉴别协议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
