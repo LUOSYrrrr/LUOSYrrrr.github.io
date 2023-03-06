@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Multi-Task Deep Learning for Image Segmentation Using Recursive Approximation Tasks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用递归逼近任务进行图像分割的多任务深度学习-阅读">
+<meta property="og:url" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/index.html">
+<meta property="og:site_name" content="LUOSY&#39;S BLOG">
+<meta property="og:description" content="Multi-Task Deep Learning for Image Segmentation Using Recursive Approximation Tasks">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827185120906.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183622120.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183821395.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183835336.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183858867.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827184222509.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827190645798.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191052551.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191414068.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191443105.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tjaGVuMTc=,size_16,color_FFFFFF,t_70.png">
+<meta property="og:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tjaGVuMTc=,size_16,color_FFFFFF,t_70-16615990602123.png">
+<meta property="article:published_time" content="2022-08-26T10:43:50.000Z">
+<meta property="article:modified_time" content="2022-09-13T02:13:36.000Z">
+<meta property="article:author" content="LUOSY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827185120906.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luosyrrrr.github.io/2022/08/26/论文阅读/使用递归逼近任务进行图像分割的多任务深度学习-阅读/"/>
+
+
+
+
+
+  <title>使用递归逼近任务进行图像分割的多任务深度学习-阅读 | LUOSY'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LUOSY'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Cyber security->AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luosyrrrr.github.io/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LUOSY'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用递归逼近任务进行图像分割的多任务深度学习-阅读</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-08-26T18:43:50+08:00">
+                2022-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">论文阅读</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Multi-Task Deep Learning for Image Segmentation Using Recursive Approximation Tasks
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用递归逼近任务进行图像分割的多任务深度学习"><a href="#使用递归逼近任务进行图像分割的多任务深度学习" class="headerlink" title="使用递归逼近任务进行图像分割的多任务深度学习"></a>使用递归逼近任务进行图像分割的多任务深度学习</h1><p>Multi-Task Deep Learning for Image Segmentation Using Recursive Approximation Tasks</p>
+<span id="more"></span>
+
+<h2 id="1-方法"><a href="#1-方法" class="headerlink" title="1.方法"></a>1.方法</h2><p>在本文中，作者研究了在数据驱动设置中从粗标签中定位准确对象轮廓的问题，特别是对于对比度差的图像或具有复杂边界的对象。</p>
+<p>本文把分割问题看作是一系列递归定义的近似子问题，并不断提高近似精度。子问题是由一个多任务学习框架组成 ，</p>
+<p>包括：</p>
+<p>1）精细分割任务，在一小部分图像中进行像素级地面实况分割；</p>
+<p>2）递归近似任务；</p>
+<p>3）使用稀疏标注训练的其他面向问题的辅助任务，促进专门特征的学习。</p>
+<h2 id="2-多任务学习框架"><a href="#2-多任务学习框架" class="headerlink" title="2.多任务学习框架"></a>2.多任务学习框架</h2><p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827185120906.png" alt="image-20220827185120906"></p>
+<p>本文提出的多任务学习框架如上图所示。多任务学习利用两个或多个连接任务之间共享的信息来更好地处理任务，该框架由多个任务（包括一个分割任务、一个近似任务和额外的辅助任务）和蒙版近似学习的迭代序列组成。</p>
+<blockquote>
+<p>task1 ：是在⾮常少的带有基本准确分割掩码的图像上,训练的分割任务（参⻅图 1 中的 s(1) ）。</p>
+<p>Task 2是预测在学习过程中由标注者或其改进版本(sk(2)， k≥2)给出的粗糙部分掩码(s1(2))的近似任务</p>
+<p>task 3,4,…. 根据⼿头的问题，可以 选择将在稀疏注释上训练的其他辅助任务（任务 3、···任务 T，在图 1 中 未绘制）合并到框架中，以改进特定相关的学习特征。</p>
+</blockquote>
+<p>近似任务在集成所有任务的多任务学习循环中更新，如图 1 所⽰。</p>
+<p>这些任务是联合递归学习的。在每次学习迭代中，分割任务和附加辅助任务的⽬标保持不变，因为这些任务使⽤相同的数据（图像及其标签）进行训 练并尝试拟合相同的概率分布。相⽐之下，近似任务在迭代期间更新，task2区域越来越接近对象边界</p>
+<p>受区域增长方法的启发，每个迭代包括学习近似的训练阶段和一个学习标签进化的推理阶段：</p>
+<p>在训练阶段，任务2从非常粗糙的物体区域 s 1 ( 2 )  开始，每个新的迭代预测一个更大的物体区域 s 2 ( 2 ) ，s 3 ( 2 ) ，⋯，以得到一个与物体轮廓更好的掩模。这是在训练任务1和递归更新过程R的同时进行的。</p>
+<p><strong>好处</strong>:只有⼀⼩部分图像是像素级注释（任务 1），⼤多数图像是粗注释（任务  2、任务 3、··· )，因此注释预算很低。</p>
+<p><strong>多任务</strong>体现在:多任务学习利⽤两个或多个连接任务之间共享的信息来更好地处理任务。在这 项⼯作中开发的框架包括⼀个分割任务、⼀个近似任务和额外的辅助任务（参⻅ 图 1）</p>
+<p>论文中的伪代码如下图所示：</p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183622120.png" alt="image-20220827183622120"></p>
+<p>I:be a set of images</p>
+<p>T:different tasks</p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183821395.png" alt="image-20220827183821395"></p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183835336.png" alt="image-20220827183835336"></p>
+<p><strong>总的损失函数：</strong></p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827183858867.png" alt="image-20220827183858867"></p>
+<h2 id="3-如何获取注释"><a href="#3-如何获取注释" class="headerlink" title="3.如何获取注释"></a>3.如何获取注释</h2><p>第一步提供了地面真实分割掩模的粗略近似 s 1 ( 2 )  ，使用它们作为对象的遮罩的初始近似值。</p>
+<p>第二步中，需要对相对较少的图像收集精细的ground truth segmentation mask s 1 ( 1 )  ，，交互式分割技术可以将可用的初始区域与进一步的手动注释集成在一起。通常需要人工的输入和修正才能得到精确的分割掩模，每张图像的成本要高得多。</p>
+<p>第三步是生成其他粗糙的任务标注，例如下图中的，用粗糙的涂抹将没有明确分离边界的相邻物体之间的连接挑出来。<br><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827184222509.png" alt="image-20220827184222509"></p>
+<p>图 5. 三个不同数据集的注释。在每个⼦图中，顶行显⽰图像，底行包含标签。每列代表⼀个任务。请注意，为 不同任务标记的图像（即不同列中的图像）可以在整个训练集中以不同的⽅式分布。通常，对于任务 1，只有 ⼀⼩部分训练集被强标记（参⻅第⼀列），⽽⼤多数图像被弱标记（参⻅第⼆列和第三列）。在⼦图 (a)  中，红⾊表⽰⽓泡，绿⾊表⽰冰晶。</p>
+<h2 id="4-网络结构"><a href="#4-网络结构" class="headerlink" title="4.网络结构"></a>4.网络结构</h2><p>本文提出的网络结构受U-Net启发，具有两个输出的多任务网络的架构（如图所示为两个任务）。</p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827190645798.png" alt="image-20220827190645798"></p>
+<p>（a）网络的灰色块被任务共享，右边的多任务块（蓝色部分）用于学习任务特定的特征。水平的灰色箭头表示通过连接从收缩路径到膨胀路径的长跳跃连接。紫色线和橙色线分别代表分割任务和近似任务的路径。</p>
+<p>（b）多任务块。其中 y l + 1 和 x l + 1 分别表示网络第 l层中递归任务和分割任务的输出，这两条路径贯穿多任务块。在多任务块中，两条路径的第一层共享相同的权重（灰色块），对于分割路径，在灰色块后插入一个额外的残差单元（棕色块）。</p>
+<h2 id="5-实验数据"><a href="#5-实验数据" class="headerlink" title="5.实验数据"></a>5.实验数据</h2><p>本文采用了强标签和弱标签的多任务学习方法。共在三个数据集中进行了试验，冰激凌的扫描电镜(SEM)图像、gland的h&amp;e染色图像数据集，和胎儿头部的超声图像数据集。对于任务1，只有一小部分训练集被强标记，而大多数图像被弱标记。</p>
+<h2 id="6-实验结果"><a href="#6-实验结果" class="headerlink" title="6.实验结果"></a>6.实验结果</h2><p>为了处理相关的分割问题，我们采⽤了使⽤强标签（SL）和弱标 签（WL）的多任务学习⽅法。</p>
+<p>三个数据集的SL和WL的⽐率</p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191052551.png" alt="image-20220827191052551"></p>
+<p>A.冰淇淋的 SEM 图像:⾷品材料不同成分的分割是分析其微观结构的重要步骤。</p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191414068.png" alt="image-20220827191414068"></p>
+<p>SEM图像测试集上分割结果的DICE分数。 WL基线在近似掩码上进行训练（没有 递归近似） ， SL基线在10%可⽤的精细分割掩码上进行训练</p>
+<p><img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/image-20220827191443105.png" alt="image-20220827191443105"></p>
+<p>B.H&amp;E数据集的结果</p>
+<img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tjaGVuMTc=,size_16,color_FFFFFF,t_70.png" alt="img" style="zoom:67%;">
+
+<p>C.婴儿超声数据集的结果</p>
+<img src="/2022/08/26/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tjaGVuMTc=,size_16,color_FFFFFF,t_70-16615990602123.png" alt="Dice score of the three compared methods on ultrasound images split into a validation set and a test set." style="zoom:67%;">
+
+<h2 id="7-不足"><a href="#7-不足" class="headerlink" title="7.不足"></a>7.不足</h2><p>该方法依赖于2% - 10%的强标签以及粗糙的注释，在测试集中能够达到接近于使用准确的强标签训练的模型的精度。</p>
+<p>该方法的一个缺点是需要使用更大的网络来处理不同的任务，因此需要更多的计算资源，包括GPU内存和训练时间。但这种多任务⽅法节省的⼿动注释⼯作超过了额外的计算成本。</p>
+<p>将来，我们希望将所提出的框架扩展到由医学成像等产⽣的体 积图像分割，其中 3D 数据的逐像素注释更具挑战性，需要专家来 完成。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/08/22/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%A3%E8%85%94%E7%99%BD%E6%96%91%E4%B8%8E%E6%89%81%E5%B9%B3%E8%8B%94%E8%97%93%E7%9A%84/" rel="next" title="基于多任务学习的口腔白斑与扁平苔藓的分割与识别">
+                <i class="fa fa-chevron-left"></i> 基于多任务学习的口腔白斑与扁平苔藓的分割与识别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/09/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Multimix%E4%BB%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9A%84%E5%B0%91%E9%87%8F%E7%9B%91%E7%9D%A3%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-%E9%98%85%E8%AF%BB/" rel="prev" title="Multimix从医学图像中进行的少量监督可解释的多任务学习-阅读">
+                Multimix从医学图像中进行的少量监督可解释的多任务学习-阅读 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E9%80%BC%E8%BF%91%E4%BB%BB%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-text">使用递归逼近任务进行图像分割的多任务深度学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%B9%E6%B3%95"><span class="nav-text">1.方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="nav-text">2.多任务学习框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%B3%A8%E9%87%8A"><span class="nav-text">3.如何获取注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-text">4.网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE"><span class="nav-text">5.实验数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-text">6.实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E4%B8%8D%E8%B6%B3"><span class="nav-text">7.不足</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LUOSY</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
