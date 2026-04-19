@@ -8,7 +8,10 @@
       "Read(//tmp/academicpages/**)",
       "Read(//tmp/academicpages/_pages/**)",
       "WebFetch(domain:luosyrrrr.github.io)",
-      "Bash(curl -s https://luosyrrrr.github.io/)"
+      "Bash(curl -s https://luosyrrrr.github.io/)",
+      "Read(//tmp/**)",
+      "Bash(grep -oP '<script[^>]*>[^<]{0,200}' /tmp/live.html)",
+      "Bash(awk 'BEGIN{RS=\"\"; ORS=\"\"} match\\($0, /<script> \\\\/\\\\* IMPORTANT.*?<\\\\/script>/\\) { print substr\\($0, RSTART, RLENGTH\\) }' /tmp/live.html)"
     ],
     "additionalDirectories": [
       "/home/siyuanluo/code/LUOSYrrrr.github.io",
