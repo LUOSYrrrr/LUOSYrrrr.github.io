@@ -1,5 +1,31 @@
 {% include base_path %}
 
+<!-- ==============================================================
+     Bilingual (EN / ZH) early-init — runs in <head> before body
+     renders, so the correct language class is on <html> from the
+     first paint. CSS hides the inactive .i18n-* block immediately.
+     No JS comments inside <script>: Jekyll's compress_html strips
+     newlines and can turn `//` lines into code-eating comments.
+     ============================================================== -->
+<style>
+  html.lang-en .i18n-zh, html.lang-zh .i18n-en { display: none; }
+  #lang-toggle a { cursor: pointer; }
+  #lang-toggle #lang-icon { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.02em; }
+</style>
+
+<script>
+  (function () {
+    var KEY = 'site-lang';
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    var lang = saved ||
+      ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
+    var root = document.documentElement;
+    root.classList.add('lang-' + lang);
+    root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  })();
+</script>
+
 <!-- start custom head snippets -->
 
 <!-- Support for Academicons -->

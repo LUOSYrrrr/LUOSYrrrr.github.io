@@ -1,27 +1,14 @@
 {% include base_path %}
 
 {% comment %}
-  Bilingual toggle: CSS + JS are inlined here so they load on every page
-  (masthead.html is included by every layout).
+  The <html> lang-* class is applied by the early-init script in
+  _includes/head/custom.html. Here we only render the masthead HTML
+  and the click-toggle behaviour.
 
-  Mechanics:
-    - <html> gets either `lang-en` or `lang-zh`.
-    - Elements with `data-en` + `data-zh` attrs have their textContent swapped.
-    - Block-level content can use class `i18n-en` / `i18n-zh`; the inactive
-      one is hidden by CSS. See _pages/about.md for usage.
-    - Preference is persisted in localStorage under `site-lang`.
-    - Default is English, unless the browser's primary language is zh-*.
+  Reminder: inside <script> we only use /* */ block comments that do
+  NOT themselves contain `/*` or `*/`. Jekyll's compress_html removes
+  newlines, which turns `//` line comments into script-eating comments.
 {% endcomment %}
-
-<style>
-  html.lang-en .i18n-zh, html.lang-zh .i18n-en { display: none; }
-  #lang-toggle a { cursor: pointer; }
-  #lang-toggle #lang-icon {
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.02em;
-  }
-</style>
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
@@ -64,38 +51,35 @@
     var KEY = 'site-lang';
     var root = document.documentElement;
 
-    function apply(lang) {
+    function setLang(lang) {
       root.classList.remove('lang-en', 'lang-zh');
       root.classList.add('lang-' + lang);
       root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
-
       var nodes = document.querySelectorAll('[data-en][data-zh]');
       for (var i = 0; i < nodes.length; i++) {
         var t = nodes[i].getAttribute('data-' + lang);
         if (t !== null) nodes[i].textContent = t;
       }
-
       var icon = document.getElementById('lang-icon');
       if (icon) icon.textContent = lang === 'zh' ? 'EN' : '中';
     }
 
-    var saved = null;
-    try { saved = localStorage.getItem(KEY); } catch (e) {}
-    var initial = saved ||
-      ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
-    apply(initial);
+    function syncToCurrent() {
+      setLang(root.classList.contains('lang-zh') ? 'zh' : 'en');
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncToCurrent);
+    } else {
+      syncToCurrent();
+    }
 
     document.addEventListener('click', function (e) {
-      var t = e.target;
-      while (t && t !== document) {
-        if (t.id === 'lang-toggle' || (t.parentNode && t.parentNode.id === 'lang-toggle')) break;
-        t = t.parentNode;
-      }
-      if (!t || t === document) return;
+      var btn = e.target && e.target.closest ? e.target.closest('#lang-toggle') : null;
+      if (!btn) return;
       e.preventDefault();
       var next = root.classList.contains('lang-zh') ? 'en' : 'zh';
       try { localStorage.setItem(KEY, next); } catch (err) {}
-      apply(next);
+      setLang(next);
     });
   })();
 </script>
