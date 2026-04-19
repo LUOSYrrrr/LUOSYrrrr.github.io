@@ -1,0 +1,104 @@
+{% include base_path %}
+
+{% comment %}
+  Bilingual toggle: CSS + JS are inlined here so they load on every page
+  (masthead.html is included by every layout).
+
+  Mechanics:
+    - <html> gets either `lang-en` or `lang-zh`.
+    - Elements with `data-en` + `data-zh` attrs have their textContent swapped.
+    - Block-level content can use class `i18n-en` / `i18n-zh`; the inactive
+      one is hidden by CSS. See _pages/about.md for usage.
+    - Preference is persisted in localStorage under `site-lang`.
+    - Default is English, unless the browser's primary language is zh-*.
+{% endcomment %}
+
+<style>
+  html.lang-en .i18n-zh, html.lang-zh .i18n-en { display: none; }
+  #lang-toggle a { cursor: pointer; }
+  #lang-toggle #lang-icon {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+</style>
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
+            <a href="{{ base_path }}/"
+               data-en="{{ site.title }}"
+               data-zh="{{ site.title_zh | default: site.title }}">{{ site.title }}</a>
+          </li>
+          {% for link in site.data.navigation.main %}
+            {% if link.url contains 'http' %}
+              {% assign domain = '' %}
+            {% else %}
+              {% assign domain = base_path %}
+            {% endif %}
+            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
+              <a href="{{ domain }}{{ link.url }}"
+                 data-en="{{ link.title }}"
+                 data-zh="{{ link.title_zh | default: link.title }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+          <li id="lang-toggle" class="masthead__menu-item persist tail">
+            <a role="button" title="Switch language / 切换语言"><span id="lang-icon">中</span></a>
+          </li>
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var KEY = 'site-lang';
+    var root = document.documentElement;
+
+    function apply(lang) {
+      root.classList.remove('lang-en', 'lang-zh');
+      root.classList.add('lang-' + lang);
+      root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+
+      // Swap text for inline labels (nav items, brand title, etc.)
+      var nodes = document.querySelectorAll('[data-en][data-zh]');
+      for (var i = 0; i < nodes.length; i++) {
+        var t = nodes[i].getAttribute('data-' + lang);
+        if (t !== null) nodes[i].textContent = t;
+      }
+
+      // Toggle button shows the OTHER language's marker
+      var icon = document.getElementById('lang-icon');
+      if (icon) icon.textContent = lang === 'zh' ? 'EN' : '中';
+    }
+
+    // Initial language: saved preference > browser locale > English
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    var initial = saved ||
+      ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
+    apply(initial);
+
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      while (t && t !== document) {
+        if (t.id === 'lang-toggle' || (t.parentNode && t.parentNode.id === 'lang-toggle')) break;
+        t = t.parentNode;
+      }
+      if (!t || t === document) return;
+      e.preventDefault();
+      var next = root.classList.contains('lang-zh') ? 'en' : 'zh';
+      try { localStorage.setItem(KEY, next); } catch (err) {}
+      apply(next);
+    });
+  })();
+</script>

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git clone *)",
+      "Read(//tmp/academicpages/**)",
+      "Read(//tmp/academicpages/_pages/**)"
+    ],
+    "additionalDirectories": [
+      "/home/siyuanluo/code/LUOSYrrrr.github.io",
+      "/home/siyuanluo/code/LUOSYrrrr.github.io/_posts",
+      "/home/siyuanluo/code/LUOSYrrrr.github.io/_portfolio"
+    ]
+  }
+}
