@@ -6,7 +6,9 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(git clone *)",
       "Read(//tmp/academicpages/**)",
-      "Read(//tmp/academicpages/_pages/**)"
+      "Read(//tmp/academicpages/_pages/**)",
+      "WebFetch(domain:luosyrrrr.github.io)",
+      "Bash(curl -s https://luosyrrrr.github.io/)"
     ],
     "additionalDirectories": [
       "/home/siyuanluo/code/LUOSYrrrr.github.io",

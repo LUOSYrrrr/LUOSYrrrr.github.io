@@ -60,6 +60,9 @@
 </div>
 
 <script>
+  /* IMPORTANT: no `//` line comments in this script — Jekyll's compress_html
+     strips newlines, which would turn everything after a `//` into a single
+     trailing line comment and silently break the whole script. Use /* */ only. */
   (function () {
     var KEY = 'site-lang';
     var root = document.documentElement;
@@ -69,19 +72,16 @@
       root.classList.add('lang-' + lang);
       root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
 
-      // Swap text for inline labels (nav items, brand title, etc.)
       var nodes = document.querySelectorAll('[data-en][data-zh]');
       for (var i = 0; i < nodes.length; i++) {
         var t = nodes[i].getAttribute('data-' + lang);
         if (t !== null) nodes[i].textContent = t;
       }
 
-      // Toggle button shows the OTHER language's marker
       var icon = document.getElementById('lang-icon');
       if (icon) icon.textContent = lang === 'zh' ? 'EN' : '中';
     }
 
-    // Initial language: saved preference > browser locale > English
     var saved = null;
     try { saved = localStorage.getItem(KEY); } catch (e) {}
     var initial = saved ||
