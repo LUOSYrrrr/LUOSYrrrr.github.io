@@ -7,104 +7,130 @@ redirect_from:
   - /about.html
 ---
 
-<!--
-  Bilingual home page.
-  - Content lives in two parallel blocks: .i18n-en and .i18n-zh.
-  - The masthead toggle (top-right) switches which one is visible.
-  - CSS/JS for the toggle is inlined in _includes/masthead.html.
-  - Each block opens with <div ... markdown="1"> so kramdown still parses Markdown inside.
--->
-
 <div class="i18n-en" markdown="1">
 
-I'm a second-year Master's student at the [University of Melbourne](https://www.unimelb.edu.au), advised by Dr. Ting Dang. My research is on **class-incremental learning for audio** — how a model can absorb new sound classes over time without re-training from scratch or forgetting what it already knew.
+<section class="home-hero">
+  <p class="home-eyebrow">Robot Learning · VLA / WAM · Continual Learning</p>
+  <h1>From robot data to real-world deployment.</h1>
+  <p class="home-lead">I'm Siyuan Luo, a Master of Software Engineering student at the University of Melbourne. I build embodied-AI systems across data collection, model training, policy serving, and real-robot execution - recently π₀.₅ on Franka and whole-body world-action models on Unitree G1.</p>
+  <div class="home-actions">
+    <a class="btn btn--primary" href="/portfolio/">Explore projects</a>
+    <a class="btn btn--inverse" href="/resume.pdf">Download CV</a>
+    <a class="btn btn--inverse" href="https://github.com/LUOSYrrrr">GitHub</a>
+  </div>
+</section>
 
-I came into machine learning from a cybersecurity background at Sichuan University; that shaped how I think about systems — careful with assumptions, comfortable going low-level. I'm currently pushing toward **embodied AI**, aiming for an algorithm research internship in mid-2026. Along the way I've also shipped production AI / full-stack systems across two internships in Beijing.
+## Current focus
 
-## News
+<div class="focus-grid">
+  <article class="focus-card">
+    <h3>Whole-Body WAM</h3>
+    <p>Extending FastWAM from tabletop manipulation to whole-body loco-manipulation on Unitree G1.</p>
+    <a href="/portfolio/0-whole-body-wam/">Project details →</a>
+  </article>
+  <article class="focus-card">
+    <h3>π₀.₅ on Franka</h3>
+    <p>An end-to-end VLA pipeline spanning DROID-style data, LeRobot, full fine-tuning, serving, and real-robot execution.</p>
+    <a href="/portfolio/1-pi05-franka/">Project details →</a>
+  </article>
+  <article class="focus-card">
+    <h3>Audio-L3A</h3>
+    <p>Closed-form audio class-incremental learning that approaches the offline upper bound at a fraction of the training cost.</p>
+    <a href="/portfolio/2-audio-l3a/">Project details →</a>
+  </article>
+</div>
 
-* **2026-04** &nbsp; Embodied AI Sprint is running. M0 environment (Isaac Sim 4.5.0, Isaac Lab 2.x, PyTorch 2.5.1 on CUDA 12.4) is up; next milestone is Franka Reach RL.
-* **2026-03** &nbsp; Wrapped up AI-application internship at **KNQ Technology** — the table-tennis AI commentary system I built went live end-to-end.
-* **2026-02** &nbsp; **NanoMemAgent** released — a modular agent framework with an L1–L5 layered memory stack.
-* **2026-Q1** &nbsp; Audio-L3A feature-caching pipeline running on Melbourne's Spartan HPC (SLURM, A100).
-* **2025-11** &nbsp; Finished **PocketLLM** — a 0.2B MoE decoder trained from scratch on a single GPU, aligned through SFT + DPO / PPO / GRPO.
-* **2025-07** &nbsp; Finished full-stack internship at **SoundAI Technology** — iOS + Java backend for a headset real-time translation product.
-* **2024-07** &nbsp; Started M.Sc. Software Engineering at the University of Melbourne.
-* **2024-06** &nbsp; Graduated B.Eng. in Cyberspace Security from Sichuan University.
+## Latest
 
-## Current research
-
-**Audio-L3A — analytic class-incremental learning for audio.**
-I'm adapting the L3A framework (analytic, RLS-style closed-form learning) from vision to audio CIL. The pipeline uses a frozen CNN14 (PANNs) backbone to cache 2049-dim bias-augmented features; a Weighted Analytic Classifier (WAC) accumulates `A` and `C` matrices and solves classification in closed form — no gradient descent, no rehearsal buffer. Evaluated on AudioSet (50 classes, 30 base + 5 per incremental step). Training runs on Melbourne's Spartan HPC.
-
-_Paper and code — coming soon._
+<ul class="timeline-list">
+  <li><strong>2026-08</strong> - Built a Kubernetes-based remote review workbench for multi-source whole-body robot datasets.</li>
+  <li><strong>2026-05</strong> - Joined the Xiong'an Institute of Artificial Intelligence as an algorithm intern, working on Whole-Body WAM for Unitree G1.</li>
+  <li><strong>2026-05</strong> - Audio-L3A reached <strong>45.16% mAP</strong> on five-phase AudioSet-50, 2.65 points above the strongest CIL baseline.</li>
+  <li><strong>2026-04</strong> - Completed the π₀.₅ training-to-deployment pipeline for Franka flexible manipulation.</li>
+  <li><strong>2026-01</strong> - Completed an AI application internship at KNQ Technology, delivering an end-to-end table-tennis commentary system.</li>
+</ul>
 
 ## Experience
 
-**AI Application Engineer, Intern.** &nbsp; [KNQ Technology (麒纪科技), Beijing] &nbsp; _2026.01 – 2026.03_
-<br/>
-Built an end-to-end AI commentary system for table-tennis matches in Python + FastAPI: **video → OCR → LLM script generation → TTS → merged video**, with RTMP live-stream support. Designed pre-match narrative Agents that fuse player profiles and historical head-to-head data through incremental context injection; wrote a TTS pronunciation-correction module and real-time memory tracking to keep commentary coherent and non-repetitive. Kept an in-match action-recognition Agent interface decoupled from athlete-ID so the live decision loop can plug in later.
+**Algorithm Intern, Xiong'an Institute of Artificial Intelligence** · _2026.05 - 2026.08_<br>
+Working on FastWAM-based whole-body loco-manipulation for Unitree G1: continuous 72-D physical actions, joint video-action flow matching, multi-source data alignment, distributed training, VR teleoperation, and demonstration-data quality control.
 
-**Full-stack Engineer, Intern.** &nbsp; [SoundAI Technology (声智科技), Beijing] &nbsp; _2025.06 – 2025.07_
-<br/>
-Shipped iOS client + Java backend for a headset-based real-time translation product — closed the loop from **in-ear audio capture → live translation → in-app display**. Designed the membership-tier permission system gating real-time translation, transcription and history. Backend: Spring Boot + MySQL for auth, membership state and API gating; WebSocket for low-latency voice streaming and translation-result return.
+**AI Application Engineer Intern, KNQ Technology** · _2025.11 - 2026.01_<br>
+Built a real-time table-tennis commentary pipeline in Python and FastAPI: video input → OCR → LLM generation → TTS → video/RTMP output. Added structured match memory, pronunciation correction, commentary modes, and a pre-match narrative agent.
 
 ## Education
 
-**M.Sc. Software Engineering**, University of Melbourne &nbsp; _2024.07 – present_
-<br/>Advisor: Dr. Ting Dang. Research in audio class-incremental learning.
+**Master of Software Engineering**, University of Melbourne · _2024.07 - present_<br>
+Supervised by Dr. Ting Dang. Research in audio class-incremental learning.
 
-**B.Eng. Cyberspace Security**, Sichuan University &nbsp; _2020.09 – 2024.06_
+**Bachelor of Engineering in Cyberspace Security**, Sichuan University · _2020.09 - 2024.06_
 
 ## Get in touch
 
-Email <luosylois@gmail.com> &nbsp;·&nbsp; GitHub [@LUOSYrrrr](https://github.com/LUOSYrrrr) &nbsp;·&nbsp; [CV (PDF)](/resume.pdf)
+Email <luosylois@gmail.com> · GitHub [@LUOSYrrrr](https://github.com/LUOSYrrrr) · [CV (PDF)](/resume.pdf)
 
 </div>
 
 <div class="i18n-zh" markdown="1">
 
-我是[墨尔本大学](https://www.unimelb.edu.au)软件工程硕士二年级学生，导师是 Dr. Ting Dang。研究方向是**音频的类增量学习**——让模型随时间吸收新的声音类别，既不用从头训练、也不遗忘已经学过的旧类。
+<section class="home-hero">
+  <p class="home-eyebrow">机器人学习 · VLA / WAM · 持续学习</p>
+  <h1>把机器人学习从数据做到真机。</h1>
+  <p class="home-lead">我是骆思缘，墨尔本大学软件工程硕士生。我关注具身智能系统的完整链路：示范数据采集、模型训练、策略服务与真机执行。近期工作包括 Franka 上的 π₀.₅，以及面向 Unitree G1 的全身 World-Action Model。</p>
+  <div class="home-actions">
+    <a class="btn btn--primary" href="/portfolio/">查看项目</a>
+    <a class="btn btn--inverse" href="/resume.pdf">下载简历</a>
+    <a class="btn btn--inverse" href="https://github.com/LUOSYrrrr">GitHub</a>
+  </div>
+</section>
 
-我本科在四川大学读网络空间安全，这段经历让我习惯**从系统视角看问题**：对假设保持谨慎，愿意往底层钻。目前我正把研究重心推向**具身智能（embodied AI）**，目标是 2026 年中的算法研究实习。研究之外，我也在北京做过两段偏工程的实习——把 AI 能力落地成产品。
+## 当前重点
 
-## 近况
+<div class="focus-grid">
+  <article class="focus-card">
+    <h3>Whole-Body WAM</h3>
+    <p>将 FastWAM 从桌面机械臂任务扩展到 Unitree G1 全身移动操作。</p>
+    <a href="/portfolio/0-whole-body-wam/">项目详情 →</a>
+  </article>
+  <article class="focus-card">
+    <h3>Franka 上的 π₀.₅</h3>
+    <p>覆盖 DROID 风格数采、LeRobot 数据、全量微调、策略服务与真机执行的 VLA 全链路。</p>
+    <a href="/portfolio/1-pi05-franka/">项目详情 →</a>
+  </article>
+  <article class="focus-card">
+    <h3>Audio-L3A</h3>
+    <p>面向音频类增量学习的闭式解方法，以更低训练成本逼近离线训练上界。</p>
+    <a href="/portfolio/2-audio-l3a/">项目详情 →</a>
+  </article>
+</div>
 
-* **2026-04** &nbsp; 具身智能 Sprint 启动。M0 环境（Isaac Sim 4.5.0、Isaac Lab 2.x、PyTorch 2.5.1 + CUDA 12.4）已跑通，下一里程碑是 Franka Reach RL。
-* **2026-03** &nbsp; 在 **麒纪科技** 的 AI 应用开发实习结束——乒乓球赛事 AI 解说系统端到端跑通。
-* **2026-02** &nbsp; **NanoMemAgent** 上线——模块化 Agent 执行框架，内置 L1–L5 分层记忆栈。
-* **2026-Q1** &nbsp; Audio-L3A 特征缓存流水线在墨大 Spartan HPC（SLURM、A100）上运行。
-* **2025-11** &nbsp; 完成 **PocketLLM**——单卡从零训练的 0.2B MoE Decoder 模型，走完 SFT + DPO / PPO / GRPO 全链路。
-* **2025-07** &nbsp; **声智科技** 全栈开发实习结束——耳机端实时翻译产品的 iOS 客户端 + Java 后端。
-* **2024-07** &nbsp; 入学墨尔本大学软件工程硕士。
-* **2024-06** &nbsp; 四川大学网络空间安全学士毕业。
+## 最新进展
 
-## 正在做的研究
+<ul class="timeline-list">
+  <li><strong>2026-08</strong> - 完成面向多源全身机器人数据的 Kubernetes 远程质检与人工审核工作台。</li>
+  <li><strong>2026-05</strong> - 加入雄安人工智能研究院担任算法实习生，参与 Unitree G1 Whole-Body WAM。</li>
+  <li><strong>2026-05</strong> - Audio-L3A 在五阶段 AudioSet-50 上达到 <strong>45.16% mAP</strong>，领先最强 CIL 基线 2.65 个百分点。</li>
+  <li><strong>2026-04</strong> - 打通 Franka 柔性操作场景下 π₀.₅ 从训练到真机部署的完整链路。</li>
+  <li><strong>2026-01</strong> - 完成麒纪科技 AI 应用开发实习，交付乒乓球赛事 AI 实时解说系统。</li>
+</ul>
 
-**Audio-L3A —— 音频场景下的解析式类增量学习。**
-我在把 L3A 框架（解析式、RLS 闭式解）从视觉迁移到音频 CIL。Pipeline 用 frozen CNN14（PANNs）backbone 缓存 2049 维带偏置增广的特征；加权解析分类器（WAC）累积 `A`、`C` 矩阵做闭式解——不走梯度下降，也不依赖重放缓冲。数据集是 AudioSet（50 类，30 基类 + 每阶段 5 类），训练跑在墨大 Spartan HPC 上。
+## 工作经历
 
-_论文和代码将陆续公开。_
+**雄安人工智能研究院，算法实习生** · _2026.05 - 2026.08_<br>
+参与基于 FastWAM 的 Unitree G1 全身移动操作研究，涉及 72 维连续物理动作、视频-动作联合 Flow Matching、多源数据统一、分布式训练、VR 遥操作和示范数据质检。
 
-## 实习经历
-
-**AI 应用开发工程师（实习）。** &nbsp; 北京麒纪科技有限公司 &nbsp; _2026.01 – 2026.03_
-<br/>
-用 Python + FastAPI 从零搭了一个乒乓球赛事 AI 解说系统，打通 **视频输入 → OCR 识别 → LLM 生成 → TTS 合成 → 视频融合**，支持 RTMP 直播流实时处理。设计了预赛备稿 Agent——融合球员档案、历史交手数据，用增量上下文融合机制把备稿注入解说生成；写了 TTS 读音修正模块和实时记忆追踪，保证解说连贯无重复。还预留了赛中动作识别 Agent 接口，与运动员识别模块解耦，方便后续接入直播实时决策。
-
-**全栈开发工程师（实习）。** &nbsp; 北京声智科技有限公司 &nbsp; _2025.06 – 2025.07_
-<br/>
-负责 iOS 客户端 + Java 后端的核心功能开发，打通 **耳机语音采集 → 实时翻译 → App 展示** 的完整链路。设计并实现了会员等级与权限体系，控制实时翻译、语音转写、历史记录等能力按会员等级动态开放。后端基于 Spring Boot + MySQL 做用户身份、会员状态与 API 鉴权，支撑高频语音请求；WebSocket 实时语音服务负责语音流的低延迟传输与翻译结果回传。
+**北京麒纪科技，AI 应用开发工程师（实习）** · _2025.11 - 2026.01_<br>
+使用 Python + FastAPI 打通视频输入 → OCR → LLM 生成 → TTS → 视频/RTMP 输出的实时解说链路，并实现赛事记忆、读音修正、多档解说模式和预赛备稿 Agent。
 
 ## 教育背景
 
-**墨尔本大学，软件工程硕士** &nbsp; _2024.07 – 至今_
-<br/>导师：Dr. Ting Dang。研究方向：音频类增量学习。
+**墨尔本大学，软件工程硕士** · _2024.07 - 至今_<br>
+导师：Dr. Ting Dang。研究方向：音频类增量学习。
 
-**四川大学，网络空间安全学士** &nbsp; _2020.09 – 2024.06_
+**四川大学，网络空间安全学士** · _2020.09 - 2024.06_
 
 ## 联系方式
 
-邮箱 <luosylois@gmail.com> &nbsp;·&nbsp; GitHub [@LUOSYrrrr](https://github.com/LUOSYrrrr) &nbsp;·&nbsp; [简历（PDF）](/resume.pdf)
+邮箱 <luosylois@gmail.com> · GitHub [@LUOSYrrrr](https://github.com/LUOSYrrrr) · [简历（PDF）](/resume.pdf)
 
 </div>

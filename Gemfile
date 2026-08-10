@@ -11,3 +11,6 @@ end
 
 gem 'github-pages'
 gem 'connection_pool', '2.5.0'
+
+# macOS still ships Ruby 2.6; Nokogiri 1.14+ requires Ruby 2.7.
+gem 'nokogiri', '~> 1.13.10'

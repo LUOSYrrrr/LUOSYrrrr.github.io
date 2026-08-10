@@ -15,7 +15,7 @@ title                    : "Siyuan Luo"
 title_zh                 : "骆思缘"           # used by the bilingual toggle (custom)
 title_separator          : "·"
 name                     : &name "Siyuan Luo"
-description              : &description "Siyuan Luo — Master's student at the University of Melbourne. Audio continual learning, embodied AI."
+description              : &description "Siyuan Luo - robot learning engineer and University of Melbourne MSE student working on VLA, world-action models, and audio continual learning."
 url                      : https://luosyrrrr.github.io
 baseurl                  : ""
 repository               : "LUOSYrrrr/LUOSYrrrr.github.io"
@@ -25,7 +25,7 @@ author:
   avatar           : "profile.jpg"
   name             : "Siyuan Luo"
   pronouns         :
-  bio              : "M.Sc. student working on audio continual learning and embodied AI."
+  bio              : "Robot learning · VLA / WAM · Audio continual learning"
   location         : "Melbourne, Australia"
   employer         : "University of Melbourne"
   uri              :

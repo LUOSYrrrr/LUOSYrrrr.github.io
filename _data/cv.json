@@ -1,152 +1,120 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
+    "name": "Siyuan Luo",
+    "email": "luosylois@gmail.com",
     "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "website": "https://luosyrrrr.github.io",
+    "summary": "Robot learning engineer and University of Melbourne MSE student working on VLA, world-action models, and audio continual learning.",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
-      "countryCode": "US",
-      "region": ""
+      "city": "Melbourne",
+      "countryCode": "AU",
+      "region": "Victoria"
     },
     "profiles": [
       {
-        "network": "Google Scholar",
-        "username": "",
-        "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
-      },
-      {
-        "network": "ORCID",
-        "username": "",
-        "url": "https://orcid.org/yourorcidurl"
-      },
-      {
         "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "username": "LUOSYrrrr",
+        "url": "https://github.com/LUOSYrrrr"
       }
     ]
   },
-  "work": [],
+  "work": [
+    {
+      "company": "Xiong'an Institute of Artificial Intelligence",
+      "position": "Algorithm Intern",
+      "website": "",
+      "startDate": "2026-05",
+      "endDate": "2026-08",
+      "summary": "Whole-Body WAM for Unitree G1, spanning FastWAM model adaptation, 72-D physical actions, distributed training, mixed-supervision data, VR teleoperation, and quality control.",
+      "highlights": []
+    },
+    {
+      "company": "KNQ Technology",
+      "position": "AI Application Engineer Intern",
+      "website": "",
+      "startDate": "2025-11",
+      "endDate": "2026-01",
+      "summary": "Built a real-time table-tennis AI commentary pipeline from video and OCR through LLM generation, TTS, and RTMP output.",
+      "highlights": []
+    }
+  ],
   "education": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2018",
+      "institution": "University of Melbourne",
+      "area": "Software Engineering",
+      "studyType": "Master",
+      "startDate": "2024-07",
+      "endDate": "2026-12",
       "gpa": null,
       "courses": []
     },
     {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
+      "institution": "Sichuan University",
+      "area": "Cyberspace Security",
+      "studyType": "Bachelor of Engineering",
+      "startDate": "2020-09",
+      "endDate": "2024-06",
       "gpa": null,
       "courses": []
     }
   ],
-  "skills": [],
-  "languages": [],
-  "interests": [],
+  "skills": [
+    {
+      "name": "Robot Learning",
+      "level": "",
+      "keywords": ["VLA", "World-Action Models", "Flow Matching", "OpenPI", "LeRobot", "DROID", "LIBERO"]
+    },
+    {
+      "name": "Deep Learning",
+      "level": "",
+      "keywords": ["PyTorch", "JAX", "Transformers", "DDP", "DeepSpeed", "LoRA"]
+    },
+    {
+      "name": "Robotics and Systems",
+      "level": "",
+      "keywords": ["Unitree G1", "Franka", "Isaac Sim", "MuJoCo", "CUDA", "SLURM"]
+    },
+    {
+      "name": "Software Engineering",
+      "level": "",
+      "keywords": ["Python", "Java", "FastAPI", "Spring Boot", "WebSocket", "MySQL"]
+    }
+  ],
+  "languages": [
+    {"language": "Chinese", "fluency": "Native"},
+    {"language": "English", "fluency": "Professional"}
+  ],
+  "interests": [
+    {"name": "Embodied AI", "keywords": ["VLA", "WAM", "Robot Learning"]},
+    {"name": "Continual Learning", "keywords": ["Audio CIL", "Analytic Learning"]}
+  ],
   "references": [],
-  "publications": [
-    {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "https://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "https://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
-    }
-  ],
-  "presentations": [
-    {
-      "name": "Talk 1 on Relevant Topic in Your Field",
-      "event": "UC San Francisco, Department of Testing",
-      "date": "2012-03-01",
-      "location": "San Francisco, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Tutorial 1 on Relevant Topic in Your Field",
-      "event": "UC-Berkeley Institute for Testing Science",
-      "date": "2013-03-01",
-      "location": "Berkeley, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Talk 2 on Relevant Topic in Your Field",
-      "event": "London School of Testing",
-      "date": "2014-02-01",
-      "location": "London, UK",
-      "description": ""
-    },
-    {
-      "name": "Conference Proceeding talk 3 on Relevant Topic in Your Field",
-      "event": "Testing Institute of America 2014 Annual Conference",
-      "date": "2014-03-01",
-      "location": "Los Angeles, CA, USA",
-      "description": ""
-    }
-  ],
-  "teaching": [
-    {
-      "course": "Teaching experience 1",
-      "institution": "University 1, Department",
-      "date": "2014-01-01",
-      "role": "Undergraduate course",
-      "description": ""
-    },
-    {
-      "course": "Teaching experience 2",
-      "institution": "University 1, Department",
-      "date": "2015-01-01",
-      "role": "Workshop",
-      "description": ""
-    }
-  ],
+  "publications": [],
+  "presentations": [],
+  "teaching": [],
   "portfolio": [
     {
-      "name": "Portfolio item number 1",
-      "category": "portfolio",
-      "date": "",
-      "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "name": "Whole-Body WAM on Unitree G1",
+      "category": "Robot Learning",
+      "date": "2026",
+      "url": "/portfolio/0-whole-body-wam/",
+      "description": "FastWAM adaptation for 72-D whole-body loco-manipulation."
+    },
+    {
+      "name": "π₀.₅ on Franka",
+      "category": "Robot Learning",
+      "date": "2026",
+      "url": "/portfolio/1-pi05-franka/",
+      "description": "End-to-end VLA adaptation from demonstrations and fine-tuning to real-robot execution."
+    },
+    {
+      "name": "Audio-L3A",
+      "category": "Continual Learning",
+      "date": "2026",
+      "url": "/portfolio/2-audio-l3a/",
+      "description": "Efficient closed-form audio class-incremental learning on AudioSet."
     }
   ]
 }

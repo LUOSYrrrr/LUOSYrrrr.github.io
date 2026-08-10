@@ -55,13 +55,13 @@ on `dirt` — a warm, paper-ish palette.
 **Deeper styling.** `_sass/` holds the SCSS for all skins. `_sass/_themes.scss`
 is where the skin palettes are defined.
 
-## Replace placeholders
+## Optional profile additions
 
 - [ ] Real avatar photo — save as `images/profile.jpg`, set `author.avatar: "profile.jpg"` in `_config.yml`. (400×400+ square recommended.)
 - [ ] LinkedIn, Google Scholar, ORCID — fill in the corresponding keys under `author:` in `_config.yml`; the sidebar icons will appear automatically.
-- [ ] KNQ Technology date range — `_pages/about.md`, search `KNQ`.
-- [ ] Audio-L3A paper / code links — `_pages/about.md`, search `coming soon`.
-- [ ] Replace `resume.pdf` with your up-to-date CV (same filename, no other change needed).
+- [ ] Public Audio-L3A paper / code links — add them to `_portfolio/2-audio-l3a.md` when they are ready.
+
+The homepage, portfolio highlights, CV page, and `resume.pdf` are currently synced to the August 2026 résumé.
 
 ## Attribution
 
