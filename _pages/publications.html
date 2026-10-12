@@ -1,36 +1,19 @@
 ---
 layout: archive
-title: "Publications"
+title: ""
+excerpt: "Research papers and submissions by Siyuan Luo: WB-WAM and ALMA."
 permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
-{% include base_path %}
-
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
+<div class="i18n-en">
+  <h1 class="page__title">Publications</h1>
+  <p class="publication-intro">Preprints and conference submissions.</p>
+  {% include publication-list.html lang="en" heading_level=2 %}
+</div>
+<div class="i18n-zh">
+  <h1 class="page__title">论文</h1>
+  <p class="publication-intro">预印本与在投会议论文。</p>
+  {% include publication-list.html lang="zh" heading_level=2 %}
+</div>
 

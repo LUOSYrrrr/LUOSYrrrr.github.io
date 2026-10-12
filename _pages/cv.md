@@ -34,14 +34,14 @@ TTS, and RTMP output, plus structured match memory and pre-match narrative agent
 ## Selected projects
 
 - **π₀.₅ on Franka:** DROID-style collection, LeRobot v2 conversion, full fine-tuning on 8×A100, WebSocket policy serving, and real-robot execution.
-- **Audio-L3A:** 45.16% mAP on five-phase AudioSet-50, 2.65 points above LwF, at approximately one-ninth of offline training time.
+- **ALMA:** exemplar-free analytic learning for multi-label audio class-incremental learning; paper available on arXiv.
 - **PocketLLM:** 0.2B MoE decoder trained from scratch through pretraining, SFT, and DPO / PPO / GRPO alignment.
 
 ## Technical focus
 
 Robot learning and VLA · World-action models · Flow matching · JAX / PyTorch ·
 LeRobot / DROID / LIBERO · Unitree G1 / Franka · DeepSpeed / DDP / SLURM ·
-Audio continual learning · Python / Java / FastAPI / Spring Boot
+Analytic continual learning · Python / Java / FastAPI / Spring Boot
 
 </div>
 
@@ -69,7 +69,7 @@ Audio continual learning · Python / Java / FastAPI / Spring Boot
 ## 代表项目
 
 - **Franka 上的 π₀.₅：** DROID 风格数采、LeRobot v2 转换、8×A100 全量微调、WebSocket 策略服务与真机执行。
-- **Audio-L3A：** AudioSet-50 五阶段 mAP 45.16%，领先 LwF 2.65 个百分点，总训练时间约为离线上界的 1/9。
+- **ALMA：** 面向多标签音频类增量学习的免样本解析学习方法；论文已上线 arXiv。
 - **PocketLLM：** 从零训练 0.2B MoE Decoder，覆盖预训练、SFT 和 DPO / PPO / GRPO 对齐。
 
 ## 技术方向

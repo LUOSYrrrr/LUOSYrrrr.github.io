@@ -59,9 +59,9 @@ is where the skin palettes are defined.
 
 - [ ] Real avatar photo — save as `images/profile.jpg`, set `author.avatar: "profile.jpg"` in `_config.yml`. (400×400+ square recommended.)
 - [ ] LinkedIn, Google Scholar, ORCID — fill in the corresponding keys under `author:` in `_config.yml`; the sidebar icons will appear automatically.
-- [ ] Public Audio-L3A paper / code links — add them to `_portfolio/2-audio-l3a.md` when they are ready.
+- [x] Public ALMA paper link added to `_portfolio/2-audio-l3a.md`; code release is still pending.
 
-The homepage, portfolio highlights, CV page, and `resume.pdf` are currently synced to the August 2026 résumé.
+The homepage, portfolio highlights, CV page, and `resume.pdf` are synced to the current October 2026 résumé.
 
 ## Attribution
 

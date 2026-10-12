@@ -42,44 +42,63 @@
     "vendor/font-awesome/brands"
 ;
 
-/* Portfolio homepage additions. Keep these theme-aware by using the palette
-   variables already provided by AcademicPages. */
+/* Portfolio homepage additions. */
+:root {
+  --home-accent: #286a78;
+  --home-accent-soft: #eaf3f4;
+  --home-card-bg: #fbfdfe;
+  --home-card-border: #dde7eb;
+  --home-card-text: #465d68;
+  --home-muted: #607480;
+}
+
+html[data-theme="dark"] {
+  --home-accent: #7ec6cc;
+  --home-accent-soft: #17333a;
+  --home-card-bg: #15242c;
+  --home-card-border: #2b414a;
+  --home-card-text: #b7c5cb;
+  --home-muted: #9caeb6;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.btn,
+.masthead__inner-wrap,
+.greedy-nav,
+.author__name {
+  font-family: "Manrope", "PingFang SC", "Hiragino Sans GB", sans-serif;
+}
+
 .home-hero {
-  margin: 0 0 2.25rem;
-  padding: clamp(1.4rem, 3vw, 2.25rem);
-  border: 1px solid rgba(190, 151, 94, 0.42);
-  border-radius: 1.1rem;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(190, 151, 94, 0.2), transparent 34%),
-    linear-gradient(145deg, #2e281f, #201c17);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
-  color: #f7f1e8;
+  margin: 0 0 2.4rem;
+  padding: 0.25rem 0 1.75rem;
+  border-bottom: 1px solid var(--home-card-border);
 }
 
 .home-eyebrow {
-  margin: 0 0 0.6rem;
-  color: #c9a66b;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.home-hero h1 {
-  max-width: 18ch;
-  margin: 0 0 0.8rem;
-  font-size: clamp(1.85rem, 4vw, 3.05rem);
-  line-height: 1.06;
-  letter-spacing: -0.045em;
-  color: #fffaf2;
+  margin: 0 0 0.75rem;
+  color: var(--home-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
 }
 
 .home-lead {
-  max-width: 43rem;
-  margin-bottom: 1.25rem;
-  font-size: clamp(1rem, 1.5vw, 1.18rem);
-  line-height: 1.7;
-  color: #ddd3c5;
+  max-width: 46rem;
+  margin: 0;
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+  line-height: 1.75;
+  color: var(--global-text-color);
 }
 
 .home-actions {
@@ -91,18 +110,22 @@
 
 .home-actions .btn {
   margin: 0;
-  border-radius: 999px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.4rem;
 }
 
 .home-actions .btn--primary {
-  background: #bd9458;
-  color: #1f1a15;
+  border-color: var(--home-accent) !important;
+  background: var(--home-accent);
+  color: #ffffff !important;
 }
 
 .home-actions .btn:not(.btn--primary) {
-  border-color: #d8cbb8;
-  background: #f7f1e8;
-  color: #30281f;
+  border-color: var(--home-card-border) !important;
+  background: transparent;
+  color: var(--global-text-color) !important;
 }
 
 .focus-grid {
@@ -114,36 +137,130 @@
 
 .focus-card {
   min-width: 0;
-  padding: 1rem 1.05rem;
-  border: 1px solid rgba(190, 151, 94, 0.38);
-  border-radius: 0.85rem;
-  background: #272219;
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--home-card-border);
+  border-radius: 0.45rem;
+  background: var(--home-card-bg);
 }
 
 .focus-card p {
-  color: #ddd3c5;
-  font-size: 0.82rem;
-  line-height: 1.5;
+  color: var(--home-card-text);
+  font-size: 0.86rem;
+  line-height: 1.55;
 }
 
 .focus-card h3 {
   margin: 0 0 0.45rem;
   font-size: 1rem;
-  color: #fffaf2;
+  color: var(--global-text-color);
 }
 
 .focus-card p {
-  margin: 0 0 0.75rem;
+  flex: 1;
+  margin: 0 0 1rem;
 }
 
 .focus-card a {
-  color: #d4ae70;
-  font-size: 0.8rem;
+  color: var(--global-link-color);
+  font-size: 0.82rem;
   font-weight: 700;
+}
+
+.focus-links,
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.8rem;
+  align-items: center;
+}
+
+.focus-links a,
+.project-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.focus-links .focus-link--primary {
+  color: var(--global-link-color) !important;
+}
+
+.project-links {
+  margin: 0.8rem 0 1.6rem;
+}
+
+.project-links .btn {
+  margin: 0;
+  border-radius: 0.65rem;
 }
 
 .timeline-list li {
   margin-bottom: 0.72rem;
+}
+
+.publication-list {
+  margin: 0.5rem 0 2rem;
+}
+
+.publication-entry {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--home-card-border);
+}
+
+.publication-entry:last-child {
+  border-bottom: 0;
+}
+
+.publication-entry .publication-title {
+  margin: 0 0 0.45rem;
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.publication-title a {
+  color: var(--global-text-color);
+  text-decoration: none;
+}
+
+.publication-title a:hover {
+  color: var(--global-link-color);
+  text-decoration: underline;
+}
+
+.publication-entry .publication-authors,
+.publication-entry .publication-venue,
+.publication-intro {
+  margin: 0 0 0.4rem;
+  color: var(--home-card-text);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.publication-venue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.7rem;
+}
+
+.publication-status {
+  color: var(--home-muted);
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  font-size: 0.8rem;
+}
+
+.publication-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 @media (max-width: 760px) {
@@ -151,8 +268,8 @@
     grid-template-columns: 1fr;
   }
 
-  .home-hero h1 {
-    max-width: none;
-    font-size: 2rem;
+  .home-hero {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 }

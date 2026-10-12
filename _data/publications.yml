@@ -1,0 +1,31 @@
+# Paper titles, author order, and preprint dates follow the arXiv records.
+# Submission venues follow the supplied CV; neither paper is listed as accepted.
+- id: wb-wam
+  title: "WB-WAM: Heterogeneous Body-Hand Pre-training for Humanoid Loco-Manipulation"
+  authors:
+    - Chuan Qin
+    - Shaoting Zhu
+    - Siyuan Luo
+    - Siqiao Huang
+    - Hongyu Zhao
+    - Shanaka Baduge
+    - Hang Zhao
+  venue: "ICRA 2027"
+  venue_full: "IEEE International Conference on Robotics and Automation"
+  date: "2026-09-28"
+  arxiv: "https://arxiv.org/abs/2609.34199"
+  pdf: "https://arxiv.org/pdf/2609.34199"
+  code: "https://github.com/WB-WaM/WB-WAM-Official"
+  project: "https://wb-wam.github.io/"
+
+- id: alma
+  title: "Exemplar-Free Analytic Learning for Multi-Label Audio Class-Incremental Learning"
+  authors:
+    - Siyuan Luo
+    - Yang Xiao
+    - Ting Dang
+  venue: "ICASSP 2027"
+  venue_full: "IEEE International Conference on Acoustics, Speech and Signal Processing"
+  date: "2026-09-24"
+  arxiv: "https://arxiv.org/abs/2609.29777"
+  pdf: "https://arxiv.org/pdf/2609.29777"

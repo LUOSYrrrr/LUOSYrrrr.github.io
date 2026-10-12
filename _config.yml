@@ -10,7 +10,7 @@
 
 # ---- Basic site ----
 locale                   : "en-US"
-site_theme               : "dirt"           # warm, paper-like palette
+site_theme               : "ocean"          # cool navy/teal research palette
 title                    : "Siyuan Luo"
 title_zh                 : "骆思缘"           # used by the bilingual toggle (custom)
 title_separator          : "·"
@@ -25,7 +25,7 @@ author:
   avatar           : "profile.jpg"
   name             : "Siyuan Luo"
   pronouns         :
-  bio              : "Robot learning · VLA / WAM · Audio continual learning"
+  bio              : "Robot learning · VLA / WAM · Continual learning"
   location         : "Melbourne, Australia"
   employer         : "University of Melbourne"
   uri              :

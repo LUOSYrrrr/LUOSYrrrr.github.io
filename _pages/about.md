@@ -11,7 +11,6 @@ redirect_from:
 
 <section class="home-hero">
   <p class="home-eyebrow">Robot Learning · VLA / WAM · Continual Learning</p>
-  <h1>From robot data to real-world deployment.</h1>
   <p class="home-lead">I'm Siyuan Luo, a Master of Software Engineering student at the University of Melbourne. I build embodied-AI systems across data collection, model training, policy serving, and real-robot execution - recently π₀.₅ on Franka and whole-body world-action models on Unitree G1.</p>
   <div class="home-actions">
     <a class="btn btn--primary" href="/portfolio/">Explore projects</a>
@@ -26,26 +25,32 @@ redirect_from:
   <article class="focus-card">
     <h3>Whole-Body WAM</h3>
     <p>Extending FastWAM from tabletop manipulation to whole-body loco-manipulation on Unitree G1.</p>
-    <a href="/portfolio/0-whole-body-wam/">Project details →</a>
+    <div class="focus-links"><a href="https://arxiv.org/abs/2609.34199">arXiv ↗</a><a class="focus-link--primary" href="https://github.com/WB-WaM/WB-WAM-Official">GitHub ↗</a><a href="/portfolio/0-whole-body-wam/">Details →</a></div>
   </article>
   <article class="focus-card">
     <h3>π₀.₅ on Franka</h3>
     <p>An end-to-end VLA pipeline spanning DROID-style data, LeRobot, full fine-tuning, serving, and real-robot execution.</p>
-    <a href="/portfolio/1-pi05-franka/">Project details →</a>
+    <div class="focus-links"><a href="/portfolio/1-pi05-franka/">Project details →</a></div>
   </article>
   <article class="focus-card">
-    <h3>Audio-L3A</h3>
+    <h3>ALMA</h3>
     <p>Closed-form audio class-incremental learning that approaches the offline upper bound at a fraction of the training cost.</p>
-    <a href="/portfolio/2-audio-l3a/">Project details →</a>
+    <div class="focus-links"><a class="focus-link--primary" href="https://arxiv.org/abs/2609.29777">arXiv ↗</a><a href="/portfolio/2-alma/">Details →</a></div>
   </article>
 </div>
+
+## Publications
+
+{% include publication-list.html lang="en" %}
 
 ## Latest
 
 <ul class="timeline-list">
+  <li><strong>2026-09-28</strong> - <strong>WB-WAM</strong> is available on <a href="https://arxiv.org/abs/2609.34199">arXiv</a>; submitted to ICRA 2027.</li>
+  <li><strong>2026-09-26</strong> - Open-sourced <a href="https://github.com/WB-WaM/WB-WAM-Official">WB-WAM-Official</a>, covering training, data collection, Unitree G1 deployment, and HumanoidArena evaluation.</li>
+  <li><strong>2026-09-24</strong> - <strong>ALMA</strong> is available on <a href="https://arxiv.org/abs/2609.29777">arXiv</a>; submitted to ICASSP 2027.</li>
   <li><strong>2026-08</strong> - Built a Kubernetes-based remote review workbench for multi-source whole-body robot datasets.</li>
   <li><strong>2026-05</strong> - Joined the Xiong'an Institute of Artificial Intelligence as an algorithm intern, working on Whole-Body WAM for Unitree G1.</li>
-  <li><strong>2026-05</strong> - Audio-L3A reached <strong>45.16% mAP</strong> on five-phase AudioSet-50, 2.65 points above the strongest CIL baseline.</li>
   <li><strong>2026-04</strong> - Completed the π₀.₅ training-to-deployment pipeline for Franka flexible manipulation.</li>
   <li><strong>2026-01</strong> - Completed an AI application internship at KNQ Technology, delivering an end-to-end table-tennis commentary system.</li>
 </ul>
@@ -75,7 +80,6 @@ Email <luosylois@gmail.com> · GitHub [@LUOSYrrrr](https://github.com/LUOSYrrrr)
 
 <section class="home-hero">
   <p class="home-eyebrow">机器人学习 · VLA / WAM · 持续学习</p>
-  <h1>把机器人学习从数据做到真机。</h1>
   <p class="home-lead">我是骆思缘，墨尔本大学软件工程硕士生。我关注具身智能系统的完整链路：示范数据采集、模型训练、策略服务与真机执行。近期工作包括 Franka 上的 π₀.₅，以及面向 Unitree G1 的全身 World-Action Model。</p>
   <div class="home-actions">
     <a class="btn btn--primary" href="/portfolio/">查看项目</a>
@@ -90,26 +94,32 @@ Email <luosylois@gmail.com> · GitHub [@LUOSYrrrr](https://github.com/LUOSYrrrr)
   <article class="focus-card">
     <h3>Whole-Body WAM</h3>
     <p>将 FastWAM 从桌面机械臂任务扩展到 Unitree G1 全身移动操作。</p>
-    <a href="/portfolio/0-whole-body-wam/">项目详情 →</a>
+    <div class="focus-links"><a href="https://arxiv.org/abs/2609.34199">arXiv ↗</a><a class="focus-link--primary" href="https://github.com/WB-WaM/WB-WAM-Official">GitHub ↗</a><a href="/portfolio/0-whole-body-wam/">详情 →</a></div>
   </article>
   <article class="focus-card">
     <h3>Franka 上的 π₀.₅</h3>
     <p>覆盖 DROID 风格数采、LeRobot 数据、全量微调、策略服务与真机执行的 VLA 全链路。</p>
-    <a href="/portfolio/1-pi05-franka/">项目详情 →</a>
+    <div class="focus-links"><a href="/portfolio/1-pi05-franka/">项目详情 →</a></div>
   </article>
   <article class="focus-card">
-    <h3>Audio-L3A</h3>
+    <h3>ALMA</h3>
     <p>面向音频类增量学习的闭式解方法，以更低训练成本逼近离线训练上界。</p>
-    <a href="/portfolio/2-audio-l3a/">项目详情 →</a>
+    <div class="focus-links"><a class="focus-link--primary" href="https://arxiv.org/abs/2609.29777">arXiv ↗</a><a href="/portfolio/2-alma/">详情 →</a></div>
   </article>
 </div>
+
+## 论文
+
+{% include publication-list.html lang="zh" %}
 
 ## 最新进展
 
 <ul class="timeline-list">
+  <li><strong>2026-09-28</strong> - <strong>WB-WAM</strong> 论文上线 <a href="https://arxiv.org/abs/2609.34199">arXiv</a>，ICRA 2027 投稿中。</li>
+  <li><strong>2026-09-26</strong> - 开源 <a href="https://github.com/WB-WaM/WB-WAM-Official">WB-WAM-Official</a>，包含训练、数据采集、Unitree G1 真机部署与 HumanoidArena 评测代码。</li>
+  <li><strong>2026-09-24</strong> - <strong>ALMA</strong> 论文上线 <a href="https://arxiv.org/abs/2609.29777">arXiv</a>，ICASSP 2027 投稿中。</li>
   <li><strong>2026-08</strong> - 完成面向多源全身机器人数据的 Kubernetes 远程质检与人工审核工作台。</li>
   <li><strong>2026-05</strong> - 加入雄安人工智能研究院担任算法实习生，参与 Unitree G1 Whole-Body WAM。</li>
-  <li><strong>2026-05</strong> - Audio-L3A 在五阶段 AudioSet-50 上达到 <strong>45.16% mAP</strong>，领先最强 CIL 基线 2.65 个百分点。</li>
   <li><strong>2026-04</strong> - 打通 Franka 柔性操作场景下 π₀.₅ 从训练到真机部署的完整链路。</li>
   <li><strong>2026-01</strong> - 完成麒纪科技 AI 应用开发实习，交付乒乓球赛事 AI 实时解说系统。</li>
 </ul>

@@ -1,12 +1,20 @@
 ---
-title: "Whole-Body WAM - Unitree G1 loco-manipulation"
+title: "WB-WAM - Heterogeneous Body-Hand Pre-training for Humanoid Loco-Manipulation"
 excerpt: "<span class='i18n-en'>Extending FastWAM from tabletop manipulation to 72-D whole-body physical action prediction on Unitree G1 + Wuji hands.</span><span class='i18n-zh'>将 FastWAM 从桌面机械臂任务扩展到 Unitree G1 + Wuji 的 72 维全身物理动作预测。</span>"
 collection: portfolio
 ---
 
 _FastWAM · Wan2.2-TI2V-5B · Video DiT + Action DiT · DeepSpeed · Unitree G1 · Wuji · **2026.05 - 2026.08**_
 
+<div class="project-links">
+  <a class="btn" href="https://arxiv.org/abs/2609.34199">arXiv ↗</a>
+  <a class="btn btn--primary" href="https://github.com/WB-WaM/WB-WAM-Official">Official GitHub ↗</a>
+  <a class="btn" href="https://wb-wam.github.io/">Project page ↗</a>
+</div>
+
 <div class="i18n-en" markdown="1">
+
+**ICRA 2027 · Submission.** Code released on September 26, 2026.
 
 Algorithm internship project extending **FastWAM**, originally evaluated on
 tabletop manipulation, to whole-body loco-manipulation on **Unitree G1** with
@@ -36,6 +44,8 @@ Kubernetes-hosted remote review workbench with append-only annotations.
 </div>
 
 <div class="i18n-zh" markdown="1">
+
+**ICRA 2027 · 投稿中。** 代码于 2026 年 9 月 26 日开源。
 
 算法实习项目：将原本面向桌面机械臂任务的 **FastWAM** 扩展到 **Unitree G1** + Wuji 灵巧手的全身移动操作。
 

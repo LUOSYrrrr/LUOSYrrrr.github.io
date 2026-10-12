@@ -1,12 +1,21 @@
 ---
-title: "Audio-L3A - efficient audio class-incremental learning"
+title: "ALMA - exemplar-free analytic learning for multi-label audio CIL"
 excerpt: "<span class='i18n-en'>A frozen-backbone analytic learner reaching 45.16% mAP on five-phase AudioSet-50, 2.65 points above LwF at roughly one-ninth of offline training time.</span><span class='i18n-zh'>冻结 backbone 的解析式持续学习方法：AudioSet-50 五阶段达到 45.16% mAP，领先 LwF 2.65 个百分点，总训练时间约为离线上界的 1/9。</span>"
 collection: portfolio
+permalink: /portfolio/2-alma/
+redirect_from:
+  - /portfolio/2-audio-l3a/
 ---
 
 _Audio CIL · PyTorch · CNN14 / PANNs · scikit-learn · SLURM · **2026.02 - 2026.05**_
 
+<div class="project-links">
+  <a class="btn btn--primary" href="https://arxiv.org/abs/2609.29777">Read on arXiv ↗</a>
+</div>
+
 <div class="i18n-en" markdown="1">
+
+**ICASSP 2027 · Submission.**
 
 An efficient multi-label audio class-incremental learner combining a frozen
 backbone, a Ridge closed-form Weighted Analytic Classifier, frequency weighting,
@@ -32,11 +41,13 @@ five class orders was only 0.10.
 minutes with MFCC feature caching and automated more than 80 experiments across
 GPU and CPU SLURM partitions.
 
-_Paper and code are currently private while the thesis is in progress._
+_The paper is available on arXiv. Code release is pending._
 
 </div>
 
 <div class="i18n-zh" markdown="1">
+
+**ICASSP 2027 · 投稿中。**
 
 面向多标签音频类增量学习，结合冻结 backbone、Ridge 闭式解加权解析分类器、频率加权和 per-class threshold 校准。
 
@@ -48,6 +59,6 @@ _Paper and code are currently private while the thesis is in progress._
 
 **HPC 工程。** &nbsp; 使用 MFCC 磁盘缓存将 TCResNet-8 baseline 从 24 小时降到 20 分钟，并通过 SLURM GPU / CPU 多分区自动编排 80 余组实验。
 
-_论文与代码在毕业论文完成前暂不公开。_
+_论文已上线 arXiv，代码将另行发布。_
 
 </div>

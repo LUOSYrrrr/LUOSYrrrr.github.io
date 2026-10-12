@@ -3,6 +3,10 @@
 # in _includes/masthead.html (CSS/JS is inlined there).
 
 main:
+  - title: "Publications"
+    title_zh: "论文"
+    url: /publications/
+
   - title: "Projects"
     title_zh: "项目"
     url: /portfolio/

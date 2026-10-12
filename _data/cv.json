@@ -110,10 +110,10 @@
       "description": "End-to-end VLA adaptation from demonstrations and fine-tuning to real-robot execution."
     },
     {
-      "name": "Audio-L3A",
+      "name": "ALMA",
       "category": "Continual Learning",
       "date": "2026",
-      "url": "/portfolio/2-audio-l3a/",
+      "url": "/portfolio/2-alma/",
       "description": "Efficient closed-form audio class-incremental learning on AudioSet."
     }
   ]
