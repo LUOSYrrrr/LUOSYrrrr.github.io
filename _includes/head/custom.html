@@ -18,8 +18,7 @@
     var KEY = 'site-lang';
     var saved = null;
     try { saved = localStorage.getItem(KEY); } catch (e) {}
-    var lang = saved ||
-      ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
+    var lang = saved === 'zh' ? 'zh' : 'en';
     var root = document.documentElement;
     root.classList.add('lang-' + lang);
     root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
