@@ -44,21 +44,21 @@
 
 /* Portfolio homepage additions. */
 :root {
-  --home-accent: #286a78;
-  --home-accent-soft: #eaf3f4;
-  --home-card-bg: #fbfdfe;
-  --home-card-border: #dde7eb;
-  --home-card-text: #465d68;
-  --home-muted: #607480;
+  --home-accent: #275d91;
+  --home-accent-soft: #dcecff;
+  --home-card-bg: #edf5ff;
+  --home-card-border: #cfdfef;
+  --home-card-text: #465c73;
+  --home-muted: #5d7188;
 }
 
 html[data-theme="dark"] {
-  --home-accent: #7ec6cc;
-  --home-accent-soft: #17333a;
-  --home-card-bg: #15242c;
-  --home-card-border: #2b414a;
-  --home-card-text: #b7c5cb;
-  --home-muted: #9caeb6;
+  --home-accent: #9bc8f5;
+  --home-accent-soft: #20354d;
+  --home-card-bg: #172638;
+  --home-card-border: #2d435c;
+  --home-card-text: #bccbdc;
+  --home-muted: #a3b6cd;
 }
 
 body,
@@ -117,9 +117,9 @@ h6,
 }
 
 .home-actions .btn--primary {
-  border-color: var(--home-accent) !important;
-  background: var(--home-accent);
-  color: #ffffff !important;
+  border-color: var(--home-card-border) !important;
+  background: var(--home-accent-soft);
+  color: var(--home-accent) !important;
 }
 
 .home-actions .btn:not(.btn--primary) {
@@ -194,6 +194,8 @@ h6,
 .project-links .btn {
   margin: 0;
   border-radius: 0.65rem;
+  background: var(--home-accent-soft);
+  color: var(--home-accent) !important;
 }
 
 .timeline-list li {
